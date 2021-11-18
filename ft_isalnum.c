@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 19:51:21 by mher              #+#    #+#             */
-/*   Updated: 2021/11/11 19:58:00 by mher             ###   ########.fr       */
+/*   Created: 2021/11/16 14:36:50 by mher              #+#    #+#             */
+/*   Updated: 2021/11/16 15:32:17 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_ft_isalnum(int c)
+int	ft_isalnum(int c)
 {
 	return (ft_isalpha(c) || ft_isdigit(c));
 }
