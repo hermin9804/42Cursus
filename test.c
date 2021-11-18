@@ -36,5 +36,6 @@ int	main()
 	char *s1 = "12hello21";
 	char *set = "12";
 	printf("%s\n", ft_strtrim(s1, set));
+	printf("%s\n", ft_strtrim(s1, set));
 	return (0);
 }
