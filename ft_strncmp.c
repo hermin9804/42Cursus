@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 20:10:33 by mher              #+#    #+#             */
-/*   Updated: 2021/11/18 19:09:06 by mher             ###   ########.fr       */
+/*   Updated: 2021/11/19 14:18:29 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 	t1 = (unsigned char *)s1;
 	t2 = (unsigned char *)s2;
-	while (n-- >= 0)
+	while (n-- > 0)
 	{
 		if (*t1 != *t2 || !*t1 || !*t2)
 			return (*t1 - *t2);

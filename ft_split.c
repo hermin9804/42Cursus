@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/19 16:42:23 by mher              #+#    #+#             */
+/*   Updated: 2021/11/21 17:36:16 by mher             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static char	**ft_malloc_error(char **ret)
@@ -14,9 +26,9 @@ static char	**ft_malloc_error(char **ret)
 	return (0);
 }
 
-static unsigned int	ft_get_word_cnt(const char *s, char c)
+static size_t	ft_get_word_cnt(const char *s, char c)
 {
-	unsigned int	cnt;
+	size_t	cnt;
 
 	cnt = 0;
 	while (*s)
@@ -26,6 +38,8 @@ static unsigned int	ft_get_word_cnt(const char *s, char c)
 			++cnt;
 			while (*s && *s != c)
 				++s;
+			if (!*s)
+				break ;
 		}
 		++s;
 	}
@@ -34,15 +48,16 @@ static unsigned int	ft_get_word_cnt(const char *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	char			**ret;
-	char			*from;
-	unsigned int	i;
+	char	**ret;
+	char	*from;
+	size_t	i;
 
 	if (!s)
 		return (0);
-	ret = (char **)malloc(sizeof(char *) * (ft_get_word_cnt(s, c) + 1));
+	ret = (char **)ft_calloc(sizeof(char *), (ft_get_word_cnt(s, c) + 1));
 	if (!ret)
 		return (0);
+	i = 0;
 	while (*s)
 	{
 		if (*s != c)
@@ -53,10 +68,9 @@ char	**ft_split(char const *s, char c)
 			ret[i] = (char *)malloc(s - from + 1);
 			if (!ret[i])
 				return (ft_malloc_error(ret));
-			ft_strlcpy(ret[i++], from, s - from + 1);
+			ft_strlcpy(ret[i++], from, s-- - from + 1);
 		}
 		++s;
 	}
-	ret[i] = 0;
 	return (ret);
 }

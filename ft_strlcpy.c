@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:40:28 by mher              #+#    #+#             */
-/*   Updated: 2021/11/17 15:32:02 by mher             ###   ########.fr       */
+/*   Updated: 2021/11/19 14:46:20 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 		++i;
 	}
 	dest[i] = '\0';
-	return (dest);
+	return (ft_strlen(src));
 }
