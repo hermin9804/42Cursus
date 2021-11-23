@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:46:48 by mher              #+#    #+#             */
-/*   Updated: 2021/11/21 17:29:54 by mher             ###   ########.fr       */
+/*   Updated: 2021/11/23 16:39:00 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			return (0);
 		}
 		ft_lstadd_back(&ret, tmp);
-		tmp = tmp->next;
 		lst = lst->next;
 	}
 	return (ret);
