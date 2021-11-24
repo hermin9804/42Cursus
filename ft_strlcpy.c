@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 14:40:28 by mher              #+#    #+#             */
-/*   Updated: 2021/11/19 14:46:20 by mher             ###   ########.fr       */
+/*   Updated: 2021/11/24 16:21:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 {
-	size_t	src_len;
 	size_t	i;
+	size_t	src_len;
 
-	src_len = 0;
-	while (src[src_len])
-		++src_len;
+	i = 0;
+	src_len = ft_strlen(src);
 	if (destsize == 0)
 		return (src_len);
-	i = 0;
 	while (src[i] && i < (destsize - 1))
 	{
 		dest[i] = src[i];
 		++i;
 	}
-	dest[i] = '\0';
-	return (ft_strlen(src));
+	dest[i] = 0;
+	return (src_len);
 }
