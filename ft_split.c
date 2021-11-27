@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:42:23 by mher              #+#    #+#             */
-/*   Updated: 2021/11/27 18:53:24 by mher             ###   ########.fr       */
+/*   Updated: 2021/11/27 21:03:10 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,23 @@ static size_t	ft_get_word_cnt(const char *s, char c)
 	return (cnt);
 }
 
-static char const	*ft_find_to(char const *s, char c)
+static size_t	ft_get_word_len(char const *s, char c)
 {
+	size_t	i;
+
+	i = 0;
 	while (*s && *s != c)
+	{
 		++s;
-	return (s);
+		++i;
+	}
+	return (i);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**ret;
-	char	*from;
+	size_t	word_len;
 	size_t	i;
 
 	if (!s)
@@ -69,12 +75,12 @@ char	**ft_split(char const *s, char c)
 	{
 		if (*s != c)
 		{
-			from = (char *)s;
-			s = ft_find_to(s, c);
-			ret[i] = (char *)malloc(s - from + 1);
+			word_len = ft_get_word_len(s, c);
+			ret[i] = (char *)malloc(word_len + 1);
 			if (!ret[i])
 				return (ft_malloc_error(ret));
-			ft_strlcpy(ret[i++], from, s-- - from + 1);
+			ft_strlcpy(ret[i++], s, word_len + 1);
+			s += word_len - 1;
 		}
 		++s;
 	}

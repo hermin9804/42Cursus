@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 12:41:40 by mher              #+#    #+#             */
-/*   Updated: 2021/11/19 16:41:15 by mher             ###   ########.fr       */
+/*   Updated: 2021/11/27 15:08:52 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *str)
 {
-	long long	ret;
-	int			sign;
+	long	ret;
+	int		sign;
 
 	ret = 0;
 	sign = 1;
