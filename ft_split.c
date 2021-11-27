@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:42:23 by mher              #+#    #+#             */
-/*   Updated: 2021/11/23 20:46:05 by mher             ###   ########.fr       */
+/*   Updated: 2021/11/27 18:53:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static size_t	ft_get_word_cnt(const char *s, char c)
 	return (cnt);
 }
 
-static const char	*ft_find_to(const char *s, char c)
+static char const	*ft_find_to(char const *s, char c)
 {
 	while (*s && *s != c)
 		++s;
