@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:46:05 by mher              #+#    #+#             */
-/*   Updated: 2021/11/19 16:46:07 by mher             ###   ########.fr       */
+/*   Updated: 2021/11/30 20:41:44 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	}
 	last = ft_lstlast(*lst);
-	new->next = last->next;
 	last->next = new;
 }
