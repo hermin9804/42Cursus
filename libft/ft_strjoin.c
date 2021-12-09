@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:42:05 by mher              #+#    #+#             */
-/*   Updated: 2021/11/19 16:42:06 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/09 13:04:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!ret)
 		return (0);
 	ft_strlcpy(ret, s1, s1_len + 1);
-	ft_strlcat(ret + s1_len, s2, s2_len + 1);
+	ft_strlcpy(ret + s1_len, s2, s2_len + 1);
 	return (ret);
 }
