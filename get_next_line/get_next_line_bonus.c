@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2021/12/09 20:24:01 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/09 21:50:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,10 @@ t_keep_lst	*find_fd(int fd, t_keep_lst *lst)
 	if (!temp)
 		return (0);
 	temp->fd = fd;
+	temp->prev = lst;
 	temp->next = lst->next; 
+	if (lst->next)
+		lst->next->prev = temp;
 	lst->next = temp;
 	temp->keep = 0;
 	return (temp);
@@ -142,7 +145,14 @@ char	*get_next_line(int fd)
 	temp = find_fd(fd, &keep_lst);
 	temp->keep = read_file(fd, temp->keep);
 	if (!(temp->keep))
+	{
+		temp->prev->next = temp->next;
+		if (temp->next)
+			temp->next->prev = temp->prev;
+		free(temp);
+		temp = 0;
 		return (0);
+	}
 	if (*(temp->keep))
 	{
 		line = get_line(temp->keep);
@@ -158,6 +168,11 @@ char	*get_next_line(int fd)
 	}
 	free(temp->keep);
 	temp->keep = 0;
+	//
+	temp->prev->next = temp->next;
+	if (temp->next)
+		temp->next->prev = temp->prev;
+	//
 	free(temp);
 	temp = 0;
 	return (0);
