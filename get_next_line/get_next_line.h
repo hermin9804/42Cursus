@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:32:44 by mher              #+#    #+#             */
-/*   Updated: 2021/12/09 13:25:51 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/10 15:53:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+char			*read_file(int fd, char *keep);
+char			*get_line(char *keep);
 char			*get_next_line(int fd);
+
 char			*ft_strdup(const char *s1);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strjoin(char const *s1, char const *s2);

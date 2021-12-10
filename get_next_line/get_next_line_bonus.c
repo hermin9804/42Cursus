@@ -6,56 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2021/12/10 13:52:47 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/10 15:54:51 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_strdup(const char *s1)
-{
-	size_t	len;
-	char	*ret;
-	char	*tmp;
-
-	len = ft_strlen(s1);
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	if (!ret)
-		return (0);
-	tmp = ret;
-	while (len--)
-	{
-		*tmp = *s1;
-		++tmp;
-		++s1;
-	}
-	*tmp = 0;
-	return (ret);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*ret;
-	size_t	s1_len;
-	size_t	s2_len;
-
-	if (!s1 && !s2)
-		return (0);
-	else if (!s1)
-		return (ft_strdup(s2));
-	else if (!s2)
-		return (ft_strdup(s1));
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	ret = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
-	if (!ret)
-		return (0);
-	ft_strlcpy(ret, s1, s1_len + 1);
-	ft_strlcpy(ret + s1_len, s2, s2_len + 1);
-	return (ret);
-}
-
-char	*make_line(char *keep)
+char	*get_line(char *keep)
 {
 	char	*line;
 	size_t	i;
@@ -109,149 +66,73 @@ char	*read_file(int fd, char *keep)
 	return (keep);
 }
 
-t_keep_lst	*find_fd(int fd, t_keep_lst *lst)
+t_fd_lst	*find_fd(int fd, t_fd_lst *head)
 {
-	t_keep_lst *temp;
+	t_fd_lst	*temp;
 
-	temp = lst->next;
+	temp = head->next;
 	while (temp)
 	{
 		if (temp->fd == fd)
 			return (temp);
 		temp = temp->next;
 	}
-	temp = (t_keep_lst *)malloc(sizeof(t_keep_lst));
+	temp = (t_fd_lst *)malloc(sizeof(t_fd_lst));
 	if (!temp)
 		return (0);
 	temp->fd = fd;
-	temp->prev = lst;
-	temp->next = lst->next; 
-	if (lst->next)
-		lst->next->prev = temp;
-	lst->next = temp;
+	temp->prev = head;
+	temp->next = head->next;
+	if (head->next)
+		head->next->prev = temp;
+	head->next = temp;
 	temp->keep = 0;
 	return (temp);
 }
 
-char	*free_curr_link_prev_next(t_keep_lst *lst)
-{
-	lst->prev->next = lst->next;
-	if (lst->next)
-		lst->next->prev = lst->prev;
-	free(lst);
-	lst = 0;
-	return (0);
-}
-
-char	*get_line(t_keep_lst *lst)
+char	*gnl_or_lnf(t_fd_lst *fd_lst, int flag)
 {
 	char	*line;
-	char	*p;
+	char	*temp;
 
-	line = make_line(lst->keep);
-	if (!line)
-		return (0);
-	p = lst->keep;
-	lst->keep = ft_strdup(p + ft_strlen(line));
-	free(p);
-	p = 0;
-	if (!(lst->keep))
-		return (0);
-	return (line);
-}
-
-char	*get_next_line(int fd)
-{
-//	char				*line;
-	static t_keep_lst	keep_lst;
-	t_keep_lst			*temp;
-//	char				*p;
-
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (0);
-	temp = find_fd(fd, &keep_lst);
-	temp->keep = read_file(fd, temp->keep);
-	if (!(temp->keep))
-		return (free_curr_link_prev_next(temp));
-	if (*(temp->keep))
-		return (get_line(temp));
-	free(temp->keep);
-	temp->keep = 0;
-	return (free_curr_link_prev_next(temp));
-}
-/*
-char	*get_next_line(int fd)
-{
-	char				*line;
-	static t_keep_lst	keep_lst;
-	t_keep_lst			*temp;
-	char				*p;
-
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (0);
-	temp = find_fd(fd, &keep_lst);
-	temp->keep = read_file(fd, temp->keep);
-	if (!(temp->keep))
-		return (free_curr_link_prev_next(temp));
-	if (*(temp->keep))
+	if (flag)
 	{
-		line = get_line(temp->keep);
+		line = get_line(fd_lst->keep);
 		if (!line)
 			return (0);
-		p = temp->keep;
-		temp->keep = ft_strdup(p + ft_strlen(line));
-		free(p);
-		p = 0;
-		if (!(temp->keep))
-			return (0);
-		return (line);
-	}
-	free(temp->keep);
-	temp->keep = 0;
-	return (free_curr_link_prev_next(temp));
-}*/
-
-/*char	*get_next_line(int fd)
-{
-	char				*line;
-	static t_keep_lst	keep_lst;
-	t_keep_lst			*temp;
-	char				*p;
-
-	if (fd < 0 || BUFFER_SIZE < 1)
-		return (0);
-	temp = find_fd(fd, &keep_lst);
-	temp->keep = read_file(fd, temp->keep);
-	if (!(temp->keep))
-	{
-		temp->prev->next = temp->next;
-		if (temp->next)
-			temp->next->prev = temp->prev;
+		temp = fd_lst->keep;
+		fd_lst->keep = ft_strdup(temp + ft_strlen(line));
 		free(temp);
 		temp = 0;
-		return (0);
-	}
-	if (*(temp->keep))
-	{
-		line = get_line(temp->keep);
-		if (!line)
-			return (0);
-		p = temp->keep;
-		temp->keep = ft_strdup(p + ft_strlen(line));
-		free(p);
-		p = 0;
-		if (!(temp->keep))
+		if (!(fd_lst->keep))
 			return (0);
 		return (line);
 	}
-	free(temp->keep);
-	temp->keep = 0;
-	//
-	temp->prev->next = temp->next;
-	if (temp->next)
-		temp->next->prev = temp->prev;
-	//
-	free(temp);
-	temp = 0;
-	return (0);
-}*/
+	else
+	{
+		fd_lst->prev->next = fd_lst->next;
+		if (fd_lst->next)
+			fd_lst->next->prev = fd_lst->prev;
+		free(fd_lst);
+		fd_lst = 0;
+		return (0);
+	}
+}
+
+char	*get_next_line(int fd)
+{
+	static t_fd_lst	head;
+	t_fd_lst		*fd_lst;
+
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (0);
+	fd_lst = find_fd(fd, &head);
+	fd_lst->keep = read_file(fd, fd_lst->keep);
+	if (!(fd_lst->keep))
+		return (gnl_or_lnf(fd_lst, 0));
+	if (*(fd_lst->keep))
+		return (gnl_or_lnf(fd_lst, 1));
+	free(fd_lst->keep);
+	fd_lst->keep = 0;
+	return (gnl_or_lnf(fd_lst, 0));
+}
