@@ -1,5 +1,4 @@
-# 42Cursus
-42Cursus
+### 42 SEOUL CURSUS (2021.11.15. ~ Ongoing)
 
  |Order|Circle|Project|Stack|Status|Subject|Score|
  |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
