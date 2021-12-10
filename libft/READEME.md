@@ -7,6 +7,8 @@
 libft는 libc에 있는 일부 모듈을 직접 구현하여 [정적라이브러리](https://goodgid.github.io/Static-VS-Dynamic-Libray/) 를 만드는 것이다.
 이후 과제에서 libft.a를 사용하는 과제가 있으니 잘 구현 하자.
 
+[노션링크](https://iodized-sailfish-b0c.notion.site/Libft-465972716dbe4e8ebdce69962bc27265)
+
 ## 참고자료
 
 ---
@@ -89,8 +91,6 @@ libft는 libc에 있는 일부 모듈을 직접 구현하여 [정적라이브러
         *ptr = 50; // 오류
         ptr = &b; // 오류
         ```
-        
-        ![Screen Shot 2021-12-03 at 3.49.14 PM.png](Libft%20989e38c227e0455aada0c8a8b46f1931/Screen_Shot_2021-12-03_at_3.49.14_PM.png)
         
     
     참고 : [링크](https://coding-chobo.tistory.com/58)
