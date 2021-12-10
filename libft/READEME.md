@@ -7,4 +7,3 @@ Summary: This project aims to code a C library regrouping usual functions that y
 be use for all your next projects.
 
 [notion](https://iodized-sailfish-b0c.notion.site/Libft-465972716dbe4e8ebdce69962bc27265)
-
