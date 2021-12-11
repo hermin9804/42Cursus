@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:32:44 by mher              #+#    #+#             */
-/*   Updated: 2021/12/10 15:54:54 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/11 17:34:56 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef struct s_fd_lst
 {
 	int				fd;
 	char			*keep;
-	struct s_fd_lst	*next;
 	struct s_fd_lst	*prev;
+	struct s_fd_lst	*next;
 }	t_fd_lst;
 
 char			*get_line(char *keep);
