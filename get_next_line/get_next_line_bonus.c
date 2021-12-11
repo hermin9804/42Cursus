@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2021/12/10 15:54:51 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/11 14:20:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*gnl_or_lnf(t_fd_lst *fd_lst, int flag)
 	char	*line;
 	char	*temp;
 
-	if (flag)
+	if (flag == 1)
 	{
 		line = get_line(fd_lst->keep);
 		if (!line)
@@ -128,11 +128,13 @@ char	*get_next_line(int fd)
 		return (0);
 	fd_lst = find_fd(fd, &head);
 	fd_lst->keep = read_file(fd, fd_lst->keep);
-	if (!(fd_lst->keep))
+	if (!(fd_lst->keep)) //read_file에서 buff, keep 할당 실패
 		return (gnl_or_lnf(fd_lst, 0));
-	if (*(fd_lst->keep))
-		return (gnl_or_lnf(fd_lst, 1));
-	free(fd_lst->keep);
-	fd_lst->keep = 0;
-	return (gnl_or_lnf(fd_lst, 0));
+	if (!*(fd_lst->keep)) //read_file에서 empty_file || eof를 다시 읽은 인경우 keep에 '\0'을 free
+	{
+		free(fd_lst->keep);
+		fd_lst->keep = 0;
+		return (gnl_or_lnf(fd_lst, 0));
+	}
+	return (gnl_or_lnf(fd_lst, 1)); //read_file에서 한줄을 잘 읽고 keep에 문자열이 저장된경우
 }

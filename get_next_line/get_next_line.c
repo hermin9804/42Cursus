@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2021/12/10 15:53:16 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/11 14:20:25 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ char	*read_file(int fd, char *keep)
 	char	*temp;
 	ssize_t	read_size;
 
-	if (fd < 0)
-		return (0);
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (0);
@@ -74,23 +72,25 @@ char	*get_next_line(int fd)
 	char			*line;
 	char			*temp;
 
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (0);
 	keep = read_file(fd, keep);
+	if (!keep) //read_file에서 buff, keep 할당 실패
+		return (0);
+	if (!*keep) //read_file에서 empty_file || eof를 다시 읽은 인경우 keep에 '\0'을 free
+	{
+		free(keep);
+		keep = 0;
+		return (0);
+	} //read_file에서 한줄을 잘 읽고 keep에 문자열이 저장된경우
+	line = get_line(keep);
+	if (!line)
+		return (0);
+	temp = keep;
+	keep = ft_strdup(temp + ft_strlen(line)); //위에서 만든 line의 길이만큼 건너 뛴 keep 저장
+	free(temp);
+	temp = 0;
 	if (!keep)
 		return (0);
-	if (*keep)
-	{
-		line = get_line(keep);
-		if (!line)
-			return (0);
-		temp = keep;
-		keep = ft_strdup(temp + ft_strlen(line));
-		free(temp);
-		temp = 0;
-		if (!keep)
-			return (0);
-		return (line);
-	}
-	free(keep);
-	keep = 0;
-	return (0);
+	return (line);
 }
