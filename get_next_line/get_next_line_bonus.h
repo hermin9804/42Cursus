@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:32:44 by mher              #+#    #+#             */
-/*   Updated: 2021/12/11 17:34:56 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/13 15:58:45 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_fd_lst
 char			*get_line(char *keep);
 char			*read_file(int fd, char *keep);
 t_fd_lst		*find_fd(int fd, t_fd_lst *head);
-char			*gnl_or_lnf(t_fd_lst *fd_lst, int flag);
+char			*gnl_or_del(t_fd_lst **fd_lst);
 char			*get_next_line(int fd);
 
 size_t			ft_strlen(const char *s);

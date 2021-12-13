@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2021/12/11 15:54:58 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/13 15:59:13 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,31 +90,31 @@ t_fd_lst	*find_fd(int fd, t_fd_lst *head)
 	return (temp);
 }
 
-char	*gnl_or_lnf(t_fd_lst *fd_lst, int flag)
+char	*gnl_or_del(t_fd_lst **fd_lst)
 {
 	char	*line;
 	char	*temp;
 
-	if (flag == 1)
+	if ((*fd_lst)->keep)
 	{
-		line = get_line(fd_lst->keep);
+		line = get_line((*fd_lst)->keep);
 		if (!line)
 			return (0);
-		temp = fd_lst->keep;
-		fd_lst->keep = ft_strdup(temp + ft_strlen(line));
+		temp = (*fd_lst)->keep;
+		(*fd_lst)->keep = ft_strdup(temp + ft_strlen(line));
 		free(temp);
 		temp = 0;
-		if (!(fd_lst->keep))
+		if (!((*fd_lst)->keep))
 			return (0);
 		return (line);
 	}
 	else
 	{
-		fd_lst->prev->next = fd_lst->next;
-		if (fd_lst->next)
-			fd_lst->next->prev = fd_lst->prev;
-		free(fd_lst);
-		fd_lst = 0;
+		(*fd_lst)->prev->next = (*fd_lst)->next;
+		if ((*fd_lst)->next)
+			(*fd_lst)->next->prev = (*fd_lst)->prev;
+		free(*fd_lst);
+		*fd_lst = 0;
 		return (0);
 	}
 }
@@ -127,14 +127,16 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (0);
 	fd_lst = find_fd(fd, &head);
+	if (!fd_lst)
+		return (0);
 	fd_lst->keep = read_file(fd, fd_lst->keep);
 	if (!(fd_lst->keep))
-		return (gnl_or_lnf(fd_lst, 0));
+		return (gnl_or_del(&fd_lst));
 	if (!*(fd_lst->keep))
 	{
 		free(fd_lst->keep);
 		fd_lst->keep = 0;
-		return (gnl_or_lnf(fd_lst, 0));
+		return (gnl_or_del(&fd_lst));
 	}
-	return (gnl_or_lnf(fd_lst, 1));
+	return (gnl_or_del(&fd_lst));
 }
