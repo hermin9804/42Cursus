@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2021/12/13 15:59:13 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/13 18:54:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char	*read_file(int fd, char *keep)
 	}
 	free(buff);
 	buff = 0;
+	if (read_size < 0)
+		return (0);
 	return (keep);
 }
 
