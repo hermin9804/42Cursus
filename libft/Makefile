@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 13:44:52 by mher              #+#    #+#              #
-#    Updated: 2021/11/23 17:43:10 by mher             ###   ########.fr        #
+#    Updated: 2021/12/17 15:27:31 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ bonus: $(OBJS) $(B_OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $^
-	ar crsu $(NAME) $@
+	@ar crsu $(NAME) $@
 		
 clean:
 	    rm -f $(OBJS) $(B_OBJS)
