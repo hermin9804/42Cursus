@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:38:16 by mher              #+#    #+#             */
-/*   Updated: 2021/12/17 17:59:34 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/18 13:31:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	ft_printf(const char *format, ...)
 		return (ERROR);
 	va_start(ap, format);
 	ret = parse_format(ap, format);
-	va_end(ap);	return (ret);
+	va_end(ap);
+	return (ret);
 }
