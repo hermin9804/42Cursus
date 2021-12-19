@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/18 16:52:01 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/19 20:34:02 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,11 @@ int	ft_printf(const char *, ...);
 int	parse_format(va_list ap, const char *format);
 void	init_arg_info(t_arg_info *arg_info);
 int	fill_arg_info(const char **format, t_arg_info *arg_info);
+
+//print
+int	print_arg(va_list ap, t_arg_info arg_info);
+int	print_char(char c, t_arg_info arg_info);
+
+
 
 #endif

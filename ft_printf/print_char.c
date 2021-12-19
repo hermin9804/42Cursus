@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   print_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/18 17:15:58 by mher              #+#    #+#             */
-/*   Updated: 2021/12/19 20:11:40 by mher             ###   ########.fr       */
+/*   Created: 2021/12/19 18:33:04 by mher              #+#    #+#             */
+/*   Updated: 2021/12/19 19:42:11 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_numlen(int num)
+int	print_char(char c, t_arg_info arg_info)
 {
-	int len;
-
-	len = 0;
-	while (num)
-	{
-		++len;
-		num /= 10;
-	}
-	return(len);
-}
-
-int	ft_putchar(char c, int *total_len)
-{
-	*total_len += 1;
-	return (write(1, &c, 1));
+	if (arg_info.type == 'c') //test
+		return (write(1, &c, 1));
+	return (-1);
 }
