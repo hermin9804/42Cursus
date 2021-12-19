@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:59:03 by mher              #+#    #+#             */
-/*   Updated: 2021/12/19 20:16:17 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/20 00:36:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	main(void)
 {
-	printf("%d\n", ft_printf("hello %c", 'k'));
+	printf("%d\n", ft_printf("[%10c]", 'k'));
+	printf("%d\n", printf("[%10c]", 'k'));
 	return (0);
 }
