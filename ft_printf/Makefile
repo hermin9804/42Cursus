@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2021/12/17 18:07:24 by mher             ###   ########.fr        #
+#    Updated: 2021/12/21 02:16:07 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ -L. -l ft 
-	rm -f $(OBJS)
+	@$(CC) $(CFLAGS) -o $@ $^ -L. -l ft 
+	@rm -f $(OBJS)
 
 clean:
 	    rm -f $(OBJS)

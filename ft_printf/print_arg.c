@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 17:55:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/20 21:03:57 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/21 03:02:00 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,3 @@ int	print_arg(va_list ap, t_info *info)
 		arg_len = print_char('%', info);
 	return (arg_len);
 }
-
-/*int	print_nbr_int(int nbr, t_info *info)
-{
-	int	tmp;
-	int	arg_len;
-	
-	tmp = 0;
-	arg_len = 0;
-	if (info->minus == 1)
-	{
-		tmp = ft_putnbr(nbr);
-		if (tmp == -1)
-			return (ERROR);
-		arg_len = tmp;
-	}
-	tmp += put_width_nbr_flags(nbr, info);
-	tmp += put_precision_width(nbr, info);
-	if (tmp == -1)
-		return (ERROR);
-	arg_len += tmp;
-	if (info->minus == 0)
-	{
-		tmp = ft_putnbr(nbr);
-		if (tmp == -1)
-			return (ERROR);
-		arg_len += tmp;
-	}
-	return (arg_len);
-}
-*/

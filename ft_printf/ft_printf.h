@@ -6,16 +6,16 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/20 21:03:58 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/21 03:15:30 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdio.h>
+# include <stdio.h>//test
 
-# include <stdlib.h>
+# include <stdlib.h> //?
 # include <stdarg.h>
 # include <unistd.h>
 
@@ -66,11 +66,10 @@ int		fill_width_info(const char *format, t_info *info);
 int		print_string(char *str, t_info *info);
 int		print_nbr_int(int nbr, t_info *info);
 
-int	put_width_nbr_flags(int nbr, t_info *info);
+int		put_width_nbr_flags(int start, int end, t_info *info);
+int		put_precision_width(int start, int end, t_info *info);
+void		ft_print_nbr(int n, int *len);
 int		ft_putnbr(int n);
-void	ft_print_nbr(int n, int *len);
-
-int	put_precision_width(int nbr, t_info *info);
 
 //check_format
 int		check_format(const char	*format);
