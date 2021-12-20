@@ -1,21 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/17 16:59:03 by mher              #+#    #+#             */
-/*   Updated: 2021/12/20 20:56:52 by mher             ###   ########.fr       */
+/*   Created: 2021/12/20 13:09:49 by mher              #+#    #+#             */
+/*   Updated: 2021/12/20 18:36:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int	print_string(char *str, t_info *info)
 {
-	printf(": %d", ft_printf("%10.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%10.5d", 432));
-	return (0);
+	int	tmp;
+	int	arg_len;
+	
+	tmp = 0;
+	arg_len = 0;
+	if (info->minus == 1)
+	{
+		tmp = ft_putstr(str);
+		if (tmp == -1)
+			return (ERROR);
+		arg_len = tmp;
+	}
+	tmp = put_width(ft_strlen(str), info);
+	if (tmp == -1)
+		return (ERROR);
+	arg_len += tmp;
+	if (info->minus == 0)
+	{
+		tmp = ft_putstr(str);
+		if (tmp == -1)
+			return (ERROR);
+		arg_len += tmp;
+	}
+	return (arg_len);
 }
