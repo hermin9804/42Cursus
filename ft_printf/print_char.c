@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 18:33:04 by mher              #+#    #+#             */
-/*   Updated: 2021/12/20 17:31:21 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/22 18:56:11 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(char c, t_info *info)
+int	print_char(int c, t_info *info)
 {
 	int	tmp;
 	int	arg_len;

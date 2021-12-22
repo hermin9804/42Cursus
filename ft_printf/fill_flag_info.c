@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 13:44:32 by mher              #+#    #+#             */
-/*   Updated: 2021/12/20 18:40:11 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/22 18:59:36 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ int	fill_width_info(const char *format, t_info *info)
 		}
 	}
 	if (ft_strchr(TYPE, format[i]))
-		info->type = format[i++];
+	{
+		info->type = format[i];
+		++i;
+	}
 	else
 		return (ERROR);
 	return (i);

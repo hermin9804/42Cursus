@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 17:16:22 by mher              #+#    #+#             */
-/*   Updated: 2021/12/21 03:03:17 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/22 19:14:12 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	parse_format(va_list ap, const char *format)
 			++format;
 			if (fill_info(&format, &info) == -1)
 				return (ERROR);
-			arg_len = print_arg(ap, &info);
+			arg_len = print_arg(&ap, &info);
 			if (arg_len == -1)
 				return (ERROR);
 			total_len += arg_len;

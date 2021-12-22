@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/21 03:15:30 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/22 19:11:01 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	init_info(t_info *info);
 int		fill_info(const char **format, t_info *info);
 
 //print
-int		print_arg(va_list ap, t_info *info);
-int		print_char(char c, t_info *info);
+int		print_arg(va_list *ap, t_info *info);
+int		print_char(int c, t_info *info);
 int		fill_flags_info(const char *format, t_info *info);
 int		fill_width_info(const char *format, t_info *info);
 int		print_string(char *str, t_info *info);

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:44:20 by mher              #+#    #+#             */
-/*   Updated: 2021/12/21 02:56:13 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/21 12:05:22 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,10 +143,10 @@ int	put_precision_width(int start, int end, t_info *info)
 
 void	ft_print_nbr(int n, int *len)
 {
+	*len += 1;
 	if (n > 9)
 		ft_print_nbr(n / 10, len);
 	write(1, &"0123456789"[n % 10], 1);
-	*len += 1;
 }
 
 int	ft_putnbr(int n)
