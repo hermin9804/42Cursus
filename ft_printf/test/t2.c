@@ -2,6 +2,6 @@
 
 int	main()
 {
-	printf("% #x", -12);
+	printf("%d",printf("%.2d", 1235));
 	return (0);
 }
