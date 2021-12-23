@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 18:33:04 by mher              #+#    #+#             */
-/*   Updated: 2021/12/22 18:56:11 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/23 19:05:26 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int	print_char(int c, t_info *info)
 	
 	tmp = 0;
 	arg_len = 0;
-	if (info->minus == 1)
+	if (info->left == 1)
 	{
 		tmp = write(1, &c, 1);
 		if (tmp == -1)
 			return (ERROR);
 		arg_len = tmp;
 	}
-	tmp = put_width(1, info);
+	tmp = char_type_padding(1, info);
 	if (tmp == -1)
 		return (ERROR);
 	arg_len += tmp;
-	if (info->minus == 0)
+	if (info->left == 0)
 	{
 		tmp = write(1, &c, 1);
 		if (tmp == -1)

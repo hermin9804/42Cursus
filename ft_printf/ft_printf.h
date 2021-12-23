@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/22 19:11:01 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/23 23:06:30 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,48 +28,55 @@
 
 typedef struct s_info
 {
-	int	alternate;	//#
-	int	zero;		//0
-	int	minus;		//-
-	int	plus;		//+
-	int	space;		//' '
-	int	width;		//
-	int	precision;	//.
-	char	type;
-	int	nbr_base;
-	int	nbr_sign;
+	int		prec;		//.
+	int		width;		//
+	int		alt;		//#
+	int		zero;		//0
+	int		left;		//-
+	int		showsign;	//+
+	int		space;		//' '
+	char		type;
+	int		nbr_base;
+	int		nbr_sign;
+	long long	nbr;
 }	t_info;
 
 //libft
-size_t	ft_strlen(const char *s);
+size_t		ft_strlen(const char *s);
 int		ft_isdigit(int c);
-char	*ft_strchr(const char *s, int c);
+char		*ft_strchr(const char *s, int c);
 int		ft_atoi(const char *str);
 
 //new_utils
 int		ft_putchar(char c, int *total_len);
 int		ft_numlen(int num);
-int		put_width(int len, t_info *info);
 int		ft_putstr(char *str);
 
 //ft_printf
 int		ft_printf(const char *, ...);
 int		parse_format(va_list ap, const char *format);
-void	init_info(t_info *info);
+
+//t_info
+void		init_info(t_info *info);
 int		fill_info(const char **format, t_info *info);
+int		fill_flags_info(const char *format, t_info *info);
+int		fill_width_info(const char *format, t_info *info);
 
 //print
 int		print_arg(va_list *ap, t_info *info);
 int		print_char(int c, t_info *info);
-int		fill_flags_info(const char *format, t_info *info);
-int		fill_width_info(const char *format, t_info *info);
 int		print_string(char *str, t_info *info);
-int		print_nbr_int(int nbr, t_info *info);
+int		char_type_padding(int len, t_info *info);
 
-int		put_width_nbr_flags(int start, int end, t_info *info);
-int		put_precision_width(int start, int end, t_info *info);
-void		ft_print_nbr(int n, int *len);
-int		ft_putnbr(int n);
+int		print_nbr(long long nbr, t_info *info);
+int		set_order_right(t_info *info);
+int	run_function_order(t_info *info, int f1(int, t_info *), int f2(int, t_info *), int f3(int, t_info *));
+int		ft_putnbr(long long n);
+int		padding_width(int start, t_info *info);
+int		padding_prec_putnbr(int start, t_info *info);
+int		put_sign(int start, t_info *info);
+//int		put_width_nbr_flags(int start, int end, t_info *info);
+//int		put_prec_width(int start, int end, t_info *info);
 
 //check_format
 int		check_format(const char	*format);

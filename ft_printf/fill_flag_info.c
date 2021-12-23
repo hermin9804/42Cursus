@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 13:44:32 by mher              #+#    #+#             */
-/*   Updated: 2021/12/22 18:59:36 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/23 15:17:29 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	fill_flags_info(const char *format, t_info *info)
 	while (ft_strchr(FLAG, format[i]))
 	{
 		if (format[i] == '#')
-			info->alternate = 1;
+			info->alt = 1;
 		else if (format[i] == '0')
 			info->zero = 1;
 		else if (format[i] == '-')
-			info->minus = 1;
+			info->left = 1;
 		else if (format[i] == '+')
-			info->plus = 1;
+			info->showsign = 1;
 		else if (format[i] == ' ')
 			info->space = 1;
 		++i;
@@ -63,10 +63,10 @@ int	fill_width_info(const char *format, t_info *info)
 		++i;
 		if (ft_isdigit(format[i]))
 		{
-			info->precision = ft_atoi(&format[i]);
-			if (info->precision == -1)
+			info->prec = ft_atoi(&format[i]);
+			if (info->prec == -1)
 				return (ERROR);
-			i += ft_numlen(info->precision);
+			i += ft_numlen(info->prec);
 		}
 	}
 	if (ft_strchr(TYPE, format[i]))
