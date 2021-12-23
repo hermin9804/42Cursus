@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 02:10:36 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/24 03:38:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,13 @@ int		print_string(char *str, t_info *info);
 int		char_type_padding(int len, t_info *info);
 
 int		print_nbr(long long nbr, t_info *info);
-int		set_order_zero(t_info *info);
+int		set_order_right(t_info *info);
 int		set_order_left(t_info *info);
 int		run_function_order(t_info *info, int f1(t_info *), int f2(t_info *), int f3(t_info *));
 int		ft_putnbr(long long n);
 int		padding_width(t_info *info);
 int		padding_prec_putnbr(t_info *info);
 int		put_sign(t_info *info);
-//int		put_width_nbr_flags(int start, int end, t_info *info);
-//int		put_prec_width(int start, int end, t_info *info);
 
 //check_format
 int		check_format(const char	*format);
