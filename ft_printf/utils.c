@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:15:58 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 03:36:29 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/24 16:42:33 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,28 @@ int	char_type_padding(int len, t_info *info)
 	return (pad_len);
 }
 
-int	ft_putnbr(long long n)
+int	ft_putnbr(unsigned long long n, t_info *info)
 {
 	unsigned long long	ret;
 	int			tmp;
+	char			*base;
 
+	if (info->type == 'd' || info->type == 'i' || info->type == 'u')
+		base = "0123456789";
+	else if (info->type == 'x' || info->type == 'p')
+		base = "0123456789abcdef";
+	else if (info->type == 'X')
+		base = "0123456789ABCDEF";
 	ret = 0;
 	tmp = 0;
 	//if (n == -2147483648) long long max???
 	//	return (write(1, "2147483648", 10));
-	if (n < 0)
-		n *= -1;
-	if (n > 9)
-		tmp = ft_putnbr(n / 10);
+	if (n > info->nbr_base - 1)
+		tmp = ft_putnbr(n / info->nbr_base , info);
 	if (tmp == -1)
 		return (-1);
 	ret += tmp;
-	tmp = write(1, &"0123456789"[n % 10], 1);;
+	tmp = write(1, &base[n % info->nbr_base], 1);;
 	if (tmp == -1)
 		return (ERROR);
 	ret += tmp;

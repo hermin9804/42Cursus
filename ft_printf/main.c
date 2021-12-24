@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:59:03 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 03:41:04 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/24 17:03:56 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	main(void)
 {
-	
+	int k = 10;
+	int *p;
+	p = &k;
+/*	
 	printf(": %d", ft_printf("%d", 432));
 	printf("\n");
 	printf(": %d", printf("%d", 432));
@@ -315,11 +318,26 @@ int	main(void)
 	printf(": %d", ft_printf("% 0.5d", -432));
 	printf("\n");
 	printf(": %d", printf("% 0.5d", -432));
-	printf("\n");
-	printf("\n");
+	printf("\n");*/
 
-	//printf(" %d\n", ft_printf("%4d", -10));
-	//printf(" %d\n", printf("%4d", -10));
+	printf(": %d", ft_printf("%#x", -10));
+	printf("\n");
+	printf(": %d", printf("%#x", -10));
+	printf("\n");
+	printf("\n");
+	printf(": %d", ft_printf("%#X", -10));
+	printf("\n");
+	printf(": %d", printf("%#X", -10));
+	printf("\n");
+	printf("\n");
+	printf(": %d", ft_printf("%u", -10));
+	printf("\n");
+	printf(": %d", printf("%u", -10));
+	printf("\n");
+	printf("\n");
+	printf(": %d", ft_printf("%p", p));
+	printf("\n");
+	printf(": %d", printf("%p", p));
 
 	return (0);
 }

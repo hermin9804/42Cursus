@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:31:15 by mher              #+#    #+#             */
-/*   Updated: 2021/12/23 16:05:18 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/24 16:58:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	check_nbr_format(t_info *info)
 	if ((type == 'd' || type == 'i' || type == 'u' || type == 'p') && info->alt == 1)
 		return (ERROR);
 	if (info->zero == 1 && info->left == 1)
+		return (ERROR);
+	if ((info->showsign == 1 || info->space == 1) && info->alt == 1)
 		return (ERROR);
 	return (TRUE);
 }

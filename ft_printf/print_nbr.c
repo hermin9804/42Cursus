@@ -6,17 +6,22 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:44:20 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 03:36:39 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/24 17:06:57 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_nbr(long long nbr, t_info *info)
+int	print_nbr(unsigned long long nbr, t_info *info)
 {
-	info->nbr = nbr;
-	if (nbr < 0)
+	if (info->type == 'x' || info->type == 'X' || info->type == 'p')
+		info->nbr_base = 16;
+	if ((info->type == 'd' || info->type == 'i') && (int)nbr < 0)
+	{
 		info->nbr_sign = -1;
+		nbr *= -1;
+	}
+	info->nbr = nbr;
 	info->nbr_len = ft_numlen(nbr);
 	if (info->prec > 0)
 		info->prec -= info->nbr_len;
@@ -35,34 +40,34 @@ int	print_nbr(long long nbr, t_info *info)
 int	set_order_right(t_info *info)
 {
 	if (info->width == 0 && info->prec == 0 && info->zero == 0)
-		return (run_function_order(info, 0, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, 0, put_sign_alt, padding_prec_putnbr));
 	if (info->width == 0 && info->prec == 0 && info->zero == 1)
-		return (run_function_order(info, 0, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, 0, put_sign_alt, padding_prec_putnbr));
 	if (info->width == 0 && info->prec != 0 && info->zero == 0)
-		return (run_function_order(info, 0, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, 0, put_sign_alt, padding_prec_putnbr));
 	if (info->width == 0 && info->prec != 0 && info->zero == 1)
-		return (run_function_order(info, 0, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, 0, put_sign_alt, padding_prec_putnbr));
 	if (info->width != 0 && info->prec == 0 && info->zero == 0)
-		return (run_function_order(info, padding_width, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, padding_width, put_sign_alt, padding_prec_putnbr));
 	if (info->width != 0 && info->prec == 0 && info->zero == 1) 
-		return (run_function_order(info, put_sign, padding_width, padding_prec_putnbr));
+		return (run_function_order(info, put_sign_alt, padding_width, padding_prec_putnbr));
 	if (info->width != 0 && info->prec != 0 && info->zero == 0) 
-		return (run_function_order(info, padding_width, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, padding_width, put_sign_alt, padding_prec_putnbr));
 	if (info->width != 0 && info->prec != 0 && info->zero == 1)
-		return (run_function_order(info, padding_width, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, padding_width, put_sign_alt, padding_prec_putnbr));
 	return (ERROR);
 }
 
 int	set_order_left(t_info *info)
 {
 	if (info->width == 0 && info->prec == 0 && info->left == 1)
-		return (run_function_order(info, padding_width, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, padding_width, put_sign_alt, padding_prec_putnbr));
 	if (info->width == 0 && info->prec != 0 && info->left == 1)
-		return (run_function_order(info, padding_width, put_sign, padding_prec_putnbr));
+		return (run_function_order(info, padding_width, put_sign_alt, padding_prec_putnbr));
 	if (info->width != 0 && info->prec == 0 && info->left == 1)
-		return (run_function_order(info, put_sign, padding_prec_putnbr, padding_width));
+		return (run_function_order(info, put_sign_alt, padding_prec_putnbr, padding_width));
 	if (info->width != 0 && info->prec != 0 && info->left == 1)
-		return (run_function_order(info, put_sign, padding_prec_putnbr, padding_width));
+		return (run_function_order(info, put_sign_alt, padding_prec_putnbr, padding_width));
 	return (ERROR);
 }
 
@@ -122,14 +127,14 @@ int	padding_prec_putnbr(t_info *info)
 			return (ERROR);
 		ret++;
 	}
-	tmp = ft_putnbr(info->nbr);
+	tmp = ft_putnbr(info->nbr, info);
 	if (tmp == -1)
 		return (ERROR);
 	ret += tmp;
 	return (ret);
 }
 
-int	put_sign(t_info *info)
+int	put_sign_alt(t_info *info)
 {
 	if (info->nbr_sign == -1)
 		return (write(1, "-", 1));
@@ -137,6 +142,12 @@ int	put_sign(t_info *info)
 		return (write(1, "+", 1));
 	else if (info->space == 1)
 		return (write(1, " ", 1));
+	else if (info->alt == 1 && info->type == 'x')
+		return (write(1, "0x", 2));
+	else if (info->alt == 1 && info->type == 'X')
+		return (write(1, "0X", 2));
+	else if (info->type == 'p')
+		return (write(1, "0x", 2));
 	else
 		return (0);
 }
