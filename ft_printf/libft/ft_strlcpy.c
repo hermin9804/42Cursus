@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 16:38:16 by mher              #+#    #+#             */
-/*   Updated: 2021/12/25 03:08:58 by mher             ###   ########.fr       */
+/*   Created: 2021/11/17 14:40:28 by mher              #+#    #+#             */
+/*   Updated: 2021/11/24 16:21:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 {
-	int	ret;
-	va_list ap;
+	size_t	i;
+	size_t	src_len;
 
-	if (!format)
-		return (ERROR);
-	if (check_format(format) == -1)
-		return (ERROR);
-	va_start(ap, format);
-	ret = parse_format(ap, format);
-	va_end(ap);
-	return (ret);
+	i = 0;
+	src_len = ft_strlen(src);
+	if (destsize == 0)
+		return (src_len);
+	while (src[i] && i < (destsize - 1))
+	{
+		dest[i] = src[i];
+		++i;
+	}
+	dest[i] = 0;
+	return (src_len);
 }

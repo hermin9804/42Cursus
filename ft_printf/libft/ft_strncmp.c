@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 16:38:16 by mher              #+#    #+#             */
-/*   Updated: 2021/12/25 03:08:58 by mher             ###   ########.fr       */
+/*   Created: 2021/11/17 20:10:33 by mher              #+#    #+#             */
+/*   Updated: 2021/11/19 14:18:29 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	ret;
-	va_list ap;
+	unsigned char	*t1;
+	unsigned char	*t2;
 
-	if (!format)
-		return (ERROR);
-	if (check_format(format) == -1)
-		return (ERROR);
-	va_start(ap, format);
-	ret = parse_format(ap, format);
-	va_end(ap);
-	return (ret);
+	t1 = (unsigned char *)s1;
+	t2 = (unsigned char *)s2;
+	while (n-- > 0)
+	{
+		if (*t1 != *t2 || !*t1 || !*t2)
+			return (*t1 - *t2);
+		++t1;
+		++t2;
+	}
+	return (0);
 }

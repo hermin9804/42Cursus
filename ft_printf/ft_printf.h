@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 16:55:15 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/25 03:14:25 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ int		ft_atoi(const char *str);
 
 //new_utils
 int		ft_putchar(char c, int *total_len);
-int		ft_numlen(int num);
+
+int		ft_nbrlen_base(unsigned long long nbr, int base);
+
 int		ft_putstr(char *str);
 int		ft_putnbr(unsigned long long n, t_info *info);
 

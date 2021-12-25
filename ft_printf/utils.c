@@ -6,21 +6,23 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:15:58 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 16:42:33 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/25 03:24:51 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_numlen(int num)
+int	ft_nbrlen_base(unsigned long long nbr, int base)
 {
-	int len;
+	unsigned int len;
 
 	len = 0;
-	while (num)
+	if (nbr == 0)
+		return (1);
+	while (nbr)
 	{
 		++len;
-		num /= 10;
+		nbr /= base;
 	}
 	return(len);
 }

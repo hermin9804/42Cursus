@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 16:38:16 by mher              #+#    #+#             */
-/*   Updated: 2021/12/25 03:08:58 by mher             ###   ########.fr       */
+/*   Created: 2021/11/19 12:41:40 by mher              #+#    #+#             */
+/*   Updated: 2021/11/27 15:08:52 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_atoi(const char *str)
 {
-	int	ret;
-	va_list ap;
+	long	ret;
+	int		sign;
 
-	if (!format)
-		return (ERROR);
-	if (check_format(format) == -1)
-		return (ERROR);
-	va_start(ap, format);
-	ret = parse_format(ap, format);
-	va_end(ap);
-	return (ret);
+	ret = 0;
+	sign = 1;
+	while (*str == ' ' || (9 <= *str && *str <= 13))
+		++str;
+	if (*str == '+' || *str == '-')
+		if (*str++ == '-')
+			sign *= -1;
+	while ('0' <= *str && *str <= '9')
+	{
+		ret = ret * 10 + (*str++ - '0');
+		if (ret < 0)
+			return ((sign + 1) / -2);
+	}
+	return (sign * ret);
 }

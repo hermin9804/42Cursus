@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 16:38:16 by mher              #+#    #+#             */
-/*   Updated: 2021/12/25 03:08:58 by mher             ###   ########.fr       */
+/*   Created: 2021/11/19 16:38:10 by mher              #+#    #+#             */
+/*   Updated: 2021/11/19 16:38:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	ret;
-	va_list ap;
-
-	if (!format)
-		return (ERROR);
-	if (check_format(format) == -1)
-		return (ERROR);
-	va_start(ap, format);
-	ret = parse_format(ap, format);
-	va_end(ap);
-	return (ret);
+	while (n--)
+	{
+		if (*(unsigned char *)s == (unsigned char)c)
+			return ((void *)s);
+		++s;
+	}
+	return (0);
 }

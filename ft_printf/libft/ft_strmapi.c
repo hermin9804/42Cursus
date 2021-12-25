@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 16:38:16 by mher              #+#    #+#             */
-/*   Updated: 2021/12/25 03:08:58 by mher             ###   ########.fr       */
+/*   Created: 2021/11/19 16:42:43 by mher              #+#    #+#             */
+/*   Updated: 2021/11/19 16:42:44 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	ret;
-	va_list ap;
+	char			*ret;
+	unsigned int	len;
+	unsigned int	i;
 
-	if (!format)
-		return (ERROR);
-	if (check_format(format) == -1)
-		return (ERROR);
-	va_start(ap, format);
-	ret = parse_format(ap, format);
-	va_end(ap);
+	if (!s || !f)
+		return (0);
+	len = ft_strlen(s);
+	ret = (char *)malloc(sizeof(char) * (len + 1));
+	if (!ret)
+		return (0);
+	i = 0;
+	while (s[i])
+	{
+		ret[i] = f(i, s[i]);
+		++i;
+	}
+	ret[i] = 0;
 	return (ret);
 }

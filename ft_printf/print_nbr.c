@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:44:20 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 17:06:57 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/25 03:15:19 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 		nbr *= -1;
 	}
 	info->nbr = nbr;
-	info->nbr_len = ft_numlen(nbr);
+	info->nbr_len = ft_nbrlen_base(nbr, info->nbr_base);
 	if (info->prec > 0)
 		info->prec -= info->nbr_len;
 	else
@@ -30,6 +30,8 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 	info->width -= info->nbr_len + info->prec;
 	if (info->nbr_sign == -1 || info->space == 1 || info->showsign == 1)
 		info->width -= 1;
+	if (info->type == 'p')
+		info->width -= 2;
 	if (info->left == 0)
 		return (set_order_right(info));
 	if (info->left == 1)

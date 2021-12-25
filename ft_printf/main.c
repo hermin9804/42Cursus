@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 16:59:03 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 17:03:56 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/24 20:27:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,330 +14,58 @@
 
 int	main(void)
 {
-	int k = 10;
-	int *p;
-	p = &k;
-/*	
-	printf(": %d", ft_printf("%d", 432));
+	ft_printf("%c", '0');
 	printf("\n");
-	printf(": %d", printf("%d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%10d", 432));
-	printf("\n");
-	printf(": %d", printf("%10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%-10d", 432));
-	printf("\n");
-	printf(": %d", printf("%-10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%-10d", 432));
-	printf("\n");
-	printf(": %d", printf("%-10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%10.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%10.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%-10.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%-10.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%0d", 432));
-	printf("\n");
-	printf(": %d", printf("%0d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%010d", 432));
-	printf("\n");
-	printf(": %d", printf("%010d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%010.5d", 432));//
-	printf("\n");
-	printf(": %d", printf("%010.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%0.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%0.5d", 432));
+	printf("%c", '0');
 	printf("\n");
 	printf("\n");
 
-
-	printf("--------------------");
-
+	ft_printf(" %c ", '0');
+	printf("\n");
+	printf(" %c ", '0');
 	printf("\n");
 	printf("\n");
 
-	printf(": %d", ft_printf("%+d", 432));
+	ft_printf(" %c", '0' - 256);
 	printf("\n");
-	printf(": %d", printf("%+d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+10d", 432));
-	printf("\n");
-	printf(": %d", printf("%+10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+-10d", 432));
-	printf("\n");
-	printf(": %d", printf("%+-10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+-10d", 432));
-	printf("\n");
-	printf(": %d", printf("%+-10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+10.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%+10.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+-10.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%+-10.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%+.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+0d", 432));
-	printf("\n");
-	printf(": %d", printf("%+0d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+010d", 432));
-	printf("\n");
-	printf(": %d", printf("%+010d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+010.5d", 432));//
-	printf("\n");
-	printf(": %d", printf("%0+10.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%+0.5d", 432));
-	printf("\n");
-	printf(": %d", printf("%+0.5d", 432));
-	printf("\n");
-	printf("\n");
-	
-	printf("\n");
-	printf("--------------------");
-	printf("\n");
-
-
-	printf(": %d", ft_printf("%d", -432));
-	printf("\n");
-	printf(": %d", printf("%d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%10d", -432));
-	printf("\n");
-	printf(": %d", printf("%10d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%-10d", -432));
-	printf("\n");
-	printf(": %d", printf("%-10d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%-10d", -432));
-	printf("\n");
-	printf(": %d", printf("%-10d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%10.5d", -432));//
-	printf("\n");
-	printf(": %d", printf("%10.5d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%-10.5d", -432));
-	printf("\n");
-	printf(": %d", printf("%-10.5d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%.5d", -432));
-	printf("\n");
-	printf(": %d", printf("%.5d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%0d", -432));
-	printf("\n");
-	printf(": %d", printf("%0d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%010d", -432));
-	printf("\n");
-	printf(": %d", printf("%010d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%010.5d", -432));//
-	printf("\n");
-	printf(": %d", printf("%010.5d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%0.5d", -432));
-	printf("\n");
-	printf(": %d", printf("%0.5d", -432));
-
-
-
-	printf("\n");
-	printf("--------------------");
-	printf("\n");
-
-
-
-	printf(": %d", ft_printf("% d", 432));
-	printf("\n");
-	printf(": %d", printf("% d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 10d", 432));
-	printf("\n");
-	printf(": %d", printf("% 10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% -10d", 432));
-	printf("\n");
-	printf(": %d", printf("% -10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% -10d", 432));
-	printf("\n");
-	printf(": %d", printf("% -10d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 10.5d", 432));
-	printf("\n");
-	printf(": %d", printf("% 10.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% -10.5d", 432));
-	printf("\n");
-	printf(": %d", printf("% -10.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% .5d", 432));
-	printf("\n");
-	printf(": %d", printf("% .5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 0d", 432));
-	printf("\n");
-	printf(": %d", printf("% 0d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 010d", 432));
-	printf("\n");
-	printf(": %d", printf("% 010d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 010.5d", 432));//
-	printf("\n");
-	printf(": %d", printf("% 010.5d", 432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 0.5d", 432));
-	printf("\n");
-	printf(": %d", printf("% 0.5d", 432));
+	printf(" %c", '0' - 256);
 	printf("\n");
 	printf("\n");
 
+	printf("%d", ft_printf("[%c ]", '0' + 256));
 	printf("\n");
-	printf("--------------------");
+	printf("%d", printf("[%c ]", '0' + 256));
+	printf("\n");
 	printf("\n");
 
+	printf("%d", ft_printf("[ %c %c %c ]", '0', 0, '1'));
+	printf("\n");
+	printf("%d", printf("[ %c %c %c ]", '0', 0, '1'));
+	printf("\n");
+	printf("\n");
 
+	ft_printf(" %c %c %c ", ' ', ' ', ' ');
+	printf("\n");
+	printf(" %c %c %c ", ' ', ' ', ' ');
+	printf("\n");
+	printf("\n");
 
-	printf(": %d", ft_printf("% d", -432));
+	ft_printf(" %c %c %c ", '1', '2', '3');
 	printf("\n");
-	printf(": %d", printf("% d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 10d", -432));
-	printf("\n");
-	printf(": %d", printf("% 10d", -432));
+	printf(" %c %c %c ", '1', '2', '3');
 	printf("\n");
 	printf("\n");
-	printf(": %d", ft_printf("% -10d", -432));
-	printf("\n");
-	printf(": %d", printf("% -10d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% -10d", -432));
-	printf("\n");
-	printf(": %d", printf("% -10d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 10.5d", -432));
-	printf("\n");
-	printf(": %d", printf("% 10.5d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% -10.5d", -432));
-	printf("\n");
-	printf(": %d", printf("% -10.5d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% .5d", -432));
-	printf("\n");
-	printf(": %d", printf("% .5d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 0d", -432));
-	printf("\n");
-	printf(": %d", printf("% 0d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 010d", -432));
-	printf("\n");
-	printf(": %d", printf("% 010d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 010.5d", -432));//
-	printf("\n");
-	printf(": %d", printf("% 010.5d", -432));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("% 0.5d", -432));
-	printf("\n");
-	printf(": %d", printf("% 0.5d", -432));
-	printf("\n");*/
 
-	printf(": %d", ft_printf("%#x", -10));
+	ft_printf(" %c %c %c ", '2', '1', 0);
 	printf("\n");
-	printf(": %d", printf("%#x", -10));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%#X", -10));
-	printf("\n");
-	printf(": %d", printf("%#X", -10));
+	printf(" %c %c %c ", '2', '1', 0);
 	printf("\n");
 	printf("\n");
-	printf(": %d", ft_printf("%u", -10));
-	printf("\n");
-	printf(": %d", printf("%u", -10));
-	printf("\n");
-	printf("\n");
-	printf(": %d", ft_printf("%p", p));
-	printf("\n");
-	printf(": %d", printf("%p", p));
 
+	ft_printf(" %c %c %c ", 0, '1', '2');
+	printf("\n");
+	printf(" %c %c %c ", 0, '1', '2');
+	printf("\n");
+	printf("\n");
 	return (0);
 }

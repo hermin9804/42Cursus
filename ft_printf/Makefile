@@ -6,10 +6,10 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2021/12/22 17:00:26 by mher             ###   ########.fr        #
+#    Updated: 2021/12/25 00:27:14 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
+#
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = a.out

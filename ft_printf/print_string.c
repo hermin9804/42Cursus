@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:09:49 by mher              #+#    #+#             */
-/*   Updated: 2021/12/23 18:31:26 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/25 02:38:04 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	print_string(char *str, t_info *info)
 	
 	tmp = 0;
 	arg_len = 0;
+	if (str == NULL)
+		return (write(1, "(null)", 6));
 	if (info->left == 1)
 	{
 		tmp = ft_putstr(str);

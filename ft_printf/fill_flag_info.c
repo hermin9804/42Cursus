@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 13:44:32 by mher              #+#    #+#             */
-/*   Updated: 2021/12/23 15:17:29 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/25 03:24:36 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	fill_width_info(const char *format, t_info *info)
 
 	i = 0;
 	info->width = ft_atoi(&format[i]);
-	i += ft_numlen(info->width);
+	if (info->width != 0)
+		i += ft_nbrlen_base(info->width, 10);
 	if (format[i] == '.')
 	{
 		++i;
@@ -66,7 +67,7 @@ int	fill_width_info(const char *format, t_info *info)
 			info->prec = ft_atoi(&format[i]);
 			if (info->prec == -1)
 				return (ERROR);
-			i += ft_numlen(info->prec);
+			i += ft_nbrlen_base(info->prec, 10);
 		}
 	}
 	if (ft_strchr(TYPE, format[i]))
