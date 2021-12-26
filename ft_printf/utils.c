@@ -6,11 +6,17 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:15:58 by mher              #+#    #+#             */
-/*   Updated: 2021/12/25 03:24:51 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/26 17:25:49 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_putchar(char c, int *ret)
+{
+	*ret += 1;
+	return (write(1, &c, 1));
+}
 
 int	ft_nbrlen_base(unsigned long long nbr, int base)
 {
@@ -27,68 +33,69 @@ int	ft_nbrlen_base(unsigned long long nbr, int base)
 	return(len);
 }
 
-int	ft_putchar(char c, int *ret)
+int	run_function_order(t_info *info, int f1(t_info *), int f2(t_info *), int f3(t_info *))
 {
-	*ret += 1;
-	return (write(1, &c, 1));
-}
+	int ret;
+	int tmp;
 
-int	ft_putstr(char *str)
-{
-	int	str_len;
-
-	str_len = 0;
-	while (*str)
+	tmp = 0;
+	ret = 0;
+	if (f1)
 	{
-		if (write(1, str++, 1) == -1)
-			return (ERROR);
-		++str_len;
+		tmp = f1(info);
+		if (tmp == -1)
+			return (-1);
+		ret += tmp;
 	}
-	return (str_len);
+	if (f2)
+	{
+		tmp = f2(info);
+		if (tmp == -1)
+			return (-1);
+		ret += tmp;
+	}
+	if (f3)
+	{
+		tmp = f3(info);
+		if (tmp == -1)
+			return (-1);
+		ret += tmp;
+	}
+	return (ret);
 }
 
-int	char_type_padding(int len, t_info *info)
+int	padding_width(t_info *info)
 {
-	int	pad_len;
+	int	ret;
 	char	pad_char;
 
-	pad_len = 0;
+	ret = 0;
 	pad_char = ' ';
-	if (info->zero == 1)
+	if (info->zero == 1 && info->prec == 0)
 		pad_char = '0';
-	while (len++ < info->width)
+	while (0 < info->width--)
 	{
 		if (write(1, &pad_char, 1) == -1)
-			return (ERROR);
-		++pad_len;
+			return (-1);
+		++ret;
 	}
-	return (pad_len);
+	return (ret);
 }
 
-int	ft_putnbr(unsigned long long n, t_info *info)
+int	put_sign_alt(t_info *info)
 {
-	unsigned long long	ret;
-	int			tmp;
-	char			*base;
-
-	if (info->type == 'd' || info->type == 'i' || info->type == 'u')
-		base = "0123456789";
-	else if (info->type == 'x' || info->type == 'p')
-		base = "0123456789abcdef";
-	else if (info->type == 'X')
-		base = "0123456789ABCDEF";
-	ret = 0;
-	tmp = 0;
-	//if (n == -2147483648) long long max???
-	//	return (write(1, "2147483648", 10));
-	if (n > info->nbr_base - 1)
-		tmp = ft_putnbr(n / info->nbr_base , info);
-	if (tmp == -1)
-		return (-1);
-	ret += tmp;
-	tmp = write(1, &base[n % info->nbr_base], 1);;
-	if (tmp == -1)
-		return (ERROR);
-	ret += tmp;
-	return (ret);
+	if (info->nbr_sign == -1)
+		return (write(1, "-", 1));
+	else if (info->showsign == 1)
+		return (write(1, "+", 1));
+	else if (info->space == 1)
+		return (write(1, " ", 1));
+	else if (info->alt == 1 && info->type == 'x' && info->nbr != 0)
+		return (write(1, "0x", 2));
+	else if (info->alt == 1 && info->type == 'X' && info->nbr != 0)
+		return (write(1, "0X", 2));
+	else if (info->type == 'p')
+		return (write(1, "0x", 2));
+	else
+		return (0);
 }

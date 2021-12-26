@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:38:16 by mher              #+#    #+#             */
-/*   Updated: 2021/12/25 03:08:58 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/26 14:24:56 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	ft_printf(const char *format, ...)
 	va_list ap;
 
 	if (!format)
-		return (ERROR);
+		return (-1);
 	if (check_format(format) == -1)
-		return (ERROR);
+		return (-1);
 	va_start(ap, format);
 	ret = parse_format(ap, format);
 	va_end(ap);

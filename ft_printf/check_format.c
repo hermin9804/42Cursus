@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:31:15 by mher              #+#    #+#             */
-/*   Updated: 2021/12/25 03:06:25 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/26 17:15:09 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,33 @@ int	check_format(const char	*format)
 		while (*format != '%' && *format)
 			++format;
 		if (*(format++) == '%')
-			if (fill_info(&format, &info) == ERROR)
-				return (ERROR);
+			if (fill_info(&format, &info) == -1)
+				return (-1);
 		if (info.type == 'c')
-		{
 			if (check_char_format(&info) == -1)
-				return (ERROR);
-		}
-		else if (info.type == 'd' || info.type == 'i' || info.type == 'u' || info.type == 'x' || info.type == 'X' || info.type == 'p')
-		{
+				return (-1);
+		if (info.type == 'd' || info.type == 'i' || info.type == 'u' || info.type == 'x' || info.type == 'X' || info.type == 'p')
 			if (check_nbr_format(&info) == -1)
-				return (ERROR);
-		}
+				return (-1);
+		if (info.type == 's' && info.space == 1) // undefined behaviors : "% s" case
+			return (-1);
 	}
-	return (TRUE);
+	return (1);
 }
 
 int	check_char_format(t_info *info)
 {
 	if (info->alt == 1)
-		return (ERROR);
+		return (-1);
 	if (info->zero == 1)
-		return (ERROR);
+		return (-1);
 	if (info->showsign == 1)
-		return (ERROR);
+		return (-1);
 	if (info->space == 1)
-		return (ERROR);
+		return (-1);
 	if (info->prec != -1)
-		return (ERROR);
-	return (TRUE);
+		return (-1);
+	return (1);
 }
 
 int	check_nbr_format(t_info *info)
@@ -59,10 +57,10 @@ int	check_nbr_format(t_info *info)
 
 	type = info->type;
 	if ((type == 'd' || type == 'i' || type == 'u' || type == 'p') && info->alt == 1)
-		return (ERROR);
-	//else if (info->zero == 1 && info->left == 1)
-	//	return (ERROR);
-	else if ((info->showsign == 1 || info->space == 1) && info->alt == 1)
-		return (-ERROR);
-	return (TRUE);
+		return (-1);
+	//if (info->zero == 1 && info->left == 1)//??
+		//return (-1);//??
+	if ((info->showsign == 1 || info->space == 1) && info->alt == 1)
+		return (-1);
+	return (1);
 }
