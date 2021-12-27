@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 17:55:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/24 17:03:09 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 16:51:47 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	print_arg(va_list *ap, t_info *info)
 	type = info->type;
 	if (type == 'c')
 		arg_len = print_char(va_arg(*ap, int), info);
-	else if (type == 's')
+	if (type == 's')
 		arg_len = print_string(va_arg(*ap, char *), info);
-	else if (type == 'd' || type == 'i')
+	if (type == 'd' || type == 'i')
 		arg_len = print_nbr(va_arg(*ap, int), info);
-	else if (type == 'u' || type == 'x' || type == 'X')
+	if (type == 'u' || type == 'x' || type == 'X')
 		arg_len = print_nbr(va_arg(*ap, unsigned int), info);
-	else if (type == 'p')
+	if (type == 'p')
 		arg_len = print_nbr(va_arg(*ap, unsigned long long), info);
-	else if (type == '%')
+	if (type == '%')
 		arg_len = print_char('%', info);
 	return (arg_len);
 }

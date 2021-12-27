@@ -6,18 +6,20 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 17:16:22 by mher              #+#    #+#             */
-/*   Updated: 2021/12/26 17:31:09 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 16:34:56 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+
 int	parse_format(va_list ap, const char *format)
 {
-	int	arg_len;
-	int	total_len;
+	int		arg_len;
+	int		total_len;
 	t_info	info;
 
+	arg_len = 0;
 	total_len = 0;
 	while (*format)
 	{

@@ -6,14 +6,12 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/26 18:54:29 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 17:01:30 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-
-# include <stdio.h>//test
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -34,11 +32,10 @@ typedef struct s_info
 	unsigned int		nbr_base;
 	unsigned long long	nbr;
 	char			*str;
-	void			*contant;
 	int			c;
 }	t_info;
 
-//new_utils
+//utils
 int		ft_putchar(char c, int *total_len);
 int		ft_putnbr(unsigned long long n, t_info *info);
 int		ft_nbrlen_base(unsigned long long nbr, int base);
@@ -51,7 +48,7 @@ int		parse_format(va_list ap, const char *format);
 void		init_info(t_info *info);
 int		fill_info(const char **format, t_info *info);
 int		fill_flags_info(const char *format, t_info *info);
-int		fill_width_info(const char *format, t_info *info);
+int		fill_width_prec_info(const char *format, t_info *info);
 
 //print
 int		print_arg(va_list *ap, t_info *info);

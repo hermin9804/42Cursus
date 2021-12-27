@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 13:44:32 by mher              #+#    #+#             */
-/*   Updated: 2021/12/26 19:56:58 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 16:52:17 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	fill_info(const char **format, t_info *info)
 	width_len = 0;
 	flags_len = fill_flags_info(*format, info);
 	*format += flags_len;
-	width_len = fill_width_info(*format, info);
+	width_len = fill_width_prec_info(*format, info);
 	if (width_len == -1)
 		return (-1);
 	*format += width_len;
@@ -51,23 +51,21 @@ int	fill_flags_info(const char *format, t_info *info)
 	return (i);
 }
 
-int	fill_width_info(const char *format, t_info *info)
+int	fill_width_prec_info(const char *format, t_info *info)
 {
 	int i;
 
 	i = 0;
-	info->width = ft_atoi(&format[i]); //long max ?
+	info->width = ft_atoi(&format[i]);
 	if (info->width != 0)
 		i += ft_nbrlen_base(info->width, 10);
 	if (format[i] == '.')
 	{
 		++i;
-		info->prec = 0;//
+		info->prec = 0;
 		if (ft_isdigit(format[i]))
 		{
 			info->prec = ft_atoi(&format[i]);
-			if (info->prec == -1) //long max ?
-				return (-1);
 			i += ft_nbrlen_base(info->prec, 10);
 		}
 	}
