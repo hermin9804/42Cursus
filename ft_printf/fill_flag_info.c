@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 13:44:32 by mher              #+#    #+#             */
-/*   Updated: 2021/12/27 16:52:17 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 17:24:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ int	fill_info(const char **format, t_info *info)
 	return (1);
 }
 
-
 int	fill_flags_info(const char *format, t_info *info)
 {
 	int	i;
-	
+
 	i = 0;
 	while (ft_strchr("#0-+ ", format[i]))
 	{
@@ -53,7 +52,7 @@ int	fill_flags_info(const char *format, t_info *info)
 
 int	fill_width_prec_info(const char *format, t_info *info)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	info->width = ft_atoi(&format[i]);

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:44:20 by mher              #+#    #+#             */
-/*   Updated: 2021/12/26 19:03:10 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 17:49:01 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,42 +41,42 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 int	set_order_right(t_info *info)
 {
 	if (info->width == 0 && info->prec == 0 && info->zero == 0)
-		return (run_function_order(info, put_sign_alt, print_prec_nbr, 0));
+		return (run_order(info, put_sign_alt, print_prec_nbr, 0));
 	if (info->width == 0 && info->prec == 0 && info->zero == 1)
-		return (run_function_order(info, put_sign_alt, print_prec_nbr, 0));
+		return (run_order(info, put_sign_alt, print_prec_nbr, 0));
 	if (info->width == 0 && info->prec != 0 && info->zero == 0)
-		return (run_function_order(info, put_sign_alt, print_prec_nbr, 0));
+		return (run_order(info, put_sign_alt, print_prec_nbr, 0));
 	if (info->width == 0 && info->prec != 0 && info->zero == 1)
-		return (run_function_order(info, put_sign_alt, print_prec_nbr, 0));
+		return (run_order(info, put_sign_alt, print_prec_nbr, 0));
 	if (info->width != 0 && info->prec == 0 && info->zero == 0)
-		return (run_function_order(info, padding_width, put_sign_alt, print_prec_nbr));
-	if (info->width != 0 && info->prec == 0 && info->zero == 1) 
-		return (run_function_order(info, put_sign_alt, padding_width, print_prec_nbr));
-	if (info->width != 0 && info->prec != 0 && info->zero == 0) 
-		return (run_function_order(info, padding_width, put_sign_alt, print_prec_nbr));
+		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
+	if (info->width != 0 && info->prec == 0 && info->zero == 1)
+		return (run_order(info, put_sign_alt, padding_width, print_prec_nbr));
+	if (info->width != 0 && info->prec != 0 && info->zero == 0)
+		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
 	if (info->width != 0 && info->prec != 0 && info->zero == 1)
-		return (run_function_order(info, padding_width, put_sign_alt, print_prec_nbr));
+		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
 	return (-1);
 }
 
 int	set_order_left(t_info *info)
 {
 	if (info->width == 0 && info->prec == 0)
-		return (run_function_order(info, padding_width, put_sign_alt, print_prec_nbr));
+		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
 	if (info->width == 0 && info->prec != 0)
-		return (run_function_order(info, padding_width, put_sign_alt, print_prec_nbr));
+		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
 	if (info->width != 0 && info->prec == 0)
-		return (run_function_order(info, put_sign_alt, print_prec_nbr, padding_width));
+		return (run_order(info, put_sign_alt, print_prec_nbr, padding_width));
 	if (info->width != 0 && info->prec != 0)
-		return (run_function_order(info, put_sign_alt, print_prec_nbr, padding_width));
+		return (run_order(info, put_sign_alt, print_prec_nbr, padding_width));
 	return (-1);
 }
 
 int	ft_putnbr(unsigned long long n, t_info *info)
 {
 	unsigned long long	ret;
-	int			tmp;
-	char			*base;
+	int					tmp;
+	char				*base;
 
 	if (info->type == 'd' || info->type == 'i' || info->type == 'u')
 		base = "0123456789";
@@ -87,11 +87,11 @@ int	ft_putnbr(unsigned long long n, t_info *info)
 	ret = 0;
 	tmp = 0;
 	if (n > info->nbr_base - 1)
-		tmp = ft_putnbr(n / info->nbr_base , info);
+		tmp = ft_putnbr(n / info->nbr_base, info);
 	if (tmp == -1)
 		return (-1);
 	ret += tmp;
-	tmp = write(1, &base[n % info->nbr_base], 1);;
+	tmp = write(1, &base[n % info->nbr_base], 1);
 	if (tmp == -1)
 		return (-1);
 	ret += tmp;

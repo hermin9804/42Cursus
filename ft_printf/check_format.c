@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:31:15 by mher              #+#    #+#             */
-/*   Updated: 2021/12/27 16:56:54 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 17:23:28 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	check_format(const char	*format)
 		if (info.type == 'c')
 			if (check_char_format(&info) == -1)
 				return (-1);
-		if (info.type == 'd' || info.type == 'i' || info.type == 'u' 
-				|| info.type == 'x' || info.type == 'X' || info.type == 'p')
+		if (info.type == 'd' || info.type == 'i' || info.type == 'u'
+			|| info.type == 'x' || info.type == 'X' || info.type == 'p')
 			if (check_nbr_format(&info) == -1)
 				return (-1);
 		if (info.type == 's' && info.space == 1)
@@ -54,10 +54,10 @@ int	check_char_format(t_info *info)
 
 int	check_nbr_format(t_info *info)
 {
-	char	type;
+	char	t;
 
-	type = info->type;
-	if ((type == 'd' || type == 'i' || type == 'u' || type == 'p') && info->alt == 1)
+	t = info->type;
+	if ((t == 'd' || t == 'i' || t == 'u' || t == 'p') && info->alt == 1)
 		return (-1);
 	if (info->zero == 1 && info->left == 1)
 		return (-1);

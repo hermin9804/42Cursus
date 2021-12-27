@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:15:58 by mher              #+#    #+#             */
-/*   Updated: 2021/12/26 17:25:49 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 17:44:40 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_putchar(char c, int *ret)
 
 int	ft_nbrlen_base(unsigned long long nbr, int base)
 {
-	unsigned int len;
+	unsigned int	len;
 
 	len = 0;
 	if (nbr == 0)
@@ -30,43 +30,37 @@ int	ft_nbrlen_base(unsigned long long nbr, int base)
 		++len;
 		nbr /= base;
 	}
-	return(len);
+	return (len);
 }
 
-int	run_function_order(t_info *info, int f1(t_info *), int f2(t_info *), int f3(t_info *))
+int	run_function_order(t_info *info, int f1(t_info *),
+	int f2(t_info *), int f3(t_info *))
 {
-	int ret;
-	int tmp;
+	int	ret1;
+	int	ret2;
+	int	ret3;
 
-	tmp = 0;
-	ret = 0;
+	ret1 = 0;
+	ret2 = 0;
+	ret3 = 0;
 	if (f1)
-	{
-		tmp = f1(info);
-		if (tmp == -1)
-			return (-1);
-		ret += tmp;
-	}
+		ret1 = f1(info);
+	if (ret1 == -1)
+		return (-1);
 	if (f2)
-	{
-		tmp = f2(info);
-		if (tmp == -1)
-			return (-1);
-		ret += tmp;
-	}
+		ret2 = f2(info);
+	if (ret2 == -1)
+		return (-1);
 	if (f3)
-	{
-		tmp = f3(info);
-		if (tmp == -1)
-			return (-1);
-		ret += tmp;
-	}
-	return (ret);
+		ret3 = f3(info);
+	if (ret3 == -1)
+		return (-1);
+	return (ret1 + ret2 + ret3);
 }
 
 int	padding_width(t_info *info)
 {
-	int	ret;
+	int		ret;
 	char	pad_char;
 
 	ret = 0;
