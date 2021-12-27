@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:31:15 by mher              #+#    #+#             */
-/*   Updated: 2021/12/27 17:23:28 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/27 23:07:44 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ int	check_format(const char	*format)
 		if (info.type == 'c')
 			if (check_char_format(&info) == -1)
 				return (-1);
-		if (info.type == 'd' || info.type == 'i' || info.type == 'u'
-			|| info.type == 'x' || info.type == 'X' || info.type == 'p')
+		if (info.type >= 'd' && info.type != 's')
 			if (check_nbr_format(&info) == -1)
 				return (-1);
-		if (info.type == 's' && info.space == 1)
-			return (-1);
 	}
 	return (1);
 }

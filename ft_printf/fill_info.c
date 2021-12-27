@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 13:44:32 by mher              #+#    #+#             */
-/*   Updated: 2021/12/27 17:24:18 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/28 00:48:26 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,11 @@
 
 int	fill_info(const char **format, t_info *info)
 {
-	int	flags_len;
-	int	width_len;
-
-	flags_len = 0;
-	width_len = 0;
-	flags_len = fill_flags_info(*format, info);
-	*format += flags_len;
-	width_len = fill_width_prec_info(*format, info);
-	if (width_len == -1)
+	*format += fill_flags_info(*format, info);
+	*format += fill_width_prec_info(*format, info);
+	if (fill_type_info(*format, info) == -1)
 		return (-1);
-	*format += width_len;
+	*format += 1;
 	return (1);
 }
 
@@ -37,13 +31,13 @@ int	fill_flags_info(const char *format, t_info *info)
 	{
 		if (format[i] == '#')
 			info->alt = 1;
-		else if (format[i] == '0')
+		if (format[i] == '0')
 			info->zero = 1;
-		else if (format[i] == '-')
+		if (format[i] == '-')
 			info->left = 1;
-		else if (format[i] == '+')
+		if (format[i] == '+')
 			info->showsign = 1;
-		else if (format[i] == ' ')
+		if (format[i] == ' ')
 			info->space = 1;
 		++i;
 	}
@@ -59,18 +53,16 @@ int	fill_width_prec_info(const char *format, t_info *info)
 	if (info->width != 0)
 		i += ft_nbrlen_base(info->width, 10);
 	if (format[i] == '.')
-	{
-		++i;
-		info->prec = 0;
-		if (ft_isdigit(format[i]))
-		{
-			info->prec = ft_atoi(&format[i]);
-			i += ft_nbrlen_base(info->prec, 10);
-		}
-	}
-	if (ft_strchr("csdiupxX%", format[i]))
-		info->type = format[i++];
-	else
-		return (-1);
+		info->prec = ft_atoi(&format[++i]);
+	if (info->prec > 0)
+		i += ft_nbrlen_base(info->prec, 10);
 	return (i);
+}
+
+int	fill_type_info(const char *format, t_info *info)
+{
+	if (!ft_strchr("csdiupxX%", *format))
+		return (-1);
+	info->type = *format;
+	return (1);
 }

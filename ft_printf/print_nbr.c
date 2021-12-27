@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:44:20 by mher              #+#    #+#             */
-/*   Updated: 2021/12/27 17:49:01 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/28 00:41:51 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ int	ft_putnbr(unsigned long long n, t_info *info)
 	int					tmp;
 	char				*base;
 
-	if (info->type == 'd' || info->type == 'i' || info->type == 'u')
-		base = "0123456789";
-	else if (info->type == 'x' || info->type == 'p')
-		base = "0123456789abcdef";
-	else if (info->type == 'X')
-		base = "0123456789ABCDEF";
 	ret = 0;
 	tmp = 0;
-	if (n > info->nbr_base - 1)
+	if (info->type == 'd' || info->type == 'i' || info->type == 'u')
+		base = "0123456789";
+	if (info->type == 'x' || info->type == 'p')
+		base = "0123456789abcdef";
+	if (info->type == 'X')
+		base = "0123456789ABCDEF";
+	if (n >= info->nbr_base)
 		tmp = ft_putnbr(n / info->nbr_base, info);
 	if (tmp == -1)
 		return (-1);

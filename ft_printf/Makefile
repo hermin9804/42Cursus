@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2021/12/25 16:25:08 by mher             ###   ########.fr        #
+#    Updated: 2021/12/28 01:09:57 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFT_LIB	= libft.a
 SRCS		= \
 		ft_printf.c\
 		check_format.c\
-		fill_flag_info.c\
+		fill_info.c\
 		init_info.c\
 		parse_format.c\
 		print_arg.c\

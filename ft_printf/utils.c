@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:15:58 by mher              #+#    #+#             */
-/*   Updated: 2021/12/27 18:36:00 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/28 00:49:28 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_nbrlen_base(unsigned long long nbr, int base)
 }
 
 int	run_order(t_info *info, int f1(t_info *),
-	int f2(t_info *), int f3(t_info *))
+		int f2(t_info *), int f3(t_info *))
 {
 	int	ret1;
 	int	ret2;
