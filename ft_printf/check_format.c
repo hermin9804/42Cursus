@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:31:15 by mher              #+#    #+#             */
-/*   Updated: 2021/12/27 23:07:44 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/28 21:25:52 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	check_format(const char	*format)
 {
 	t_info	info;
 
+	if (format == NULL)
+		return (-1);
 	while (*format)
 	{
 		init_info(&info);
