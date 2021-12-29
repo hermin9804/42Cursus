@@ -1,4 +1,6 @@
 ### 42 SEOUL CURSUS (2021.11.15. ~ Ongoing)
+[![mher's 42 stats](https://badge42.herokuapp.com/api/stats/mher)](https://github.com/JaeSeoKim/badge42)
+
 
  |Order|Circle|Project|Stack|Status|Score|
  |:---:|:---:|:---:|:---:|:---:|:---:|
