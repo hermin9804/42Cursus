@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:44:20 by mher              #+#    #+#             */
-/*   Updated: 2021/12/28 00:41:51 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/29 14:03:25 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ int	set_order_right(t_info *info)
 {
 	if (info->width == 0 && info->prec == 0 && info->zero == 0)
 		return (run_order(info, put_sign_alt, print_prec_nbr, 0));
-	if (info->width == 0 && info->prec == 0 && info->zero == 1)
+	else if (info->width == 0 && info->prec == 0 && info->zero == 1)
 		return (run_order(info, put_sign_alt, print_prec_nbr, 0));
-	if (info->width == 0 && info->prec != 0 && info->zero == 0)
+	else if (info->width == 0 && info->prec != 0 && info->zero == 0)
 		return (run_order(info, put_sign_alt, print_prec_nbr, 0));
-	if (info->width == 0 && info->prec != 0 && info->zero == 1)
+	else if (info->width == 0 && info->prec != 0 && info->zero == 1)
 		return (run_order(info, put_sign_alt, print_prec_nbr, 0));
-	if (info->width != 0 && info->prec == 0 && info->zero == 0)
+	else if (info->width != 0 && info->prec == 0 && info->zero == 0)
 		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
-	if (info->width != 0 && info->prec == 0 && info->zero == 1)
+	else if (info->width != 0 && info->prec == 0 && info->zero == 1)
 		return (run_order(info, put_sign_alt, padding_width, print_prec_nbr));
-	if (info->width != 0 && info->prec != 0 && info->zero == 0)
+	else if (info->width != 0 && info->prec != 0 && info->zero == 0)
 		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
-	if (info->width != 0 && info->prec != 0 && info->zero == 1)
+	else if (info->width != 0 && info->prec != 0 && info->zero == 1)
 		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
 	return (-1);
 }
@@ -63,11 +63,11 @@ int	set_order_left(t_info *info)
 {
 	if (info->width == 0 && info->prec == 0)
 		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
-	if (info->width == 0 && info->prec != 0)
+	else if (info->width == 0 && info->prec != 0)
 		return (run_order(info, padding_width, put_sign_alt, print_prec_nbr));
-	if (info->width != 0 && info->prec == 0)
+	else if (info->width != 0 && info->prec == 0)
 		return (run_order(info, put_sign_alt, print_prec_nbr, padding_width));
-	if (info->width != 0 && info->prec != 0)
+	else if (info->width != 0 && info->prec != 0)
 		return (run_order(info, put_sign_alt, print_prec_nbr, padding_width));
 	return (-1);
 }
@@ -82,9 +82,9 @@ int	ft_putnbr(unsigned long long n, t_info *info)
 	tmp = 0;
 	if (info->type == 'd' || info->type == 'i' || info->type == 'u')
 		base = "0123456789";
-	if (info->type == 'x' || info->type == 'p')
+	else if (info->type == 'x' || info->type == 'p')
 		base = "0123456789abcdef";
-	if (info->type == 'X')
+	else if (info->type == 'X')
 		base = "0123456789ABCDEF";
 	if (n >= info->nbr_base)
 		tmp = ft_putnbr(n / info->nbr_base, info);

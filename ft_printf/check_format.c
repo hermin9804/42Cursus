@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:31:15 by mher              #+#    #+#             */
-/*   Updated: 2021/12/28 21:25:52 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/29 14:07:03 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	check_char_format(t_info *info)
 {
 	if (info->alt == 1)
 		return (-1);
-	if (info->zero == 1)
+	else if (info->zero == 1)
 		return (-1);
-	if (info->showsign == 1)
+	else if (info->showsign == 1)
 		return (-1);
-	if (info->space == 1)
+	else if (info->space == 1)
 		return (-1);
-	if (info->prec != -1)
+	else if (info->prec != -1)
 		return (-1);
 	return (1);
 }

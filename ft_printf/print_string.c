@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:09:49 by mher              #+#    #+#             */
-/*   Updated: 2021/12/28 00:20:28 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/29 14:05:02 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ int	print_string(char *str, t_info *info)
 		info->space = 0;
 	if (info->left == 0)
 		return (run_order(info, padding_width, put_sign_alt, print_prec_str));
-	if (info->left == 1)
+	else
 		return (run_order(info, put_sign_alt, print_prec_str, padding_width));
-	return (-1);
 }
 
 int	print_prec_str(t_info *info)

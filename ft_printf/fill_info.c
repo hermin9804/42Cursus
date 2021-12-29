@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_info.c                                        :+:      :+:    :+:   */
+/*   fill_flag_info.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 13:44:32 by mher              #+#    #+#             */
-/*   Updated: 2021/12/28 01:49:07 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/29 14:08:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	fill_flags_info(const char *format, t_info *info)
 	{
 		if (format[i] == '#')
 			info->alt = 1;
-		if (format[i] == '0')
+		else if (format[i] == '0')
 			info->zero = 1;
-		if (format[i] == '-')
+		else if (format[i] == '-')
 			info->left = 1;
-		if (format[i] == '+')
+		else if (format[i] == '+')
 			info->showsign = 1;
-		if (format[i] == ' ')
+		else if (format[i] == ' ')
 			info->space = 1;
 		++i;
 	}
