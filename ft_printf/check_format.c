@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:31:15 by mher              #+#    #+#             */
-/*   Updated: 2021/12/29 14:07:03 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/30 00:30:35 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ int	check_format(const char	*format)
 		while (*format != '%' && *format)
 			++format;
 		if (*(format++) == '%')
-			if (fill_info(&format, &info) == -1)
-				return (-1);
+			fill_info(&format, &info);
+		if (ft_strchr("cspdiuxX%", info.type) == 0)
+			return (-1);
 		if (info.type == 'c')
 			if (check_char_format(&info) == -1)
 				return (-1);

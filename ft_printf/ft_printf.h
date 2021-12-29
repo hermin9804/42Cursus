@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/28 01:12:08 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/30 00:03:35 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ typedef struct s_info
 	char				type;
 	int					prec;
 	int					width;
-	int					alt;
-	int					zero;
-	int					left;
-	int					showsign;
-	int					space;
 	int					nbr_sign;
+	unsigned int		alt;
+	unsigned int		zero;
+	unsigned int		left;
+	unsigned int		showsign;
+	unsigned int		space;
 	unsigned int		nbr_len;
 	unsigned int		nbr_base;
-	unsigned long long	nbr;
-	char				*str;
 	int					c;
+	char				*str;
+	unsigned long long	nbr;
 }	t_info;
 
 int		ft_putchar(char c, int *total_len);
@@ -43,7 +43,7 @@ int		ft_printf(const char *format, ...);
 int		parse_format(va_list ap, const char *format);
 
 void	init_info(t_info *info);
-int		fill_info(const char **format, t_info *info);
+void	fill_info(const char **format, t_info *info);
 int		fill_flags_info(const char *format, t_info *info);
 int		fill_width_prec_info(const char *format, t_info *info);
 int		fill_type_info(const char *format, t_info *info);
