@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/30 00:03:35 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/30 01:36:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 typedef struct s_info
 {
 	char				type;
-	int					prec;
 	int					width;
+	int					prec;
 	int					nbr_sign;
 	unsigned int		alt;
 	unsigned int		zero;
