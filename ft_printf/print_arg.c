@@ -18,7 +18,7 @@ int	print_arg(va_list ap, t_info *info)
 
 	type = info->type;
 	if (type == 'c')
-		return (print_char(va_arg(ap, int), info));
+		return (print_char(va_arg(ap, char), info));
 	else if (type == 's')
 		return (print_string(va_arg(ap, char *), info));
 	else if (type == 'd' || type == 'i')
