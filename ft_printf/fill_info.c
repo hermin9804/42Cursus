@@ -6,17 +6,20 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 13:44:32 by mher              #+#    #+#             */
-/*   Updated: 2021/12/30 01:07:12 by mher             ###   ########.fr       */
+/*   Updated: 2021/12/29 14:08:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_info(const char **format, t_info *info)
+int	fill_info(const char **format, t_info *info)
 {
 	*format += fill_flags_info(*format, info);
 	*format += fill_width_prec_info(*format, info);
-	*format += fill_type_info(*format, info);
+	if (fill_type_info(*format, info) == -1)
+		return (-1);
+	*format += 1;
+	return (1);
 }
 
 int	fill_flags_info(const char *format, t_info *info)
@@ -59,7 +62,7 @@ int	fill_width_prec_info(const char *format, t_info *info)
 int	fill_type_info(const char *format, t_info *info)
 {
 	if (!ft_strchr("csdiupxX%", *format))
-		return (0);
+		return (-1);
 	info->type = *format;
 	return (1);
 }

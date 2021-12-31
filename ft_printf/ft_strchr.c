@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_info.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/17 19:16:34 by mher              #+#    #+#             */
-/*   Updated: 2022/01/01 01:22:50 by mher             ###   ########.fr       */
+/*   Created: 2021/11/17 16:41:02 by mher              #+#    #+#             */
+/*   Updated: 2022/01/01 00:54:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_info(t_info *info)
+char	*ft_strchr(const char *s, int c)
 {
-	info->type = 0;
-	info->width = 0;
-	info->prec = -1;
-	info->alt = 0;
-	info->zero = 0;
-	info->left = 0;
-	info->showsign = 0;
-	info->space = 0;
-	info->nbr_sign = 0;
-	info->nbr_len = 0;
-	info->nbr_base = 10;
-	info->c = 0;
-	info->str = 0;
-	info->nbr = 0;
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		++s;
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	return (0);
 }

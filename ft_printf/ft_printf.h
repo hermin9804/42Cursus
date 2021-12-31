@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/30 01:36:15 by mher             ###   ########.fr       */
+/*   Updated: 2022/01/01 01:18:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include "./libft/libft.h"
 
 typedef struct s_info
 {
 	char				type;
-	int					width;
 	int					prec;
+	int					width;
 	int					nbr_sign;
 	unsigned int		alt;
 	unsigned int		zero;
@@ -35,6 +34,11 @@ typedef struct s_info
 	unsigned long long	nbr;
 }	t_info;
 
+size_t	ft_strlen(const char *s);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
+char	*ft_strchr(const char *s, int c);
+
 int		ft_putchar(char c, int *total_len);
 int		ft_putnbr(unsigned long long n, t_info *info);
 int		ft_nbrlen_base(unsigned long long nbr, int base);
@@ -43,7 +47,7 @@ int		ft_printf(const char *format, ...);
 int		parse_format(va_list ap, const char *format);
 
 void	init_info(t_info *info);
-void	fill_info(const char **format, t_info *info);
+int		fill_info(const char **format, t_info *info);
 int		fill_flags_info(const char *format, t_info *info);
 int		fill_width_prec_info(const char *format, t_info *info);
 int		fill_type_info(const char *format, t_info *info);
