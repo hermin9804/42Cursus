@@ -6,10 +6,10 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2022/01/01 00:56:25 by mher             ###   ########.fr        #
+#    Updated: 2022/01/01 17:44:11 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
+	
 NAME		= libftprintf.a
 
 SRCS		= \
@@ -48,3 +48,4 @@ clean :
 fclean : clean
 	$(RM) $(NAME)
 
+.PHONY: all bonus clean fclean re
