@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:31:15 by mher              #+#    #+#             */
-/*   Updated: 2021/12/29 14:07:03 by mher             ###   ########.fr       */
+/*   Updated: 2022/01/01 16:37:08 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_format(const char	*format)
 		if (info.type == 'c')
 			if (check_char_format(&info) == -1)
 				return (-1);
-		if (info.type >= 'd' && info.type != 's')
+		if (ft_strchr("diupxX", info.type))
 			if (check_nbr_format(&info) == -1)
 				return (-1);
 	}
@@ -53,10 +53,7 @@ int	check_char_format(t_info *info)
 
 int	check_nbr_format(t_info *info)
 {
-	char	t;
-
-	t = info->type;
-	if ((t == 'd' || t == 'i' || t == 'u' || t == 'p') && info->alt == 1)
+	if (ft_strchr("diup", info->type) && info->alt == 1)
 		return (-1);
 	if (info->zero == 1 && info->left == 1)
 		return (-1);
