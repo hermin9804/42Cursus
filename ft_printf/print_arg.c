@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 17:55:12 by mher              #+#    #+#             */
-/*   Updated: 2021/12/29 14:09:28 by mher             ###   ########.fr       */
+/*   Updated: 2022/01/01 16:49:48 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	print_arg(va_list ap, t_info *info)
 	else if (type == 'u' || type == 'x' || type == 'X')
 		arg_len = print_nbr(va_arg(ap, unsigned int), info);
 	else if (type == 'p')
-		arg_len = print_nbr(va_arg(ap, unsigned long long), info);
+		arg_len = print_nbr(va_arg(ap, void *), info);
 	else if (type == '%')
 		arg_len = print_char('%', info);
 	return (arg_len);
