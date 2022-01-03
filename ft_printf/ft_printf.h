@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:39:12 by mher              #+#    #+#             */
-/*   Updated: 2022/01/01 01:18:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/01/04 00:23:45 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,5 @@ int		padding_width(t_info *info);
 int		put_sign_alt(t_info *info);
 
 int		check_format(const char	*format);
-int		check_char_format(t_info *info);
-int		check_nbr_format(t_info *info);
 
 #endif
