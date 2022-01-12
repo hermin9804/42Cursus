@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:44:20 by mher              #+#    #+#             */
-/*   Updated: 2021/12/29 14:03:25 by mher             ###   ########.fr       */
+/*   Updated: 2022/01/13 00:37:03 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	print_nbr(unsigned long long nbr, t_info *info)
 	}
 	info->nbr = nbr;
 	info->nbr_len = ft_nbrlen_base(nbr, info->nbr_base);
+	if (info->prec == 0 && nbr == 0)
+		return (0);
 	if (info->prec > 0)
 		info->prec -= info->nbr_len;
 	else
