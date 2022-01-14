@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2021/12/13 18:55:58 by mher             ###   ########.fr       */
+/*   Updated: 2022/01/14 23:39:41 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,22 @@ char	*read_file(int fd, char *keep)
 		buff[read_size] = '\0';
 		temp = keep;
 		keep = ft_strjoin(temp, buff);
-		free(temp);
-		temp = 0;
+		free_init(temp);
 		if (ft_strchr(keep, '\n') || !keep)
 			break ;
 		read_size = read(fd, buff, BUFFER_SIZE);
 	}
-	free(buff);
-	buff = 0;
+	free_init(buff);
 	if (read_size < 0)
 		return (0);
 	return (keep);
+}
+
+char	*free_init(char *p)
+{
+	free(p);
+	p = 0;
+	return (0);
 }
 
 char	*get_next_line(int fd)
@@ -80,18 +85,13 @@ char	*get_next_line(int fd)
 	if (!keep)
 		return (0);
 	if (!*keep)
-	{
-		free(keep);
-		keep = 0;
-		return (0);
-	}
+		return (free_init(keep));
 	line = get_line(keep);
 	if (!line)
-		return (0);
+		return (free_init(line));
 	temp = keep;
 	keep = ft_strdup(temp + ft_strlen(line));
-	free(temp);
-	temp = 0;
+	free_init(temp);
 	if (!keep)
 		return (0);
 	return (line);

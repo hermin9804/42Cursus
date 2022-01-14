@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2022/01/07 17:41:07 by mher             ###   ########.fr       */
+/*   Updated: 2022/01/14 23:40:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ char	*get_next_line(int fd)
 		fd_lst->keep = 0;
 		return (gnl_or_del(&fd_lst));
 	}
-
 	//read_file에서 한줄을 잘 읽고 keep에 문자열이 저장된경우
 	return (gnl_or_del(&fd_lst));
 }
