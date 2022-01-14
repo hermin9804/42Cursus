@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2022/01/14 23:40:15 by mher             ###   ########.fr       */
+/*   Updated: 2022/01/15 00:01:54 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,19 @@ char	*get_line(char *keep)
 		++i;
 	line = (char *)malloc(sizeof(char) * (i + 1));
 	if (!line)
+	{
+		free(keep);
+		keep = 0;
 		return (0);
+	}
 	i = 0;
 	while (keep[i] != '\n' && keep[i])
 	{
 		line[i] = keep[i];
-		++i;
+		i++;
 	}
 	if (keep[i] == '\n')
-	{
-		line[i] = '\n';
-		++i;
-	}
+		line[i++] = '\n';
 	line[i] = 0;
 	return (line);
 }
