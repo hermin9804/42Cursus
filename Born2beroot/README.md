@@ -1,18 +1,124 @@
-# Born2beroot
-
-[notion 정리](https://www.notion.so/Born2beroot-b890cfe216f84b549d68a9fec5cf89e9)
-
 # 개념
 
 [Virtual Machine](https://www.notion.so/Virtual-Machine-551dc2aa2e4c4ea481bb6c83f51d496a)
 
 [CentOS vs Debian](https://www.notion.so/CentOS-vs-Debian-a4a3a09dbbf04fddb1ca3392fd4e04f2) 
 
+[AppArmor vs SELinux](https://www.notion.so/AppArmor-vs-SELinux-3512044931f24f9ea556a4ee284c7db9) 
+
 [Aptitude vs Apt](https://www.notion.so/Aptitude-vs-Apt-194c53cc0f1e4f79b4b3af5f566caa8c) 
 
-# Mandatory
+[TTY(**Teletypewriter)**](https://www.notion.so/TTY-Teletypewriter-7bf919d9dbd443eca32f56c50ae2e40e)
 
-## Mandatory 설정
+[Hard disk](https://www.notion.so/Hard-disk-d9975c0d5a554d728850ea91be95eb02)
+
+[File system](https://www.notion.so/File-system-15421825897e4261a98e0f7001463e10)
+
+[Linux Mount](https://www.notion.so/Linux-Mount-f9e9399b0d204c93a300d5208f49642d)
+
+[Linux Partition](https://www.notion.so/Linux-Partition-4ab14397fae14876b5f07559799c409d)
+
+[LVM](https://www.notion.so/LVM-98821a410cf04027acc1c3a7e0375522)
+
+[UFW](https://www.notion.so/UFW-d152838cc36e4cd8a6ec1fd881c98304)
+
+[SSH](https://www.notion.so/SSH-8e23dc431eed4a4fb8b672ebf50a8897)
+
+[Sudo](https://www.notion.so/Sudo-7ca2df2773c44e9ba6e92d89452cf391)
+
+[Cron](https://www.notion.so/Cron-eacea0e779fb4a2da230ce5083606e40)
+
+[Port forwarding](https://www.notion.so/Port-forwarding-7367cc635e3a41e5aa4e7a95e1cc43e4)
+
+# 명령어
+
+```bash
+root : Dkdlel1234!!
+mher : Minher4321!!
+
+포트포워딩
+mac(Host ip) - ipconfig getifaddr en0 : 10.13.2.4
+debian(Guest ip) - ip a : 10.0.2.15
+ssh mher@10.13.2.4 -p 4242
+
+데비안 버젼 확인
+~# head -n 2 /etc/os-release
+ho
+그룹
+- 그룹추가 : groupadd [groupname]
+- 그룹 확인 : groups [username]
+- 그룹에 사용자 추가 : usermod -aG sudo,user42 [user_name]
+- 주 그룹을 변경 : usermod -g user42 [user_name]
+프라이머리 그룹
+- (1 사용자) : (1 기본 그룹)
+- 기본 그룹은 사용자가 만든 새 파일을 가진다.
+세컨더리 그룹
+- 사용자는 0개 이상의 보조 그룹에 속할 수 있다.
+- /etc/group에서 그룹 항목의 마지막 필드에 나열된다.
+- 보조 그룹은 사용자가 시스템에 있는 파일등에 대한 액세스 권한을 확인하는 데 사용된다.
+
+유저
+- 사용자 추가 : sudo useradd -m [username] (-m: 홈디렉토리 자동생성)
+- 사용자 삭제 : sudo userdel -r [username] (-r: 홈대렉토리 자동삭제)
+- 현재 user 한번에 보는 명령어 : grep /bin/bash /etc/passwd | cut -f1 -d:
+- 사용자 비밀번호 변경 : sudo passwd 사용자명
+
+호스트
+- 호스트네임 체크 : hostnamectl
+- 호스트네임 변경 : sudo hostnamectl set-hostname [hostname] 
+
+sudo
+- sudo 설치확인 : apt searsh sudo
+- sudoers접근 : visudo
+- sudo 로그 :  /var/log/sudo/
+
+비밀번호 정책
+sudo vi /etc/login.defs
+sudo vi /etc/pam.d/common-password
+
+AppArmor
+- apparmor 활성화 여부 확인 : aa-enabled
+
+UFW
+- 설치 확인 : apt search ufw
+- 상태 확인 : ufw status verbose
+- 번호 확인 : ufw status numbered
+- ufw활성화 : ufw enable 
+- 비활성화  : ufw disable
+- 포트 허용 : ufw allow 4242
+- 포트 거부 : ufw deny 4242
+- 포트 삭제 : ufw delete [number]
+
+SSH
+- 설치 확인 : apt search openssh-serber 
+- 재시작 : systemctl restart ssh
+- 상태확인 : systemctl status ssh
+- 연결확인 : ss -tunlp
+- 설정 파일 : vim /etc/ssh/sshd_config
+
+monitoring.sh 설정
+vi /root/monitoring.sh
+
+cron 설정
+crontab -e
+
+systemctl status cron.service
+systemctl disable cron
+systemctl status cron.service
+systemctl enable cron
+/etc/init.d/cron start
+/etc/init.d/cron stop
+
+vm을 상태 저장하면서 종료
+스냅샷을 남긴다.
+터미널에서 cd /goinfre/intra id/vm이름 으로 가상머신이 설치된 폴더로 진입
+shasum vm이름.vdi 를 실행
+잠시 기다리면 가상머신의 서명이 나옴
+여러차례 실행하면서 바뀌는지 확인
+shasum vm이름.vdi > signature.txt 에 넣고 git push 해서 평가준비
+```
+
+# 설정
 
 - 데비안 11 설치
     
@@ -30,7 +136,7 @@
     /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
     ```
     
-    로 하라고 되어있기 때문에 /snap/bin 추가 
+    로 하라고 되어있기 때문에 /snap/bin 추가 : 이 경로에 있는 명령어만 실행 할 수있도록
     
     - visudo로 sudoers에 접근
     - secure_path에 /snap/bin 추가
@@ -113,7 +219,11 @@
     systemctl status ssh
     ```
     
-- 패스워드 정책 설정
+    ss -tunlp 시 udp 지우기 위해 아래 처럼 설정
+    
+    ![Screen Shot 2022-03-19 at 6.35.31 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/94fad75e-8a5c-4c9a-9679-39097e4e1459/Screen_Shot_2022-03-19_at_6.35.31_PM.png)
+    
+- ㅕ패스워드 정책 설정
     
     ```bash
     su -
@@ -125,12 +235,13 @@
     PASS_MIN_DATS 2
     #사용자는 암호가 만료되기 7 일 전에 경고 메시지를 받아야합니다.
     PASS_WARN_AGE 7
+    
+    LOGIN_RETRIES 3
     ```
     
     ```bash
     #libpam-pwquality를 설치 해야 아래 설정들을 할 수 있음
-    apt-get -y install libpam-pwquality
-    
+    sudo apt-get install libpam-cracklib
     vi /etc/pam.d/common-password 
     retry=3 뒤로 설정들 쭉 붙일것
     minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username enforce_for_root difok=7
@@ -166,6 +277,7 @@
     
     printf "#Disk Usage: " # 서버에서 현재 사용 가능한 메모리 및 사용률
     df -t ext4 —-total -BM | awk '$1=="total"{printf "%d/%dMB (%d%%)\n", $3, $2, $5}'
+    #df -t - ext4와같은 파일타입을 지정
     
     printf "#CPU load: "
     mpstat | awk '$3=="all"{printf "%.2f%%\n", 100-$13}'
@@ -179,11 +291,11 @@
     #else는 생략 가능
     #-gt : greater than. lvm 타입이 하나라도 있으면 yes가 출력된다.
     
-    printf "#Connections TCP : "
+    printf "#Connections TCP : " #활성연결수
     ss -t | wc -l | tr -d '\n'
     printf " ESTABLISHED\n"
     
-    printf "#User log: "
+    printf "#User log: " #서버를 사용하는 유저의수
     who | wc -l
     
     printf "#Network: IP "
@@ -192,7 +304,7 @@
     ip link | awk '$1 == "link/ether" {print $2}' | sed '2, $d' | tr -d '\n'
     printf ")\n"
     
-    printf "#Sudo : "
+    printf "#Sudo : " #sudo 명령어 사용 수
     journalctl _COMM=sudo | grep COMMAND |  wc -l | tr -d '\n'
     printf " cmd\n"
     ```
@@ -205,6 +317,26 @@
     */10 * * * * /root/monitoring.sh | wall 입력
     ```
     
+- 원래있던 계정 비밀번호 정책 변경
+    
+    ```bash
+    chage -l [확인할 유저명]
+    mk
+    chage -m 2 [user_name] : minimum 변경
+    chage -M 30 [user_name] : Maximum 변경
+    ```
+    
+- user42그룹 설정
+    
+    ```bash
+    groupadd user42 : user42라는 그룹추가
+    
+    usermod -aG sudo,user42 [user_name] : sudo랑 user42 그룹에 사용자 추가
+    usermod -g user42 [user_name] : 사용자의 주 그룹을 변경
+    ```
+    
+
+# Mandatory
 
 ## 목표
 
@@ -231,6 +363,21 @@ This project aims to introduce you to the wonderful world of virtualization.
 `LVM`을 사용하여 암호화 된 `파티션을` `2 개 이상` 만들어야합니다. 다음은 예상되는 분할의 예입니다:
 
 ![https://blog.kakaocdn.net/dn/Xlsnk/btq7RLJudr6/D0rQbRokfvkfpWIC7Vtlbk/img.png](https://blog.kakaocdn.net/dn/Xlsnk/btq7RLJudr6/D0rQbRokfvkfpWIC7Vtlbk/img.png)
+
+1. 이름
+장치에 대한 이름
+2. 커널의 장치 식별 번호
+장치 유형:장치 번호 (e.g. 장치유형 8번 → SCSI 디스크)
+3. 장치의 제거 가능성
+가능 → 1 (sr0 광학 드라이브)
+4. 크기
+장치 크기
+5. 읽기 전용 여부
+읽기 전용 → 1
+6. 장치 유형
+장치 유형에 대해 나타낸다. 2번 열과 어느정도 유사
+7. 마운트 포인트
+마운트 지점에 대한 정보
 
 > 방어하는 동안 선택한 운영 체제에 대해 몇 가지 질문을 받게됩니다. 예를 들어, `aptitude`와 `apt`의 차이점 또는 `SELinux` 또는 `AppArmor`가 무엇인지 알아야합니다. 요컨대, 당신이 사용하는 것을 이해하십시오!
 > 
@@ -372,3 +519,5 @@ Git 저장소의 루트에있는 `signature.txt` 파일 만 제출하면�
 [[42서울] Born2beroot 설치 및 세팅만 정리](https://techdebt.tistory.com/18?category=833728)
 
 [Born2beRoot with UTM](https://sincerity.page/categories/42Seoul/Born2beRoot/)
+
+[VirtualBox Debian - dhclient 없애기, 고정 IP 설정](https://nostressdev.tistory.com/3)
