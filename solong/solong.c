@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:00:48 by mher              #+#    #+#             */
-/*   Updated: 2022/03/25 20:26:01 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/25 22:20:08 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "mlx/mlx.h"
 
 #include "get_next_line.h"
+#include "Libft/libft.h"
 
 #define X_EVENT_KEY_PRESS		2
 #define X_EVENT_KEY_release		3
@@ -62,7 +63,6 @@ int				key_press(int keycode, t_param *param)
 	if (keycode == KEY_W)//Action when W key pressed
 	{
 		param->y--;
-		mlx_clear_window(param->mlx, param->win);
 		img = mlx_xpm_file_to_image(param->mlx, "images/dino.xpm", &width, &height);
 		mlx_put_image_to_window(param->mlx, param->win, img, param->x * 64, param->y * 64);
 		printf("y: %d\n", param->y);
@@ -70,7 +70,6 @@ int				key_press(int keycode, t_param *param)
 	else if (keycode == KEY_S) //Action when S key pressed
 	{
 		param->y++;
-		mlx_clear_window(param->mlx, param->win);
 		img = mlx_xpm_file_to_image(param->mlx, "images/dino.xpm", &width, &height);
 		mlx_put_image_to_window(param->mlx, param->win, img, param->x * 64, param->y * 64);
 		printf("y: %d\n", param->y);
@@ -78,7 +77,6 @@ int				key_press(int keycode, t_param *param)
 	if (keycode == KEY_A)//Action when W key pressed
 	{
 		param->x--;
-		mlx_clear_window(param->mlx, param->win);
 		img = mlx_xpm_file_to_image(param->mlx, "images/dino.xpm", &width, &height);
 		mlx_put_image_to_window(param->mlx, param->win, img, param->x * 64, param->y * 64);
 		printf("x: %d\n", param->x);
@@ -86,7 +84,6 @@ int				key_press(int keycode, t_param *param)
 	else if (keycode == KEY_D) //Action when S key pressed
 	{
 		param->x++;
-		mlx_clear_window(param->mlx, param->win);
 		img = mlx_xpm_file_to_image(param->mlx, "images/dino.xpm", &width, &height);
 		mlx_put_image_to_window(param->mlx, param->win, img, param->x * 64, param->y * 64);
 		printf("x: %d\n", param->x);
@@ -97,7 +94,7 @@ int				key_press(int keycode, t_param *param)
 }
 
 
-char	*read_map(char *map)
+char	*read_map(char *map, int *row)
 {
 	int		fd;
 	char	*line;
@@ -110,6 +107,7 @@ char	*read_map(char *map)
 		return (0);
 	while (1)
 	{
+		*row += 1;	
 		tmp = total_map;
 		line = get_next_line(fd);
 		if (!line)
@@ -121,38 +119,56 @@ char	*read_map(char *map)
 	return (total_map);
 }
 
-void	solong(char *map)
+void	solong(char *ag, int *row, int *col)
 {
-	printf("%s\n", read_map(map));
+	char	*tmp;
+	char	**map;
+	
+	tmp = read_map(ag, row);
+	map = ft_split(tmp, '\n');
+	*col = ft_strlen(map[0]);
 }
 
 int	main(int ac, char **ag)
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
+	void	*img_dino;
+	void	*img_snow;
 
 	int		img_width;
 	int		img_height;
 
+	int		row;
+	int		col;
+	
+	row = 0;
+	col = 0;
+
 	t_param		param;
 
 	param_init(&param);
+	solong(ag[1], &row, &col);
 
 	param.mlx = mlx_init();
-	param.win = mlx_new_window(param.mlx, 1000, 1000, "my_mlx");
-	printf("-------------------------------\n");
-	printf("'W key': Add 1 to x.\n");
-	printf("'S key': Subtract 1 from x\n");
-	printf("'ESC key': Exit this program\n");
-	printf("'Other keys': print current x \n");
-	printf("-------------------------------\n");
-	printf("Current x = 3\n");
-	img = mlx_xpm_file_to_image(param.mlx, "images/dino.xpm", &img_width, &img_height);
-	mlx_put_image_to_window(param.mlx, param.win, img, param.x*64, param.y*64);
+	param.win = mlx_new_window(param.mlx, col*64, row*64, "my_mlx");
+
+	int i = 0;
+	while (i < col)
+	{
+		int j = 0;
+		while (j < row)
+		{
+			img_snow = mlx_xpm_file_to_image(param.mlx, "images/snow.xpm", &img_width, &img_height);
+			mlx_put_image_to_window(param.mlx, param.win, img_snow, i*64, j*64);
+			j++;
+		}
+		i++;
+	}
+	img_dino = mlx_xpm_file_to_image(param.mlx, "images/dino.xpm", &img_width, &img_height);
+	mlx_put_image_to_window(param.mlx, param.win, img_dino, param.x*64, param.y*64);
 	mlx_hook(param.win, X_EVENT_KEY_PRESS, 0, &key_press, &param);
 	mlx_loop(param.mlx);
 
-	solong(ag[1]);
 	return (0);
 }
