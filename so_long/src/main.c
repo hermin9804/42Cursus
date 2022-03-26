@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:00:48 by mher              #+#    #+#             */
-/*   Updated: 2022/03/27 01:23:43 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/27 03:07:44 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void			param_init(t_param *param)
+void	param_init(t_param *param)
 {
 	param->x = 1;
 	param->y = 1;
-	param->str[0] = 'a';
-	param->str[1] = 'b';
-	param->str[2] = '\0';
 }
 
-int				key_press(int keycode, t_param *param)
+int	key_press(int keycode, t_param *param)
 {
 	void	*img;
 	int		width;
@@ -96,7 +93,7 @@ void	solong(char *ag, int *row, int *col)
 	*col = ft_strlen(map[0]);
 }
 
-int	main(int ac, char **ag)
+int	main(int argc, char **argv)
 {
 	void	*img_dino;
 	void	*img_snow;
@@ -107,8 +104,8 @@ int	main(int ac, char **ag)
 	int		row;
 	int		col;
 	
-	if (ac)
-		printf("hi\n");
+	if (argc !=  2)
+		error_exit("check your argv");
 
 	row = 0;
 	col = 0;
@@ -116,7 +113,7 @@ int	main(int ac, char **ag)
 	t_param		param;
 
 	param_init(&param);
-	solong(ag[1], &row, &col);
+	solong(argv[1], &row, &col);
 
 	param.mlx = mlx_init();
 	param.win = mlx_new_window(param.mlx, col*64, row*64, "my_mlx");

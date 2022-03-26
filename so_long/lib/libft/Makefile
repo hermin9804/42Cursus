@@ -6,14 +6,15 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 13:44:52 by mher              #+#    #+#              #
-#    Updated: 2022/03/26 22:09:29 by mher             ###   ########.fr        #
+#    Updated: 2022/03/27 02:14:26 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME	= libft.a
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC 	= gcc
+CFLAGS 	= -Wall -Wextra -Werror
+
 INCLUDE = -I./include
 
 SRC_DIR = ./src
@@ -64,11 +65,10 @@ B_SRC= \
 	$(SRC_DIR)/ft_lstiter.c \
 	$(SRC_DIR)/ft_lstmap.c
 
-OBJ = $(SRC:.c=.o)
+OBJ	= $(SRC:.c=.o)
 
-B_OBJ = $(B_SRC:.c=.o)
+B_OBJ	= $(B_SRC:.c=.o)
 
-all: $(NAME)
 
 $(NAME): $(OBJ)
 
@@ -77,12 +77,14 @@ bonus: $(OBJ) $(B_OBJ)
 %.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
 	@ar crsu $(NAME) $@
+
+all: $(NAME)
 		
 clean:
-	    rm -f $(OBJ) $(B_OBJ)
+	rm -f $(OBJ) $(B_OBJ)
 
 fclean: clean
-	    rm -f $(NAME)
+	rm -f $(NAME)
 
 re: clean all
 
