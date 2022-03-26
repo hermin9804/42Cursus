@@ -1,49 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solong.c                                           :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 16:00:48 by mher              #+#    #+#             */
-/*   Updated: 2022/03/25 22:20:08 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/27 01:23:43 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "mlx/mlx.h"
+#include "so_long.h"
 
-#include "get_next_line.h"
-#include "Libft/libft.h"
-
-#define X_EVENT_KEY_PRESS		2
-#define X_EVENT_KEY_release		3
-#define X_EVENT_KEY_EXIT		17 //exit key code
-
-//Mac key code example
-//All the key code example other than below is described on the site linked in READEME.md
-#define KEY_ESC			53
-# define KEY_Q			12
-# define KEY_W			13
-# define KEY_E			14
-# define KEY_R			15
-# define KEY_A			0
-# define KEY_S			1
-# define KEY_D			2
-
-//Since key_press() can recieve only one argument, all the argument shold be gathered in one structure
-//x,y and str are meaningless variables.
-typedef struct s_param{
-	int		x;
-	int		y;
-	void	*mlx;
-	void	*win;
-	char	str[3];
-}				t_param;
-
-//Only param->x will be used. 
 void			param_init(t_param *param)
 {
 	param->x = 1;
@@ -55,7 +23,6 @@ void			param_init(t_param *param)
 
 int				key_press(int keycode, t_param *param)
 {
-	static int a = 0;
 	void	*img;
 	int		width;
 	int		height;
@@ -63,28 +30,28 @@ int				key_press(int keycode, t_param *param)
 	if (keycode == KEY_W)//Action when W key pressed
 	{
 		param->y--;
-		img = mlx_xpm_file_to_image(param->mlx, "images/dino.xpm", &width, &height);
+		img = mlx_xpm_file_to_image(param->mlx, "asset/dino.xpm", &width, &height);
 		mlx_put_image_to_window(param->mlx, param->win, img, param->x * 64, param->y * 64);
 		printf("y: %d\n", param->y);
 	}
 	else if (keycode == KEY_S) //Action when S key pressed
 	{
 		param->y++;
-		img = mlx_xpm_file_to_image(param->mlx, "images/dino.xpm", &width, &height);
+		img = mlx_xpm_file_to_image(param->mlx, "asset/dino.xpm", &width, &height);
 		mlx_put_image_to_window(param->mlx, param->win, img, param->x * 64, param->y * 64);
 		printf("y: %d\n", param->y);
 	}
 	if (keycode == KEY_A)//Action when W key pressed
 	{
 		param->x--;
-		img = mlx_xpm_file_to_image(param->mlx, "images/dino.xpm", &width, &height);
+		img = mlx_xpm_file_to_image(param->mlx, "asset/dino.xpm", &width, &height);
 		mlx_put_image_to_window(param->mlx, param->win, img, param->x * 64, param->y * 64);
 		printf("x: %d\n", param->x);
 	}
 	else if (keycode == KEY_D) //Action when S key pressed
 	{
 		param->x++;
-		img = mlx_xpm_file_to_image(param->mlx, "images/dino.xpm", &width, &height);
+		img = mlx_xpm_file_to_image(param->mlx, "asset/dino.xpm", &width, &height);
 		mlx_put_image_to_window(param->mlx, param->win, img, param->x * 64, param->y * 64);
 		printf("x: %d\n", param->x);
 	}
@@ -131,8 +98,6 @@ void	solong(char *ag, int *row, int *col)
 
 int	main(int ac, char **ag)
 {
-	void	*mlx;
-	void	*win;
 	void	*img_dino;
 	void	*img_snow;
 
@@ -142,6 +107,9 @@ int	main(int ac, char **ag)
 	int		row;
 	int		col;
 	
+	if (ac)
+		printf("hi\n");
+
 	row = 0;
 	col = 0;
 
@@ -159,13 +127,13 @@ int	main(int ac, char **ag)
 		int j = 0;
 		while (j < row)
 		{
-			img_snow = mlx_xpm_file_to_image(param.mlx, "images/snow.xpm", &img_width, &img_height);
+			img_snow = mlx_xpm_file_to_image(param.mlx, "asset/snow.xpm", &img_width, &img_height);
 			mlx_put_image_to_window(param.mlx, param.win, img_snow, i*64, j*64);
 			j++;
 		}
 		i++;
 	}
-	img_dino = mlx_xpm_file_to_image(param.mlx, "images/dino.xpm", &img_width, &img_height);
+	img_dino = mlx_xpm_file_to_image(param.mlx, "asset/dino.xpm", &img_width, &img_height);
 	mlx_put_image_to_window(param.mlx, param.win, img_dino, param.x*64, param.y*64);
 	mlx_hook(param.win, X_EVENT_KEY_PRESS, 0, &key_press, &param);
 	mlx_loop(param.mlx);
