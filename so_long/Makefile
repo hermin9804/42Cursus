@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 18:07:13 by mher              #+#    #+#              #
-#    Updated: 2022/03/27 03:13:11 by mher             ###   ########.fr        #
+#    Updated: 2022/03/27 14:36:39 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ MFLAGS	= -framework OpenGL -framework AppKit
 
 FT_DIR	= ./lib/Libft
 GNL_DIR	= ./lib/libgnl	
-MLX_DIR	=./lib/libmlx
+MLX_DIR	= ./lib/libmlx
 FT 	= ft
 GNL	= gnl
 MLX 	= mlx
