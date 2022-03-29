@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 18:07:13 by mher              #+#    #+#              #
-#    Updated: 2022/03/27 14:36:39 by mher             ###   ########.fr        #
+#    Updated: 2022/03/29 19:02:45 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,11 @@ INCLUDE = -I./include
 SRC_DIR = ./src
 SRC = \
 	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/close.c
+	$(SRC_DIR)/close.c \
+	$(SRC_DIR)/init.c \
+	$(SRC_DIR)/get_map.c \
+	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/draw.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -58,4 +62,4 @@ fclean: clean
 
 re: clean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

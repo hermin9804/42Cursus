@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 01:23:57 by mher              #+#    #+#             */
-/*   Updated: 2022/03/27 16:23:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/29 20:29:22 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,31 @@
 
 typedef struct s_imgs
 {
-	void	*sign_img;
-	void	*home_img;
-	void	*dino_img;
-	void	*snow_img;
-	void	*wall_img;
+	void	*snow;
+	void	*wall;
+	void	*sign;
+	void	*home;
+	void	*dino;
 }	t_imgs;
 
 typedef struct s_pos
 {
-	int	x;
-	int	y;
+	int	col;
+	int	row;
 }	t_pos;
 
 typedef struct s_player
 {
-	t_pos	cur_pos;
-	int	move_count;
-	int	item_count;
+	int	move_cnt;
+	int	item_cnt;
+	t_pos	pos;
 }	t_player;
 
-typedef struct s_map;
+typedef struct s_map
 {
-	char	**map;
-	int	row_size;
-	int	col_size;
-}
+	t_pos	size;
+	char	**chunks;
+}	t_map;
 
 typedef struct s_game{
 	t_map		map;
@@ -71,5 +70,22 @@ typedef struct s_game{
 }	t_game;
 
 void	error_exit(const char *msg);
+void	init_game(t_game *game, const char *map_path);
+void	init_map(t_game *game, const char *map_path);
+void	init_player(t_game *game);
+void	init_img(t_game *game);
+void	init_mlx(t_game *game);
+void	init_win(t_game *game);
+
+void	get_map_chunks(t_game *game, const char *map_path);
+void	get_map_size(t_game *game);
+
+void	*get_img(t_game *game, char *img_path);
+void	get_player_pos(t_game *game);
+
+
+void	draw_map(t_game *game);
+void	draw_component(t_game *game, t_pos pos);
+void	ft_put_img(t_game *game, void *img, int x, int y);
 
 #endif
