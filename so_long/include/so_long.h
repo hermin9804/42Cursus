@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 01:23:57 by mher              #+#    #+#             */
-/*   Updated: 2022/03/29 20:29:22 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 02:47:41 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_game{
 	t_imgs		imgs;
 	void		*mlx;
 	void		*win;
+	int		doorock;	
 }	t_game;
 
 void	error_exit(const char *msg);
@@ -83,9 +84,13 @@ void	get_map_size(t_game *game);
 void	*get_img(t_game *game, char *img_path);
 void	get_player_pos(t_game *game);
 
-
 void	draw_map(t_game *game);
 void	draw_component(t_game *game, t_pos pos);
 void	ft_put_img(t_game *game, void *img, int x, int y);
+
+void	move(t_game *game, const int transform[2]);
+void	move_to_item(t_game *game, t_pos dir);
+void	move_to_snow(t_game *game, t_pos dir);
+void	move_to_home(t_game *game);
 
 #endif

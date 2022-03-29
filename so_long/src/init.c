@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 15:47:18 by mher              #+#    #+#             */
-/*   Updated: 2022/03/29 18:10:06 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 02:33:50 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_game(t_game *game, const char *map_path)
 	init_mlx(game);
 	init_win(game);
 	init_img(game);
+	game->doorock = 0;
 }
 
 void	init_map(t_game *game, const char *map_path)

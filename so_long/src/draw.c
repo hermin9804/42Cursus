@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:51:03 by mher              #+#    #+#             */
-/*   Updated: 2022/03/29 20:37:45 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 02:24:02 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	draw_component(t_game *game, t_pos pos)
 	if (game->map.chunks[row][col] == '1')
 		ft_put_img(game, game->imgs.wall, col, row);
 	else if (game->map.chunks[row][col] == 'C')
+	{
 		ft_put_img(game, game->imgs.sign, col, row);
+		game->doorock++; //map check쪽으로 넘겨야 하나?
+	}
 	else if (game->map.chunks[row][col] == 'E')
 		ft_put_img(game, game->imgs.home, col, row);
 	else if (game->map.chunks[row][col] == 'P')
