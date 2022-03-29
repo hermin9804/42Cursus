@@ -6,11 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:06:04 by mher              #+#    #+#             */
-/*   Updated: 2022/03/27 17:42:11 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/29 16:52:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*get_img(t_game, const char *img_path)
+#include "so_long.h"
+
+void	*get_img(t_game *game, char *img_path)
 {
 	void	*img;
 	int	width;
