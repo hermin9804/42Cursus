@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/27 17:06:04 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 12:57:01 by mher             ###   ########.fr       */
+/*   Created: 2022/03/30 12:39:00 by mher              #+#    #+#             */
+/*   Updated: 2022/03/30 12:45:11 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_player_pos(t_game *game)
+int	key_press(int keycode, t_game *game)
 {
-	int	row;;
-	int	col;
+	const int transform[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
-	row  = 0;
-	while (row < game->map.size.row)
+	if (keycode == KEY_ESC)
 	{
-		col = 0;
-		while (col < game->map.size.col)
-		{
-			if (game->map.chunks[row][col] == 'P')				
-			{
-				game->player.pos.row = row;
-				game->player.pos.col = col;
-				return;
-			}
-			++col;
-		}
-		++row;
+		mlx_destroy_window(game->mlx, game->win);
+		exit(0);
 	}
+	else if (keycode == KEY_W)
+		move(game, transform[0]);
+	else if (keycode == KEY_S)
+		move(game, transform[1]);
+	else if (keycode == KEY_A)
+		move(game, transform[2]);
+	else if (keycode == KEY_D)
+		move(game, transform[3]);
+	return (0);
 }

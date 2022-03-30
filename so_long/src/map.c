@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:53:08 by mher              #+#    #+#             */
-/*   Updated: 2022/03/29 17:50:53 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 12:55:52 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,3 @@ void	get_map_size(t_game *game)
 	game->map.size.row = i;
 	game->map.size.col = ft_strlen(game->map.chunks[0]);
 }
-
-//void	get_map_chunk(t_game *game, const char *map_path)
-//{
-//	int	fd;
-//	char	*line;
-//	t_list	*new;
-//	//t_list	*cul;
-//
-//	fd = get_fd(map_path);
-//	line = get_next_line(fd);
-//	game->map.chunk = ft_lstnew(line);
-//	while (1)
-//	{
-//		line = get_next_line(fd);
-//		if (!line)
-//			break;
-//		new = ft_lstnew(line);
-//		if (!new)
-//			error_exit("get map chynk\n");
-//		ft_lstadd_back(&game->map.chunk, new);
-//	}
-//}

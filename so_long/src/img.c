@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/27 17:06:04 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 12:57:01 by mher             ###   ########.fr       */
+/*   Created: 2022/03/30 12:56:20 by mher              #+#    #+#             */
+/*   Updated: 2022/03/30 14:08:13 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_player_pos(t_game *game)
+void	*get_img(t_game *game, char *img_path)
 {
-	int	row;;
-	int	col;
+	void	*img;
+	int	width;
+	int	height;
 
-	row  = 0;
-	while (row < game->map.size.row)
-	{
-		col = 0;
-		while (col < game->map.size.col)
-		{
-			if (game->map.chunks[row][col] == 'P')				
-			{
-				game->player.pos.row = row;
-				game->player.pos.col = col;
-				return;
-			}
-			++col;
-		}
-		++row;
-	}
+	img = mlx_xpm_file_to_image(game->mlx, img_path, &width, &height);
+	if (!img)
+		error_exit("convertion xpm to img\n");
+	return (img);
+}
+
+void	ft_put_img(t_game *game, void *img, int x, int y)
+{
+	mlx_put_image_to_window(game->mlx, game->win, img, x * PX, y * PX);
+	//error_exit()??
 }

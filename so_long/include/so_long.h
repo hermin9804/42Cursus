@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 01:23:57 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 02:47:41 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 17:45:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@
 # define KEY_D      2
 
 # define PX   64
+
+typedef struct s_flags
+{
+	int	sign;
+	int	home;
+	int	dino;
+}	t_flags;
 
 typedef struct s_imgs
 {
@@ -75,8 +82,7 @@ void	init_game(t_game *game, const char *map_path);
 void	init_map(t_game *game, const char *map_path);
 void	init_player(t_game *game);
 void	init_img(t_game *game);
-void	init_mlx(t_game *game);
-void	init_win(t_game *game);
+void	init_mlx_win(t_game *game);
 
 void	get_map_chunks(t_game *game, const char *map_path);
 void	get_map_size(t_game *game);
@@ -88,9 +94,15 @@ void	draw_map(t_game *game);
 void	draw_component(t_game *game, t_pos pos);
 void	ft_put_img(t_game *game, void *img, int x, int y);
 
+int		key_press(int keycode, t_game *game);
 void	move(t_game *game, const int transform[2]);
 void	move_to_item(t_game *game, t_pos dir);
 void	move_to_snow(t_game *game, t_pos dir);
 void	move_to_home(t_game *game);
+
+void	check_map_path(const char *map_path, const char *suffix);
+void	check_rectangul(t_map *map);
+void	check_surround(t_map *map);
+void	check_components(t_map *map);
 
 #endif

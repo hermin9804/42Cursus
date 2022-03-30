@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:51:03 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 02:24:02 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 15:14:42 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,4 @@ void	draw_component(t_game *game, t_pos pos)
 		ft_put_img(game, game->imgs.home, col, row);
 	else if (game->map.chunks[row][col] == 'P')
 		ft_put_img(game, game->imgs.dino, col, row);
-}
-
-void	ft_put_img(t_game *game, void *img, int x, int y)
-{
-	mlx_put_image_to_window(game->mlx, game->win, img, x * PX, y * PX);
-	//error_exit()??
 }

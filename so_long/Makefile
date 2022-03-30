@@ -6,21 +6,21 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 18:07:13 by mher              #+#    #+#              #
-#    Updated: 2022/03/29 19:02:45 by mher             ###   ########.fr        #
+#    Updated: 2022/03/30 16:14:25 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= so_long
 
-CC	= gcc -fsanitize=address -g3
+CC		= gcc #-fsanitize=address -g3
 CFLAGS	= -Wall -Wextra -Werror
 MFLAGS	= -framework OpenGL -framework AppKit
 
 FT_DIR	= ./lib/Libft
 GNL_DIR	= ./lib/libgnl	
 MLX_DIR	= ./lib/libmlx
-FT 	= ft
-GNL	= gnl
+FT		= ft
+GNL		= gnl
 MLX 	= mlx
 
 INCLUDE = -I./include
@@ -28,11 +28,15 @@ INCLUDE = -I./include
 SRC_DIR = ./src
 SRC = \
 	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/close.c \
 	$(SRC_DIR)/init.c \
-	$(SRC_DIR)/get_map.c \
-	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/map.c \
+	$(SRC_DIR)/img.c \
 	$(SRC_DIR)/draw.c \
+	$(SRC_DIR)/move.c \
+	$(SRC_DIR)/key_press.c \
+	$(SRC_DIR)/close.c \
+	$(SRC_DIR)/check.c \
+	$(SRC_DIR)/utils.c \
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 15:47:18 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 02:33:50 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 17:45:41 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ void	init_game(t_game *game, const char *map_path)
 {
 	init_map(game, map_path);
 	init_player(game);
-	init_mlx(game);
-	init_win(game);
+	init_mlx_win(game);
 	init_img(game);
 	game->doorock = 0;
 }
 
 void	init_map(t_game *game, const char *map_path)
 {
+	check_map_path(map_path, ".ber");
 	get_map_chunks(game, map_path);
 	get_map_size(game);
-	//check_map();
+	check_rectangul(&game->map);
+	check_surround(&game->map);
+	check_components(&game->map);
 }
 
 void	init_img(t_game *game)
@@ -38,17 +40,13 @@ void	init_img(t_game *game)
 	game->imgs.dino = get_img(game, "./asset/dino.xpm");
 }
 
-void	init_mlx(t_game *game)
+void	init_mlx_win(t_game *game)
 {
 	game->mlx = mlx_init();
-	//error_exit()
-}
-
-void	init_win(t_game *game)
-{
+	//error_exit()??
 	game->win = mlx_new_window(game->mlx, game->map.size.col * PX, 
 			game->map.size.row * PX, "so_long");
-	//error_exit()
+	//error_exit()??
 }
 
 void	init_player(t_game *game)
@@ -56,27 +54,4 @@ void	init_player(t_game *game)
 	game->player.move_cnt = 0;
 	game->player.item_cnt = 0;
 	get_player_pos(game);
-}
-
-void	get_player_pos(t_game *game)
-{
-	int	row;;
-	int	col;
-
-	row  = 0;
-	while (row < game->map.size.row)
-	{
-		col = 0;
-		while (col < game->map.size.col)
-		{
-			if (game->map.chunks[row][col] == 'P')				
-			{
-				game->player.pos.row = row;
-				game->player.pos.col = col;
-				return;
-			}
-			++col;
-		}
-		++row;
-	}
 }
