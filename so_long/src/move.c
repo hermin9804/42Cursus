@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:41:08 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 12:43:08 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 18:22:01 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ void	move_to_snow(t_game *game, t_pos dir)
 	game->player.move_cnt++;
 	ft_put_img(game, game->imgs.snow, game->player.pos.col, game->player.pos.row);
 	ft_put_img(game, game->imgs.dino, dir.col, dir.row);
+	game->map.chunks[game->player.pos.row][game->player.pos.col] = '0';
 	game->player.pos = dir;
 	printf("move cnt: %d\n", game->player.move_cnt);
 }
 
 void	move_to_home(t_game *game)
 {
-	if (game->player.item_cnt == game->doorock)
+	if (game->player.item_cnt == game->map.flags.sign)
 	{
 		system("leaks so_long > leaks_result; cat leaks_result | grep leaked && rm -rf leaks_result");//
 		exit(0);//

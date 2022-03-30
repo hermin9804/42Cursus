@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 15:47:18 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 17:45:41 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 18:09:47 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ void	init_game(t_game *game, const char *map_path)
 	init_player(game);
 	init_mlx_win(game);
 	init_img(game);
-	game->doorock = 0;
 }
 
 void	init_map(t_game *game, const char *map_path)
 {
 	check_map_path(map_path, ".ber");
 	get_map_chunks(game, map_path);
-	get_map_size(game);
+	get_map_size(&game->map);
 	check_rectangul(&game->map);
 	check_surround(&game->map);
 	check_components(&game->map);

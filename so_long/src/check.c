@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:16:54 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 17:55:05 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 18:14:48 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,10 @@ void	check_surround(t_map *map)
 void	check_components(t_map *map)
 {
 	const char	*components = "10CEP";
-	t_flags		flags;
 	int			row;
 	int			col;
 
-	ft_bzero(&flags, sizeof(flags));
+	ft_bzero(&map->flags, sizeof(map->flags));
 	row = 0;
 	while (row < map->size.row)
 	{
@@ -81,15 +80,15 @@ void	check_components(t_map *map)
 			if (!ft_strchr(components, map->chunks[row][col]))
 				error_exit("invlalid component");
 			if (map->chunks[row][col] == 'C')
-			 	flags.sign++;
+			 	map->flags.sign++;
 			else if (map->chunks[row][col] == 'E')
-				flags.home++;
+				map->flags.home++;
 			else if (map->chunks[row][col] == 'P')
-				flags.dino++;
+				map->flags.dino++;
 			++col;
 		}
 		++row;
 	}
-	if (flags.sign < 1 || flags.home != 1 || flags.dino != 1)
+	if (map->flags.sign < 1 || map->flags.home != 1 || map->flags.dino != 1)
 			error_exit("invlalid component count");
 }

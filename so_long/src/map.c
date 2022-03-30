@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:53:08 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 12:55:52 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 18:05:48 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	get_map_chunks(t_game *game, const char *map_path)
 		error_exit("get chunks");
 }
 
-void	get_map_size(t_game *game)
+void	get_map_size(t_map *map)
 {
 	int i;
 	
 	i = 0;
-	while (game->map.chunks[i])
+	while (map->chunks[i])
 		i++;
-	game->map.size.row = i;
-	game->map.size.col = ft_strlen(game->map.chunks[0]);
+	map->size.row = i;
+	map->size.col = ft_strlen(map->chunks[0]);
 }

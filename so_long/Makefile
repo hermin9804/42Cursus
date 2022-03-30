@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 18:07:13 by mher              #+#    #+#              #
-#    Updated: 2022/03/30 16:14:25 by mher             ###   ########.fr        #
+#    Updated: 2022/03/30 18:34:26 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,10 @@ SRC = \
 	$(SRC_DIR)/img.c \
 	$(SRC_DIR)/draw.c \
 	$(SRC_DIR)/move.c \
-	$(SRC_DIR)/key_press.c \
-	$(SRC_DIR)/close.c \
 	$(SRC_DIR)/check.c \
-	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/player.c \
+	$(SRC_DIR)/close.c \
+	$(SRC_DIR)/key_press.c \
 
 OBJ = $(SRC:.c=.o)
 

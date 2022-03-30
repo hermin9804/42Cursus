@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 01:23:57 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 17:45:15 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 18:32:17 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	t_pos	size;
 	char	**chunks;
+	t_pos	size;
+	t_flags	flags;
 }	t_map;
 
 typedef struct s_game{
@@ -74,7 +75,6 @@ typedef struct s_game{
 	t_imgs		imgs;
 	void		*mlx;
 	void		*win;
-	int		doorock;	
 }	t_game;
 
 void	error_exit(const char *msg);
@@ -85,7 +85,7 @@ void	init_img(t_game *game);
 void	init_mlx_win(t_game *game);
 
 void	get_map_chunks(t_game *game, const char *map_path);
-void	get_map_size(t_game *game);
+void	get_map_size(t_map *map);
 
 void	*get_img(t_game *game, char *img_path);
 void	get_player_pos(t_game *game);
