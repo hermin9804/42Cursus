@@ -6,13 +6,13 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 18:07:13 by mher              #+#    #+#              #
-#    Updated: 2022/03/30 18:34:26 by mher             ###   ########.fr        #
+#    Updated: 2022/03/31 00:41:45 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= so_long
 
-CC		= gcc #-fsanitize=address -g3
+CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror
 MFLAGS	= -framework OpenGL -framework AppKit
 

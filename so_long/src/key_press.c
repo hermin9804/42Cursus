@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:39:00 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 12:45:11 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 00:41:05 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ int	key_press(int keycode, t_game *game)
 	const int transform[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
 	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(game->mlx, game->win);
-		exit(0);
-	}
+		close_exit(game);
 	else if (keycode == KEY_W)
 		move(game, transform[0]);
 	else if (keycode == KEY_S)

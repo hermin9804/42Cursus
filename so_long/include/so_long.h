@@ -6,15 +6,15 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 01:23:57 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 18:32:17 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 01:02:09 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdio.h> //
-# include <unistd.h>//
+# include <stdio.h> 
+# include <unistd.h>
 
 # include <fcntl.h>
 # include "../lib/libft/include/libft.h"
@@ -78,6 +78,8 @@ typedef struct s_game{
 }	t_game;
 
 void	error_exit(const char *msg);
+int	close_exit(t_game *game);
+
 void	init_game(t_game *game, const char *map_path);
 void	init_map(t_game *game, const char *map_path);
 void	init_player(t_game *game);
@@ -86,7 +88,6 @@ void	init_mlx_win(t_game *game);
 
 void	get_map_chunks(t_game *game, const char *map_path);
 void	get_map_size(t_map *map);
-
 void	*get_img(t_game *game, char *img_path);
 void	get_player_pos(t_game *game);
 
@@ -94,7 +95,7 @@ void	draw_map(t_game *game);
 void	draw_component(t_game *game, t_pos pos);
 void	ft_put_img(t_game *game, void *img, int x, int y);
 
-int		key_press(int keycode, t_game *game);
+int	key_press(int keycode, t_game *game);
 void	move(t_game *game, const int transform[2]);
 void	move_to_item(t_game *game, t_pos dir);
 void	move_to_snow(t_game *game, t_pos dir);

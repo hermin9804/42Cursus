@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 15:47:18 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 18:09:47 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/30 23:58:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ void	init_img(t_game *game)
 void	init_mlx_win(t_game *game)
 {
 	game->mlx = mlx_init();
-	//error_exit()??
+	if (!game->mlx)
+		error_exit("failed init mlx");
 	game->win = mlx_new_window(game->mlx, game->map.size.col * PX, 
 			game->map.size.row * PX, "so_long");
-	//error_exit()??
+	if (!game->win)
+		error_exit("failed init win");
 }
 
 void	init_player(t_game *game)

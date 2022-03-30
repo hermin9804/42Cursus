@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:53:08 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 18:05:48 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 00:55:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	int	get_fd(const char *map_path)
 
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
-		error_exit("map file open\n");
+		error_exit("failed file open.");
 	return (fd);
 }
 
@@ -39,14 +39,14 @@ void	get_map_chunks(t_game *game, const char *map_path)
 		temp = ft_strjoin(sentence, line);
 		free(line);
 		if (!temp)
-			error_exit("Map read fail.");
+			error_exit("failed Map read.");
 		free(sentence);
 		sentence = temp;
 	}
 	game->map.chunks = ft_split(sentence, '\n');
 	free(sentence);
-	if (!game->map.chunks)
-		error_exit("get chunks");
+	if (!game->map.chunks || !game->map.chunks[0])
+		error_exit("failed Map read.");
 }
 
 void	get_map_size(t_map *map)

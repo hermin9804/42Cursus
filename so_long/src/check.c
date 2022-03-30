@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:16:54 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 18:14:48 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 01:00:09 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	check_map_path(const char *map_path, const char *suffix)
 	p_len = ft_strlen(map_path);
 	s_len = ft_strlen(suffix);
 	if (p_len < 4)
-		error_exit("invalid file suffix");
+		error_exit("invalid file suffix.");
 	if (ft_strncmp(suffix, &map_path[p_len - s_len], s_len))
-		error_exit("invalid file suffix");
+		error_exit("invalid file suffix.");
 }
 
 void	check_rectangul(t_map *map)
@@ -35,7 +35,7 @@ void	check_rectangul(t_map *map)
 	{
 		diff = ft_strlen(map->chunks[i]);
 		if (map->size.col != diff)
-			error_exit("map is not rectangul");
+			error_exit("map is not rectangul.");
 		++i;
 	}
 }
@@ -48,18 +48,18 @@ void	check_surround(t_map *map)
 	while (i < map->size.col)
 	{
 		if (map->chunks[0][i] != '1')
-			error_exit("map is not surrounded top wall");
+			error_exit("map is not surrounded top wall.");
 		if (map->chunks[map->size.row - 1][i] != '1')
-			error_exit("map is not surrounded bottom wall");
+			error_exit("map is not surrounded bottom wall.");
 		++i;
 	}
 	i = 0;
 	while (i < map->size.row)
 	{
 		if (map->chunks[i][0] != '1')
-			error_exit("map is not surrounded left wall");
+			error_exit("map is not surrounded left wall.");
 		if (map->chunks[i][map->size.col - 1] != '1')
-			error_exit("map is not surrounded right wall");
+			error_exit("map is not surrounded right wall.");
 		++i;
 	}
 }
@@ -78,7 +78,7 @@ void	check_components(t_map *map)
 		while(col < map->size.col)
 		{
 			if (!ft_strchr(components, map->chunks[row][col]))
-				error_exit("invlalid component");
+				error_exit("invlalid component.");
 			if (map->chunks[row][col] == 'C')
 			 	map->flags.sign++;
 			else if (map->chunks[row][col] == 'E')
@@ -89,6 +89,6 @@ void	check_components(t_map *map)
 		}
 		++row;
 	}
-	if (map->flags.sign < 1 || map->flags.home != 1 || map->flags.dino != 1)
-			error_exit("invlalid component count");
+	if (map->flags.sign < 1 || map->flags.home < 1 || map->flags.dino != 1)
+		error_exit("invlalid component count.");
 }
