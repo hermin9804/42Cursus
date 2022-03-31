@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:53:08 by mher              #+#    #+#             */
-/*   Updated: 2022/03/31 00:55:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 11:52:13 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	int	get_fd(const char *map_path)
 
 void	get_map_chunks(t_game *game, const char *map_path)
 {
-	int	fd;
+	int		fd;
 	char	*temp;
 	char	*line;
 	char	*sentence;
@@ -51,8 +51,8 @@ void	get_map_chunks(t_game *game, const char *map_path)
 
 void	get_map_size(t_map *map)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (map->chunks[i])
 		i++;

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 18:51:03 by mher              #+#    #+#             */
-/*   Updated: 2022/03/30 18:09:33 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 12:06:25 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	draw_map(t_game *game)
 {
 	t_pos	pos;
-	
+
 	pos.row = 0;
 	while (pos.row < game->map.size.row)
 	{
@@ -31,18 +31,13 @@ void	draw_map(t_game *game)
 
 void	draw_component(t_game *game, t_pos pos)
 {
-	int	col;
-	int	row;
-
-	col = pos.col;
-	row = pos.row;
-	ft_put_img(game, game->imgs.snow, col, row);
-	if (game->map.chunks[row][col] == '1')
-		ft_put_img(game, game->imgs.wall, col, row);
-	else if (game->map.chunks[row][col] == 'C')
-		ft_put_img(game, game->imgs.sign, col, row);
-	else if (game->map.chunks[row][col] == 'E')
-		ft_put_img(game, game->imgs.home, col, row);
-	else if (game->map.chunks[row][col] == 'P')
-		ft_put_img(game, game->imgs.dino, col, row);
+	ft_put_img(game, game->imgs.snow, pos);
+	if (game->map.chunks[pos.row][pos.col] == '1')
+		ft_put_img(game, game->imgs.wall, pos);
+	else if (game->map.chunks[pos.row][pos.col] == 'C')
+		ft_put_img(game, game->imgs.sign, pos);
+	else if (game->map.chunks[pos.row][pos.col] == 'E')
+		ft_put_img(game, game->imgs.home, pos);
+	else if (game->map.chunks[pos.row][pos.col] == 'P')
+		ft_put_img(game, game->imgs.dino, pos);
 }

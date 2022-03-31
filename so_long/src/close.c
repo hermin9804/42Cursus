@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 03:03:14 by mher              #+#    #+#             */
-/*   Updated: 2022/03/31 00:55:47 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 12:38:22 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	error_exit(const char *msg)
 {
 	printf("ERROR: %s\n", msg);
-	exit(-1);
+	exit(1);
 }
 
 int	close_exit(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 01:23:57 by mher              #+#    #+#             */
-/*   Updated: 2022/03/31 01:02:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 13:11:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 # define SO_LONG_H
 
 # include <stdio.h> 
-# include <unistd.h>
-
 # include <fcntl.h>
 # include "../lib/libft/include/libft.h"
 # include "../lib/libgnl/include/get_next_line.h"
 # include "../lib/libmlx/mlx.h"
-
 
 # define X_EVENT_KEY_PRESS  2
 # define X_EVENT_KEY_EXIT   17
@@ -57,8 +54,8 @@ typedef struct s_pos
 
 typedef struct s_player
 {
-	int	move_cnt;
-	int	item_cnt;
+	int		move_cnt;
+	int		item_cnt;
 	t_pos	pos;
 }	t_player;
 
@@ -78,7 +75,7 @@ typedef struct s_game{
 }	t_game;
 
 void	error_exit(const char *msg);
-int	close_exit(t_game *game);
+int		close_exit(t_game *game);
 
 void	init_game(t_game *game, const char *map_path);
 void	init_map(t_game *game, const char *map_path);
@@ -93,9 +90,9 @@ void	get_player_pos(t_game *game);
 
 void	draw_map(t_game *game);
 void	draw_component(t_game *game, t_pos pos);
-void	ft_put_img(t_game *game, void *img, int x, int y);
+void	ft_put_img(t_game *game, void *img, t_pos img_pos);
 
-int	key_press(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
 void	move(t_game *game, const int transform[2]);
 void	move_to_item(t_game *game, t_pos dir);
 void	move_to_snow(t_game *game, t_pos dir);

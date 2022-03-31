@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:16:54 by mher              #+#    #+#             */
-/*   Updated: 2022/03/31 01:00:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 13:03:13 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void	check_map_path(const char *map_path, const char *suffix)
 
 void	check_rectangul(t_map *map)
 {
-	int	i;
+	int	row;
 	int	diff;
 
-	i = 0;
-	while (i < map->size.row)
+	row = 0;
+	while (row < map->size.row)
 	{
-		diff = ft_strlen(map->chunks[i]);
+		diff = ft_strlen(map->chunks[row]);
 		if (map->size.col != diff)
 			error_exit("map is not rectangul.");
-		++i;
+		++row;
 	}
 }
 
@@ -75,12 +75,12 @@ void	check_components(t_map *map)
 	while (row < map->size.row)
 	{
 		col = 0;
-		while(col < map->size.col)
+		while (col < map->size.col)
 		{
 			if (!ft_strchr(components, map->chunks[row][col]))
 				error_exit("invlalid component.");
 			if (map->chunks[row][col] == 'C')
-			 	map->flags.sign++;
+				map->flags.sign++;
 			else if (map->chunks[row][col] == 'E')
 				map->flags.home++;
 			else if (map->chunks[row][col] == 'P')

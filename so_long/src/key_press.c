@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:39:00 by mher              #+#    #+#             */
-/*   Updated: 2022/03/31 00:41:05 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 11:51:05 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	key_press(int keycode, t_game *game)
 {
-	const int transform[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+	const int	transform[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
 	if (keycode == KEY_ESC)
 		close_exit(game);

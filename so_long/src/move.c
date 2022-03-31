@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 12:41:08 by mher              #+#    #+#             */
-/*   Updated: 2022/03/31 00:14:22 by mher             ###   ########.fr       */
+/*   Updated: 2022/03/31 14:13:02 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ void	move_to_item(t_game *game, t_pos dir)
 {
 	game->player.item_cnt++;
 	game->player.move_cnt++;
-	ft_put_img(game, game->imgs.snow, game->player.pos.col, game->player.pos.row);
-	ft_put_img(game, game->imgs.snow, dir.col, dir.row);
-	ft_put_img(game, game->imgs.dino, dir.col, dir.row);
+	ft_put_img(game, game->imgs.snow, game->player.pos);
+	ft_put_img(game, game->imgs.snow, dir);
+	ft_put_img(game, game->imgs.dino, dir);
 	game->map.chunks[dir.row][dir.col] = '0';
+	game->map.chunks[game->player.pos.row][game->player.pos.col] = '0';
 	game->player.pos = dir;
 	printf("movements count: %d\n", game->player.move_cnt);
 }
@@ -43,8 +44,8 @@ void	move_to_item(t_game *game, t_pos dir)
 void	move_to_snow(t_game *game, t_pos dir)
 {
 	game->player.move_cnt++;
-	ft_put_img(game, game->imgs.snow, game->player.pos.col, game->player.pos.row);
-	ft_put_img(game, game->imgs.dino, dir.col, dir.row);
+	ft_put_img(game, game->imgs.snow, game->player.pos);
+	ft_put_img(game, game->imgs.dino, dir);
 	game->map.chunks[game->player.pos.row][game->player.pos.col] = '0';
 	game->player.pos = dir;
 	printf("movements count: %d\n", game->player.move_cnt);

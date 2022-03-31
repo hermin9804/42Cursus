@@ -6,13 +6,13 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 18:07:13 by mher              #+#    #+#              #
-#    Updated: 2022/03/31 00:41:45 by mher             ###   ########.fr        #
+#    Updated: 2022/03/31 14:01:37 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= so_long
 
-CC	= gcc
+CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 MFLAGS	= -framework OpenGL -framework AppKit
 
@@ -40,6 +40,8 @@ SRC = \
 
 OBJ = $(SRC:.c=.o)
 
+all: $(NAME)
+
 $(NAME): $(OBJ)
 	$(MAKE) -C $(FT_DIR) 
 	$(MAKE) -C $(GNL_DIR) 
@@ -48,11 +50,10 @@ $(NAME): $(OBJ)
 		-L$(FT_DIR) -l$(FT) \
 		-L$(GNL_DIR) -l$(GNL) \
 		-L$(MLX_DIR) -l$(MLX) $(MFLAGS)
+
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
-
-all: $(NAME)
-		
+	
 clean:
 	$(MAKE) clean -C $(FT_DIR)
 	$(MAKE) clean -C $(GNL_DIR)
@@ -64,6 +65,6 @@ fclean: clean
 	$(MAKE) fclean -C $(GNL_DIR)
 	rm -f $(NAME)
 
-re: clean all
+re: fclean all
 
 .PHONY: all clean fclean re
