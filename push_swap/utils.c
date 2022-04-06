@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:55:04 by mher              #+#    #+#             */
-/*   Updated: 2022/04/05 22:09:06 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:17:57 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	*ft_lstnew(int data)
 		return (0);
 	new_list->data = data;
 	new_list->next = 0;
+	new_list->prev = 0;
 	return (new_list);
 }
 
@@ -33,50 +34,13 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*last;
-
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	last = ft_lstlast(*lst);
-	last->next = new;
-}
-
-void	ft_lstlink_back(t_list **lst, t_list *new)
-{
-	t_list	*last;
-
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	last = ft_lstlast(*lst);
-	last->next = new;
-	new->prev = last;
-}
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst || !new)
 		return ;
 	new->next = *lst;
-	*lst = new;
-}
-
-void	ft_lstlink_front(t_list **lst, t_list *new)
-{
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
+	(*lst)->prev = new;
 	*lst = new;
 }
 

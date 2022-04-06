@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/06 16:33:19 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:33:58 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,15 @@ typedef struct s_stack
 // libft
 t_list	*ft_lstnew(int data);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_front(t_list **lst, t_list *new);
 int	ft_atoi(const char *str);
-
-void	ft_lstlink_back(t_list **lst, t_list *new);
-
 void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstlink_front(t_list **lst, t_list *new);
 
 //operator
-void	swap_stack(t_stack *stack);
-void	sa(t_stack a);
-void	sb(t_stack b);
-void	ss(t_stack *a, t_stack *b);
+void	swap_stack(t_list *list);
+t_list	*pop_stack(t_stack *stack);
+void	push_stack(t_stack *dest, t_stack *from);
+void	sa(t_list *a);
+void	sb(t_list *b);
+void	ss(t_list *a, t_list *b);
 
 #endif
