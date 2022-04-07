@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/06 19:32:23 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/07 14:25:20 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	print_stack(const t_stack *stack)
 
 	 i = 0;
 	p = stack->head;
+	printf("size %d : ", stack->size);
 	while (i < stack->size)
 	{
 		printf("%d ", p->data);
@@ -39,7 +40,7 @@ void	parse_input(char **argv, t_stack *stack)
 	while (argv[i])
 	{
 		tmp = ft_lstnew(ft_atoi(argv[i++]));
-		if (!tmp) //error
+		if (!tmp) // return error code -1??
 			return ;
 		ft_lstadd_front(&stack->head, tmp);
 		stack->size++;
@@ -60,7 +61,7 @@ int	main(int argc, char **argv)
 		return (0);
 	parse_input(argv, &a);
 	print_stack(&a);
-	push_stack(&b, &a);
+
+	rra(&a);
 	print_stack(&a);
-	//printf("%d \n", b->data);
 }

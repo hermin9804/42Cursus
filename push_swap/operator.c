@@ -6,29 +6,35 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:14:30 by mher              #+#    #+#             */
-/*   Updated: 2022/04/06 19:40:24 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/07 14:23:14 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_stack(t_list *head)
+void	swap_stack(t_stack *stack)
 {
 	int	tmp;
 
-	tmp = head->data;
-	head->data = head->next->data;
-	head->next->data = tmp;
+	if (stack->size < 2)
+		return ;
+	tmp = stack->head->data;
+	stack->head->data = stack->head->next->data;
+	stack->head->next->data = tmp;
 }
 
 void	push_stack(t_stack *dest, t_stack *from)
 {
+	if (from->size == 0)
+		return ;
 	if (dest->size == 0)
 	{
 		dest->head = pop_stack(from);
+		dest->size++;
 		return ;
 	}
 	ft_lstadd_front(&dest->head, pop_stack(from));
+	dest->size++;
 }
 
 t_list	*pop_stack(t_stack *stack)
@@ -45,18 +51,74 @@ t_list	*pop_stack(t_stack *stack)
 	return (pop);
 }
 
-void	sa(t_list *a)
+void	rotate_stack(t_stack *stack)
+{
+	if (stack->size < 2)
+		return ;
+	stack->head = stack->head->next;
+}
+
+void	reverse_rotate_stack(t_stack *stack)
+{
+	if (stack->size < 2)
+		return ;
+	stack->head = stack->head->prev;
+}
+
+void	sa(t_stack *a)
 {
 	swap_stack(a);
 }
 
-void	sb(t_list *b)
+void	sb(t_stack *b)
 {
 	swap_stack(b);
 }
 
-void	ss(t_list *a, t_list *b)
+void	ss(t_stack *a, t_stack *b)
 {
 	swap_stack(a);
 	swap_stack(b);
+}
+
+void	pa(t_stack *a, t_stack *b)
+{
+	push_stack(a, b);
+}
+
+void	pb(t_stack *b, t_stack *a)
+{
+	push_stack(b, a);
+}
+
+void	ra(t_stack *a)
+{
+	rotate_stack(a);
+}
+
+void	rb(t_stack *b)
+{
+	rotate_stack(b);
+}
+
+void	rr(t_stack *a, t_stack *b)
+{
+	rotate_stack(a);
+	rotate_stack(b);
+}
+
+void	rra(t_stack *a)
+{
+	reverse_rotate_stack(a);
+}
+
+void	rrb(t_stack *b)
+{
+	reverse_rotate_stack(b);
+}
+
+void	rrr(t_stack *a, t_stack *b)
+{
+	reverse_rotate_stack(a);
+	reverse_rotate_stack(b);
 }
