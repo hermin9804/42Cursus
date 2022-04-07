@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/07 19:58:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/07 20:03:25 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,16 @@ int	main(int argc, char **argv)
 		exit(1);
 	tags.size = check_input(argc, argv);
 	init_tags(&tags, argv);
-	print_tags(&tags);//
+	//print_tags(&tags);//
 	init_stack(&a, &tags);
+	init_stack(&b, 0);
 	print_stack(&a);//
 	link_tag_to_list(&tags, &a);
 	quick_sort(tags.arr , 0, tags.size - 1);
-	print_tags(&tags);//
 	map_index(&tags);
+	print_stack(&a);//
+
+	sa(&a);
 	print_stack(&a);//
 
 	//init_stack(&b, 0);
