@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/07 14:21:23 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/07 19:59:35 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_list
 {
 	int		data;
+	int		index;
 	struct s_list	*prev;
 	struct s_list	*next;
 }	t_list;
@@ -29,6 +30,18 @@ typedef struct s_stack
 	int	size;
 	t_list	*head;
 }	t_stack;
+
+typedef struct s_tag
+{
+	int	data;
+	t_list	*anchor;
+}	t_tag;
+
+typedef struct s_tags
+{
+	int	size;
+	t_tag	*arr;
+}	t_tags;
 
 // libft
 t_list	*ft_lstnew(int data);
@@ -53,5 +66,8 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+
+//sort
+void	quick_sort(t_tag *arr, int start, int end);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:55:04 by mher              #+#    #+#             */
-/*   Updated: 2022/04/06 20:05:17 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/07 18:46:48 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_list	*ft_lstnew(int data)
 	if (!new_list)
 		return (0);
 	new_list->data = data;
+	new_list->index = 0;
 	new_list->next = 0;
 	new_list->prev = 0;
 	return (new_list);
