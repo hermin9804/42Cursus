@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/07 20:03:25 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/08 18:10:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	print_stack(const t_stack *stack)
 	printf("print-stack, size %d \n", stack->size);
 	while (i < stack->size)
 	{
-		printf("%d %d %p", p->data, p->index, p);
+		printf("%d %d", p->data, p->index);
+		//printf("%d %d %p", p->data, p->index, p);
 		printf("\n");
 		p = p->next;
 		i++;
@@ -79,6 +80,7 @@ void	init_stack(t_stack *stack, t_tags *tags)
 	tmp = ft_lstlast(stack->head);
 	stack->head->prev = tmp;
 	tmp->next = stack->head;
+	stack->total_size = stack->size;
 }
 
 void	init_tags(t_tags *tags, char **argv)
@@ -127,25 +129,18 @@ void	map_index(t_tags *tags)
 
 int	main(int argc, char **argv)
 {
+	t_tags	tags;
 	t_stack	a;
 	t_stack	b;
-	t_tags	tags;
 
 	if (argc < 2)
 		exit(1);
 	tags.size = check_input(argc, argv);
 	init_tags(&tags, argv);
-	//print_tags(&tags);//
 	init_stack(&a, &tags);
 	init_stack(&b, 0);
-	print_stack(&a);//
 	link_tag_to_list(&tags, &a);
 	quick_sort(tags.arr , 0, tags.size - 1);
 	map_index(&tags);
-	print_stack(&a);//
-
-	sa(&a);
-	print_stack(&a);//
-
-	//init_stack(&b, 0);
+	push_swap(&a, &b);
 }

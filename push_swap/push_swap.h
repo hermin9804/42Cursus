@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/07 19:59:35 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/08 19:25:54 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_list
 typedef struct s_stack
 {
 	int	size;
+	int	total_size;
 	t_list	*head;
 }	t_stack;
 
@@ -42,6 +43,10 @@ typedef struct s_tags
 	int	size;
 	t_tag	*arr;
 }	t_tags;
+
+// test
+void	print_stack(const t_stack *stack);
+void	print_tags(const t_tags *tags);
 
 // libft
 t_list	*ft_lstnew(int data);
@@ -67,7 +72,22 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
+//utils
+int	ft_abs(int x);
+
 //sort
 void	quick_sort(t_tag *arr, int start, int end);
+
+//push_swap
+void	push_swap(t_stack *a, t_stack *b);
+int	get_proximate_index(t_stack *a, int index);
+void	set_position(t_stack *a, t_stack *b, int min_index);
+int	get_min_index(t_stack *a, t_stack *b);
+int	get_rotate_cnt(t_stack *a, int index);
+
+
+
+
+int	get_target_index(t_stack *stack, int index, int total_size);
 
 #endif
