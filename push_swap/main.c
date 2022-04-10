@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/08 18:10:37 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/10 16:57:41 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,8 @@ int	main(int argc, char **argv)
 	link_tag_to_list(&tags, &a);
 	quick_sort(tags.arr , 0, tags.size - 1);
 	map_index(&tags);
+
 	push_swap(&a, &b);
+	print_stack(&a);
+	print_stack(&b);
 }

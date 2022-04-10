@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:55:04 by mher              #+#    #+#             */
-/*   Updated: 2022/04/07 18:46:48 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/10 16:55:43 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ t_list	*ft_lstlast(t_list *lst)
 		return (0);
 	while (lst->next)
 		lst = lst->next;
+	return (lst);
+}
+
+t_list	*ft_lstlast_cnt(t_list *lst, int cnt)
+{
+	int	i;
+
+	i = 0;
+	if (!lst)
+		return (0);
+	while (i < cnt)
+	{
+		lst = lst->next;
+		i++;
+	}
 	return (lst);
 }
 

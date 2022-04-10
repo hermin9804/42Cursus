@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/08 19:25:54 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/10 16:52:14 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	rrr(t_stack *a, t_stack *b);
 
 //utils
 int	ft_abs(int x);
+t_list	*ft_lstlast_cnt(t_list *lst, int cnt);
 
 //sort
 void	quick_sort(t_tag *arr, int start, int end);
