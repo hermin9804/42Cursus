@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/11 01:07:20 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/11 03:27:30 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,20 @@ void	init_info(t_info *info, int *nums)
 	i = 0;
 	info->a.size = 0;
 	info->b.size = 0;
+	info->max = nums[i];
 	info->a.head = ft_lstnew(nums[i++]);
 	info->a.size++;
 	while (i < info->total_size)
 	{
+		if (nums[i] > info->max)
+			info->max = nums[i];
 		tmp = ft_lstnew(nums[i]);
 		if (!tmp)
 			exit(1);//
-		ft_lstadd_front(&info->a.head, tmp);
+		//ft_lstadd_front(&info->a.head, tmp);
+		ft_lstadd_back(&info->a.head, tmp);
 		info->a.size++;
-		i++;
+		++i;;
 	}
 	tmp = ft_lstlast(info->a.head);
 	info->a.head->prev = tmp;
@@ -116,11 +120,6 @@ int	main(int argc, char **argv)
 	line = get_line(argc, argv);
 	nums = get_nums(line, &info);
 	init_info(&info, nums);
-
-	print_stack(&info.a);
-	print_stack(&info.b);
-
 	push_swap(&info);
-	print_stack(&info.a);
-	print_stack(&info.b);
+	//print_stack(&info.a);
 }

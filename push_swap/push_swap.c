@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/11 01:07:01 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/11 02:58:43 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,38 @@ void	push_swap(t_info *info)
 	}
 	while (info->b.size)
 	{
-		//min_index = get_min_index(a, b);
 		min_operation_num = get_min_operation_num(info);
 		set_position(info, min_operation_num);
 	}
+	set_ascending(info);
+}
+
+void	set_position(t_info *info, int min_operation_num)
+{
+	int	proximate_num;
+
+	proximate_num = get_proximate_num(&info->a, min_operation_num);
+	while (info->a.head->data != proximate_num && info->b.head->data != min_operation_num)
+	{
+		rr(&info->a, &info->b);
+	}
+	while (info->a.head->data != proximate_num)
+	{
+		ra(&info->a);
+	}
+	while (info->b.head->data != min_operation_num)
+	{
+		rb(&info->b);
+	}
+	if (info->b.head->data > info->a.head->data)
+		ra(&info->a);
+	pa(&info->a, &info->b);
+}
+
+void	set_ascending(t_info *info)
+{
+	while (info->a.head->prev->data != info->max)
+		ra(&info->a);
 }
 
 int	get_min_operation_num(t_info *info)
@@ -85,24 +113,6 @@ int	get_proximate_num(t_stack *stack, int data)
 		++i;
 	}
 	return (proximate_num);
-}
-
-void	set_position(t_info *info, int min_operation_num)
-{
-	int	proximate_num;
-
-	proximate_num = get_proximate_num(&info->a, min_operation_num);
-	while (info->a.head->data != proximate_num)
-	{
-		ra(&info->a);
-	}
-	while (info->b.head->data != min_operation_num)
-	{
-		rb(&info->b);
-	}
-	if (info->b.head->data > info->a.head->data)
-		ra(&info->a);
-	pa(&info->a, &info->b);
 }
 
 int	get_rotate_cnt(t_stack *stack, int proximate_num)

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/11 01:02:19 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/11 03:26:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_stack
 typedef struct s_info
 {
 	int	total_size;
+	int	max;
 	t_stack	a;
 	t_stack	b;
 }	t_info;
@@ -45,6 +46,7 @@ void	print_stack(const t_stack *stack);
 t_list	*ft_lstnew(int data);
 t_list	*ft_lstlast(t_list *lst);
 int	ft_atoi(const char *str);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -80,5 +82,6 @@ int	get_min_operation_num(t_info *info);
 int	get_proximate_num(t_stack *stack, int data);
 void	set_position(t_info *info, int min_operation_num);
 int	get_rotate_cnt(t_stack *stack, int proximate_num);
+void	set_ascending(t_info *info);
 
 #endif
