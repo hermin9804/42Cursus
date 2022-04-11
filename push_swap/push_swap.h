@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/11 23:39:12 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/12 03:07:14 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct s_info
 {
 	int	total_size;
 	int	max;
+	int	min;
+	int	mid;
+	int	f_pivot;
+	int	s_pivot;
 	t_stack	a;
 	t_stack	b;
 }	t_info;
@@ -87,9 +91,13 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
+//sort
+void	quick_sort(int *arr, int start, int end);
+
 //utils
 size_t	ft_abs(long long x);
 t_list	*ft_lstlast_cnt(t_list *lst, int cnt);
+void	get_pivot(t_info *info, int *nums);
 
 //push_swap
 void	push_swap(t_info *info);
@@ -98,9 +106,9 @@ int	get_proximate_num(t_stack *stack, int data);
 void	set_position(t_info *info, int min_operation_num);
 int	get_rotate_cnt(t_stack *stack, int proximate_num);
 void	set_ascending(t_info *info);
-int	get_mid_data(t_stack *stack);
 void	sort_three(t_info *info);
 void	set_rotate_position(t_info *info, t_rotate rotate);
 t_rotate	get_min_op(t_info *info);
+void	first_setting(t_info *info);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 00:59:04 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/12 03:06:55 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ void	print_stack(const t_stack *stack)
 	}
 }
 
+void	get_pivot(t_info *info, int *nums)
+{
+	int	size;
+
+	size = info->total_size;
+	quick_sort(nums, 0, size - 1);
+	info->mid = nums[size / 2];
+	info->f_pivot = nums[size * 1 / 3];
+	info->s_pivot = nums[size * 2 / 3];
+}
+
 void	init_info(t_info *info, int *nums)
 {
 	size_t	i;
@@ -38,16 +49,18 @@ void	init_info(t_info *info, int *nums)
 	info->a.size = 0;
 	info->b.size = 0;
 	info->max = nums[i];
+	info->min = nums[i];
 	info->a.head = ft_lstnew(nums[i++]);
 	info->a.size++;
 	while (i < info->total_size)
 	{
 		if (nums[i] > info->max)
 			info->max = nums[i];
+		if (nums[i] < info->min)
+			info->min = nums[i];
 		tmp = ft_lstnew(nums[i]);
 		if (!tmp)
 			exit(1);//
-		//ft_lstadd_front(&info->a.head, tmp);
 		ft_lstadd_back(&info->a.head, tmp);
 		info->a.size++;
 		++i;;
@@ -55,6 +68,7 @@ void	init_info(t_info *info, int *nums)
 	tmp = ft_lstlast(info->a.head);
 	info->a.head->prev = tmp;
 	tmp->next = info->a.head;
+	get_pivot(info, nums);
 }
 
 char	*get_line(int argc, char **argv)

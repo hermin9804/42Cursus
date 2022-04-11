@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 01:01:12 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/12 03:10:04 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,28 @@
 
 void	set_ascending(t_info *info)
 {
-	while (info->a.head->prev->data != info->max)
-		rra(&info->a);
+	int	i;
+	t_list	*cur;
+
+	i = 0;
+	cur = info->a.head;
+	while (i < info->total_size)
+	{
+		if (cur->data == info->min)
+			break ;
+		cur = cur->next;
+		++i;
+	}
+	if (i < info->a.size / 2)
+	{
+		while (info->a.head->data != info->min)
+			ra(&info->a);
+	}
+	else
+	{
+		while (info->a.head->data != info->min)
+			rra(&info->a);
+	}
 }
 
 size_t	ft_abs(long long x)
@@ -52,6 +72,39 @@ void	sort_three(t_info *info)
 		rra(&info->a);
 }
 
+void	first_setting(t_info *info)
+{
+	int	i;
+	int	tmp;
+
+	i = info->a.size;
+	while (i--)
+	{
+		tmp = info->a.head->data;
+		if (tmp == info->max || tmp == info->min || tmp > info->f_pivot)
+			ra(&info->a);
+		else
+			pb(&info->b, &info->a);
+	}
+	i = info->a.size;
+	while (i--)
+	{
+		tmp = info->a.head->data;
+		if (tmp == info->max || tmp == info->min || tmp > info->s_pivot)
+			ra(&info->a);
+		else
+			pb(&info->b, &info->a);
+	}
+	while (info->a.size > 2)
+	{
+		tmp = info->a.head->data;
+		if (tmp == info->max || tmp == info->min)
+			ra(&info->a);
+		else
+			pb(&info->b, &info->a);
+	}
+}
+
 void	push_swap(t_info *info)
 {
 	int	min_operation_num;
@@ -69,10 +122,7 @@ void	push_swap(t_info *info)
 		sort_three(info);
 		return ;
 	}
-	while (info->a.size > 2)
-	{
-		pb(&info->b, &info->a);
-	}
+	first_setting(info);
 	while (info->b.size)
 	{
 		rotate = get_min_op(info);
@@ -108,31 +158,29 @@ void	set_rotate_position(t_info *info, t_rotate rotate)
 	pa(&info->a, &info->b);
 }
 
-
-
 t_op	get_rotate_op(t_stack *stack, int proximate_num)
 {
 	t_op	a;
-	t_list	*cul;
+	t_list	*cur;
 	int	i;
 
 	ft_bzero(&a, sizeof(t_op));
-	cul = stack->head;
+	cur = stack->head;
 	i = 0;
 	while (i < stack->size)
 	{
-		if (cul->data == proximate_num)
+		if (cur->data == proximate_num)
 			break ;
-		cul = cul->next;
+		cur = cur->next;
 		++a.r;
 	}
-	cul = stack->head;
+	cur = stack->head;
 	i = 0;
 	while (i < stack->size)
 	{
-		if (cul->data == proximate_num)
+		if (cur->data == proximate_num)
 			break;
-		cul = cul->prev;
+		cur = cur->prev;
 		++a.rr;
 	}
 	if (a.r < a.rr)
@@ -148,7 +196,7 @@ t_rotate	get_min_op(t_info *info)
 	t_op	b;
 	t_op	min_a;
 	t_op	min_b;
-	t_list	*cul;
+	t_list	*cur;
 	t_rotate	rotate;
 	int	i;
 
@@ -157,12 +205,12 @@ t_rotate	get_min_op(t_info *info)
 	min_a.rr = info->a.size;
 	min_b.r = info->b.size;
 	min_b.rr = info->b.size;
-	cul = info->b.head;
+	cur = info->b.head;
 	i = 0;
 	while (i < info->b.size / 2)
 	{
-		a = get_rotate_op(&info->a, get_proximate_num(&info->a, cul->data));
-		cul = cul->next;
+		a = get_rotate_op(&info->a, get_proximate_num(&info->a, cur->data));
+		cur = cur->next;
 		if (a.r + a.rr + b.r + b.rr < min_a.r + min_a.rr + min_b.r + min_b.rr)
 		{
 			min_a = a;
@@ -172,11 +220,11 @@ t_rotate	get_min_op(t_info *info)
 		++i;
 	}
 	ft_bzero(&b, sizeof(t_op));
-	cul = info->b.head;
+	cur = info->b.head;
 	while (i < info->b.size)
 	{
-		a = get_rotate_op(&info->a, get_proximate_num(&info->a, cul->data));
-		cul = cul->prev;
+		a = get_rotate_op(&info->a, get_proximate_num(&info->a, cur->data));
+		cur = cur->prev;
 		if (a.r + a.rr + b.r + b.rr < min_a.r + min_a.rr + min_b.r + min_b.rr)
 		{
 			min_a = a;
@@ -196,21 +244,21 @@ int	get_proximate_num(t_stack *stack, int data)
 	int	proximate_num;
 	size_t	proximate;
 	size_t	tmp;
-	t_list	*cul;
+	t_list	*cur;
 
 	i = 0;
 	proximate_num = 0;
 	proximate = INT_MAX - (long)INT_MIN;
-	cul = stack->head;
+	cur = stack->head;
 	while (i < stack->size)
 	{
-		tmp = ft_abs(cul->data - data);
+		tmp = ft_abs(cur->data - data);
 		if (tmp < proximate)	
 		{
 			proximate = tmp;
-			proximate_num = cul->data;
+			proximate_num = cur->data;
 		}
-		cul = cul->next;
+		cur = cur->next;
 		++i;
 	}
 	return (proximate_num);
@@ -224,20 +272,20 @@ int	get_min_operation_num(t_info *info)
 	int	b_r_cnt;
 	int	min_cnt;
 	int	min_operation_num;
-	t_list	*cul;
+	t_list	*cur;
 
 	b_r_cnt = 0;
 	min_cnt = info->total_size;
-	cul = info->b.head;
+	cur = info->b.head;
 	while (b_r_cnt < info->b.size)
 	{
-		a_r_cnt = get_rotate_cnt(&info->a, get_proximate_num(&info->a, cul->data));
+		a_r_cnt = get_rotate_cnt(&info->a, get_proximate_num(&info->a, cur->data));
 		if (a_r_cnt + b_r_cnt < min_cnt)
 		{
 			min_cnt = a_r_cnt + b_r_cnt;
-			min_operation_num = cul->data;
+			min_operation_num = cur->data;
 		}
-		cul = cul->next;
+		cur = cur->next;
 		++b_r_cnt;
 	}
 	return (min_operation_num);
@@ -246,15 +294,15 @@ int	get_min_operation_num(t_info *info)
 int	get_rotate_cnt(t_stack *stack, int proximate_num)
 {
 	int	cnt;
-	t_list	*cul;
+	t_list	*cur;
 
 	cnt = 0;
-	cul = stack->head;
+	cur = stack->head;
 	while (cnt < stack->size)
 	{
-		if (cul->data == proximate_num)
+		if (cur->data == proximate_num)
 			break ;
-		cul = cul->next;
+		cur = cur->next;
 		++cnt;
 	}
 	return (cnt);
@@ -276,17 +324,3 @@ void	set_position(t_info *info, int min_operation_num)
 	pa(&info->a, &info->b);
 }
 
-int	get_mid_data(t_stack *stack)
-{
-	int	i;
-	t_list	*cul;
-	
-	i = 0;
-	cul = stack->head;
-	while (i < stack->size / 2)
-	{
-		cul = cul->next;	
-		++i;
-	}
-	return (cul->data);
-}
