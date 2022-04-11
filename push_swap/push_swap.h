@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/11 03:26:31 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/11 23:39:12 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ typedef struct s_info
 	t_stack	b;
 }	t_info;
 
+typedef struct s_op
+{
+	int	r;
+	int	rr;
+}	t_op;
+
+typedef struct s_rotate
+{
+	t_op	a;
+	t_op	b;
+}	t_rotate;
+
+
 // test
 void	print_stack(const t_stack *stack);
 
@@ -53,6 +66,8 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dest, const char *src, size_t destsize);
+void	*ft_memset(void *b, int c, size_t len);
+void	ft_bzero(void *s, size_t n);
 
 //operator
 void	swap_stack(t_stack *stack);
@@ -83,5 +98,9 @@ int	get_proximate_num(t_stack *stack, int data);
 void	set_position(t_info *info, int min_operation_num);
 int	get_rotate_cnt(t_stack *stack, int proximate_num);
 void	set_ascending(t_info *info);
+int	get_mid_data(t_stack *stack);
+void	sort_three(t_info *info);
+void	set_rotate_position(t_info *info, t_rotate rotate);
+t_rotate	get_min_op(t_info *info);
 
 #endif
