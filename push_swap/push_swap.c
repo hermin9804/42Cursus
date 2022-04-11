@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/11 18:10:53 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/11 18:36:00 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ void	first_setting(t_info *info)
 			pb(&info->b, &info->a);
 		}
 	}
+	if (info->a.head->index < info->a.head->prev->index)
+		sa(&info->a);
 }
 
 void	greedy_sort(t_info *info)
 {
 	t_op	op;
 
-	set_ascending(info);
 	while (info->b.size)
 	{
-		while (info->a.head->prev->index - info->a.head->index > 1)
+		while (info->a.head->index - info->a.head->prev->index > 1)
 		{
 			op = get_min_operation_cnt(info);
 			set_position(info, op);
@@ -75,7 +76,7 @@ t_op	get_min_operation_cnt(t_info *info)
 	cul = info->b.head;
 	while (op.r < info->b.size / 2)
 	{
-		if (info->a.head->index < cul->index)
+		if (cul->index < info->a.head->index)
 			return (op);
 		++op.r;
 		cul = cul->next;
@@ -84,7 +85,7 @@ t_op	get_min_operation_cnt(t_info *info)
 	cul = info->b.head;
 	while (op.rr < info->b.size)
 	{
-		if (info->a.head->index < cul->index)
+		if (cul->index < info->a.head->index)
 			return (op);
 		++op.rr;
 		cul = cul->prev;
@@ -94,7 +95,7 @@ t_op	get_min_operation_cnt(t_info *info)
 
 void	set_ascending(t_info *info)
 {
-	while (info->a.head->prev->data != info->anchor[info->total_size - 1].data)
+	while (info->a.head->index != 0)
 		ra(&info->a);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/11 18:10:28 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/11 18:34:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	first_setting(t_info *info);
 void	greedy_sort(t_info *info);
 void	set_position(t_info *info, t_op op);
 t_op	get_min_operation_cnt(t_info *info);
-void	set_ascending(t_info *info);
 void	push_swap(t_info *info);
+void	set_ascending(t_info *info);
 
 //void	push_swap(t_info *info);
 //int	get_min_operation_num(t_info *info);
