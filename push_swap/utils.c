@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:55:04 by mher              #+#    #+#             */
-/*   Updated: 2022/04/11 18:11:08 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/11 03:25:47 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_list	*ft_lstnew(int data)
 	if (!new_list)
 		return (0);
 	new_list->data = data;
-	new_list->index = 0;
 	new_list->next = 0;
 	new_list->prev = 0;
 	return (new_list);
@@ -168,21 +167,4 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 	}
 	dest[i] = 0;
 	return (src_len);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned char	*new_b;
-	unsigned char	new_c;
-
-	new_b = (unsigned char *)b;
-	new_c = (unsigned char)c;
-	while (len--)
-		*new_b++ = new_c;
-	return (b);
 }
