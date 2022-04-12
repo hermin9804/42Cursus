@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator.c                                         :+:      :+:    :+:   */
+/*   pop_push_swap_rotate.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 16:14:30 by mher              #+#    #+#             */
-/*   Updated: 2022/04/10 23:49:14 by mher             ###   ########.fr       */
+/*   Created: 2022/04/13 00:16:34 by mher              #+#    #+#             */
+/*   Updated: 2022/04/13 00:18:02 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,73 +79,4 @@ void	reverse_rotate_stack(t_stack *stack)
 	if (stack->size < 2)
 		return ;
 	stack->head = stack->head->prev;
-}
-
-void	sa(t_stack *a)
-{
-	printf("sa\n");
-	swap_stack(a);
-}
-
-void	sb(t_stack *b)
-{
-	printf("sb\n");
-	swap_stack(b);
-}
-
-void	ss(t_stack *a, t_stack *b)
-{
-	printf("ss\n");
-	swap_stack(a);
-	swap_stack(b);
-}
-
-void	pa(t_stack *a, t_stack *b)
-{
-	printf("pa\n");
-	push_stack(a, b);
-}
-
-void	pb(t_stack *b, t_stack *a)
-{
-	printf("pb\n");
-	push_stack(b, a);
-}
-
-void	ra(t_stack *a)
-{
-	printf("ra\n");
-	rotate_stack(a);
-}
-
-void	rb(t_stack *b)
-{
-	printf("rb\n");
-	rotate_stack(b);
-}
-
-void	rr(t_stack *a, t_stack *b)
-{
-	printf("rr\n");
-	rotate_stack(a);
-	rotate_stack(b);
-}
-
-void	rra(t_stack *a)
-{
-	printf("rra\n");
-	reverse_rotate_stack(a);
-}
-
-void	rrb(t_stack *b)
-{
-	printf("rrb\n");
-	reverse_rotate_stack(b);
-}
-
-void	rrr(t_stack *a, t_stack *b)
-{
-	printf("rrr\n");
-	reverse_rotate_stack(a);
-	reverse_rotate_stack(b);
 }

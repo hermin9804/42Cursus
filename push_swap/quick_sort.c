@@ -6,11 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 01:46:25 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 01:49:50 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 00:26:39 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	swap(int *a, int *b)
+static void	swap(int *a, int *b)
 {
 	int tmp;
 

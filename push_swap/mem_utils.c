@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mem_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 18:15:24 by mher             ###   ########.fr       */
+/*   Created: 2022/04/12 23:33:14 by mher              #+#    #+#             */
+/*   Updated: 2022/04/12 23:33:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	t_info	 info;
+	unsigned char	*new_b;
+	unsigned char	new_c;
 
-	if (argc < 2)
-		exit(1);
-	init_info(&info, argc, argv);
-	push_swap(&info);
-	exit(0);
+	new_b = (unsigned char *)b;
+	new_c = (unsigned char)c;
+	while (len--)
+		*new_b++ = new_c;
+	return (b);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
 }

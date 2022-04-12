@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 18:15:24 by mher             ###   ########.fr       */
+/*   Created: 2022/04/12 16:47:52 by mher              #+#    #+#             */
+/*   Updated: 2022/04/12 16:48:10 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	print_stack(const t_stack *stack)
 {
-	t_info	 info;
+	int	i;
+	t_list	*p;
 
-	if (argc < 2)
-		exit(1);
-	init_info(&info, argc, argv);
-	push_swap(&info);
-	exit(0);
+	i = 0;
+	p = stack->head;
+	printf("print-stack, size %d \n", stack->size);
+	while (i < stack->size)
+	{
+		printf("%d", p->data);
+		printf("\n");
+		p = p->next;
+		i++;
+	}
 }

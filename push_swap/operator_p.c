@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   operator_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 18:15:24 by mher             ###   ########.fr       */
+/*   Created: 2022/04/13 00:18:52 by mher              #+#    #+#             */
+/*   Updated: 2022/04/13 00:19:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	pa(t_stack *a, t_stack *b)
 {
-	t_info	 info;
+	printf("pa\n");
+	push_stack(a, b);
+}
 
-	if (argc < 2)
-		exit(1);
-	init_info(&info, argc, argv);
-	push_swap(&info);
-	exit(0);
+void	pb(t_stack *b, t_stack *a)
+{
+	printf("pb\n");
+	push_stack(b, a);
 }

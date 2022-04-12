@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   operator_rr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 18:15:24 by mher             ###   ########.fr       */
+/*   Created: 2022/04/06 16:14:30 by mher              #+#    #+#             */
+/*   Updated: 2022/04/13 00:20:29 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	rra(t_stack *a)
 {
-	t_info	 info;
+	printf("rra\n");
+	reverse_rotate_stack(a);
+}
 
-	if (argc < 2)
-		exit(1);
-	init_info(&info, argc, argv);
-	push_swap(&info);
-	exit(0);
+void	rrb(t_stack *b)
+{
+	printf("rrb\n");
+	reverse_rotate_stack(b);
+}
+
+void	rrr(t_stack *a, t_stack *b)
+{
+	printf("rrr\n");
+	reverse_rotate_stack(a);
+	reverse_rotate_stack(b);
 }

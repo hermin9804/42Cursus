@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   operator_s.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 18:15:24 by mher             ###   ########.fr       */
+/*   Created: 2022/04/13 00:18:11 by mher              #+#    #+#             */
+/*   Updated: 2022/04/13 00:18:34 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	sa(t_stack *a)
 {
-	t_info	 info;
+	printf("sa\n");
+	swap_stack(a);
+}
 
-	if (argc < 2)
-		exit(1);
-	init_info(&info, argc, argv);
-	push_swap(&info);
-	exit(0);
+void	sb(t_stack *b)
+{
+	printf("sb\n");
+	swap_stack(b);
+}
+
+void	ss(t_stack *a, t_stack *b)
+{
+	printf("ss\n");
+	swap_stack(a);
+	swap_stack(b);
 }
