@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 01:20:59 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 01:23:09 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	sort_stack(t_info *info)
 {
 	t_rotate	rotate;
 
-	pb_three_divisions(t_info *info)
+	pb_three_divisions(info);
 	while (info->b.size)
 	{
 		rotate = get_min_op(info);
