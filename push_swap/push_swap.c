@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 03:10:04 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/12 14:57:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,8 @@ t_rotate	get_min_op(t_info *info)
 	i = 0;
 	while (i < info->b.size / 2)
 	{
-		a = get_rotate_op(&info->a, get_proximate_num(&info->a, cur->data));
+		//a = get_rotate_op(&info->a, get_proximate_num(&info->a, cur->data));
+		a = get_rotate_op(&info->a, get_biggest_num(info, cur->data));
 		cur = cur->next;
 		if (a.r + a.rr + b.r + b.rr < min_a.r + min_a.rr + min_b.r + min_b.rr)
 		{
@@ -223,7 +224,8 @@ t_rotate	get_min_op(t_info *info)
 	cur = info->b.head;
 	while (i < info->b.size)
 	{
-		a = get_rotate_op(&info->a, get_proximate_num(&info->a, cur->data));
+		//a = get_rotate_op(&info->a, get_proximate_num(&info->a, cur->data));
+		a = get_rotate_op(&info->a, get_biggest_num(info, cur->data));
 		cur = cur->prev;
 		if (a.r + a.rr + b.r + b.rr < min_a.r + min_a.rr + min_b.r + min_b.rr)
 		{
@@ -236,6 +238,26 @@ t_rotate	get_min_op(t_info *info)
 	rotate.a = min_a;
 	rotate.b = min_b;
 	return (rotate);
+}
+
+int	get_biggest_num(t_info *info, int data)
+{
+	int	i;
+	int	biggest_num;
+	size_t	tmp;
+	t_list	*cur;
+
+	i = 0;
+	biggest_num = info->max;
+	cur = info->a.head;
+	while (i < info->a.size)
+	{
+		if (data < cur->data && cur->data < biggest_num)
+			biggest_num = cur->data;
+		cur = cur->next;
+		++i;
+	}
+	return (biggest_num);
 }
 
 int	get_proximate_num(t_stack *stack, int data)

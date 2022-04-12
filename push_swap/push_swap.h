@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 03:07:14 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/12 14:40:26 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ void	sort_three(t_info *info);
 void	set_rotate_position(t_info *info, t_rotate rotate);
 t_rotate	get_min_op(t_info *info);
 void	first_setting(t_info *info);
+int	get_biggest_num(t_info *info, int data);
 
 #endif
