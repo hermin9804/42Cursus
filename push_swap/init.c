@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:52:56 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 17:48:15 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 00:52:54 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static char	*get_line(int argc, char **argv)
 	{
 		tmp = ft_strjoin(line, argv[i]);
 		if (!tmp)
-			exit(1);//
+			error_exit();
 		free(line);
 		line = tmp;
 		tmp = ft_strjoin(line, " ");
 		if (!tmp)
-			exit(1);//
+			error_exit();
 		free(line);
 		line = tmp;
 		++i;
@@ -47,13 +47,13 @@ static int	*get_nums(char *line, t_info *info)
 	i = 0;
 	strs = ft_split(line, ' ');
 	if (!strs)
-		exit(1);
+		error_exit();
 	while (strs[i])
 		++i;
 	info->total_size = i;
 	nums = (int *)malloc(info->total_size * sizeof(int));
 	if (!nums)
-		exit(1);//
+		error_exit();
 	i = 0;
 	while (strs[i])
 	{
@@ -77,7 +77,7 @@ static void	init_stack(t_info *info, int *nums)
 	{
 		tmp = ft_lstnew(nums[info->a.size]);
 		if (!tmp)
-			exit(1);//
+			error_exit();
 		ft_lstadd_back(&info->a.head, tmp);
 		info->a.size++;
 	}

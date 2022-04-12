@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 00:24:35 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 01:20:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_rotate
 
 //push_swap
 void		push_swap(t_info *info);
-void		first_setting(t_info *info);
+void		pb_three_divisions(t_info *info)
 void		set_rotate_position(t_info *info, t_rotate rotate);
 int		get_biggest_num(t_info *info, int data);
 t_rotate	get_min_op(t_info *info);
@@ -101,6 +101,9 @@ void		ft_bzero(void *s, size_t n);
 
 // init
 void		init_info(t_info *info, int argc, char **argv);
+
+// error_exit
+void		error_exit();
 
 // test_utils
 void		print_stack(const t_stack *stack);

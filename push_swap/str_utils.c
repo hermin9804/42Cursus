@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:55:04 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 00:09:01 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 00:49:20 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,16 @@ int	ft_atoi(const char *str)
 	if (*str == '+' || *str == '-')
 		if (*str++ == '-')
 			sign *= -1;
+	if (*str < '0' || '9' < *str)
+		error_exit();
 	while ('0' <= *str && *str <= '9')
 	{
-		ret = (ret * 10) + ((*str++ - '0') * sign);
+		ret = (ret * 10) + ((*str - '0') * sign);
 		if (ret < INT_MIN || INT_MAX < ret)
-			exit(1);//
+			error_exit();
+		if (*str < '0' || '9' < *str)
+			error_exit();
+		++str;
 	}
 	return (ret);
 }

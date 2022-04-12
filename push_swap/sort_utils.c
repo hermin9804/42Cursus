@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:56:31 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 23:31:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 01:20:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int	get_biggest_num(t_info *info, int data)
 	return (biggest_num);
 }
 
-void	first_setting(t_info *info)
+void	pb_three_divisions(t_info *info)
 {
 	int	i;
 	int	tmp;
