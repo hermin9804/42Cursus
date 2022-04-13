@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:56:31 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 01:20:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 11:33:11 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ int	get_biggest_num(t_info *info, int data)
 {
 	int	i;
 	int	biggest_num;
-	size_t	tmp;
 	t_list	*cur;
 
 	i = 0;
