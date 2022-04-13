@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 00:16:34 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 00:18:02 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 12:10:38 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	push_stack(t_stack *dest, t_stack *from)
 
 t_list	*pop_stack(t_stack *stack)
 {
-	t_list *pop;
+	t_list	*pop;
 
 	pop = stack->head;
 	if (stack->size == 1)

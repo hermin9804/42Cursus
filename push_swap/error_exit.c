@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 00:31:04 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 00:42:38 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 11:50:59 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_exit()
+void	error_exit(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);

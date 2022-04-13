@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/13 11:32:55 by mher             ###   ########.fr        #
+#    Updated: 2022/04/13 21:51:05 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,11 @@ SRC = \
 	main.c \
 	init.c \
 	push_swap.c \
+	get_rotate_cnt.c \
+	set_position.c \
 	list_utils.c \
 	mem_utils.c \
 	quick_sort.c \
-	sort_utils.c \
 	ft_split.c \
 	str_utils.c \
 	operator_p.c \

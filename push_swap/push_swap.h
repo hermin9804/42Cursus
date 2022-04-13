@@ -6,38 +6,38 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 01:22:41 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 21:44:17 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
+# include <stdio.h>//
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
 
 typedef struct s_list
 {
-	int		data;
+	int				data;
 	struct s_list	*prev;
 	struct s_list	*next;
 }	t_list;
 
 typedef struct s_stack
 {
-	int	size;
+	int		size;
 	t_list	*head;
 }	t_stack;
 
 typedef struct s_info
 {
-	int	total_size;
-	int	max;
-	int	min;
-	int	f_pivot;
-	int	s_pivot;
+	int		total_size;
+	int		max;
+	int		min;
+	int		f_pivot;
+	int		s_pivot;
 	t_stack	a;
 	t_stack	b;
 }	t_info;
@@ -57,9 +57,9 @@ typedef struct s_rotate
 //push_swap
 void		push_swap(t_info *info);
 void		pb_three_divisions(t_info *info);
+void		pb_by_pivot(t_info *info, int pivot);
 void		set_rotate_position(t_info *info, t_rotate rotate);
-int		get_biggest_num(t_info *info, int data);
-t_rotate	get_min_op(t_info *info);
+t_rotate	get_min_rotate_cnt(t_info *info);
 
 //operator
 void		swap_stack(t_stack *stack);
@@ -88,7 +88,7 @@ t_list		*ft_lstlast_cnt(t_list *lst, int cnt);
 // libft
 t_list		*ft_lstnew(int data);
 t_list		*ft_lstlast(t_list *lst);
-int		ft_atoi(const char *str);
+int			ft_atoi(const char *str);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 char		**ft_split(char const *s, char c);
@@ -103,7 +103,7 @@ void		ft_bzero(void *s, size_t n);
 void		init_info(t_info *info, int argc, char **argv);
 
 // error_exit
-void		error_exit();
+void		error_exit(void);
 
 // test_utils
 void		print_stack(const t_stack *stack);

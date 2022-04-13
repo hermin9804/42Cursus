@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:52:56 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 00:52:54 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 12:09:56 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*get_line(int argc, char **argv)
 {
-	int	i;
+	int		i;
 	char	*tmp;
 	char	*line;
 
@@ -40,9 +40,9 @@ static char	*get_line(int argc, char **argv)
 
 static int	*get_nums(char *line, t_info *info)
 {
-	int	i;
+	int		i;
 	char	**strs;
-	int	*nums;
+	int		*nums;
 
 	i = 0;
 	strs = ft_split(line, ' ');
@@ -84,7 +84,6 @@ static void	init_stack(t_info *info, int *nums)
 	tmp = ft_lstlast(info->a.head);
 	info->a.head->prev = tmp;
 	tmp->next = info->a.head;
-
 }
 
 static void	init_pivot(t_info *info, int *nums)
@@ -102,7 +101,7 @@ static void	init_pivot(t_info *info, int *nums)
 void	init_info(t_info *info, int argc, char **argv)
 {
 	char	*line;
-	int	*nums;
+	int		*nums;
 
 	line = get_line(argc, argv);
 	nums = get_nums(line, info);

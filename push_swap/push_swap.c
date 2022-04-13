@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 01:23:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 21:16:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	sort_ascending(t_info *info)
 {
-	int	i;
+	int		i;
 	t_list	*cur;
 
 	i = 0;
@@ -72,7 +72,7 @@ static void	sort_stack(t_info *info)
 	pb_three_divisions(info);
 	while (info->b.size)
 	{
-		rotate = get_min_op(info);
+		rotate = get_min_rotate_cnt(info);
 		set_rotate_position(info, rotate);
 	}
 	sort_ascending(info);
