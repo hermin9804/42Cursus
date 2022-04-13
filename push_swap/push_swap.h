@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 21:44:17 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 22:31:53 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ void		init_info(t_info *info, int argc, char **argv);
 
 // error_exit
 void		error_exit(void);
+void		check_dup(int *nums, int size);
 
 // test_utils
-void		print_stack(const t_stack *stack);
+void		print_stack(const t_stack *stack);//
 #endif

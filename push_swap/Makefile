@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/13 21:51:05 by mher             ###   ########.fr        #
+#    Updated: 2022/04/13 22:15:57 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,9 @@ SRC = \
 	operator_r.c \
 	operator_rr.c \
 	operator_s.c \
-	error_exit.c \
 	pop_push_swap_rotate.c \
+	check_dup.c \
+	error_exit.c \
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:52:56 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 12:09:56 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/13 22:28:27 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,8 @@ static void	init_pivot(t_info *info, int *nums)
 	int	size;
 
 	size = info->total_size;
-	quick_sort(nums, 0, size - 1);
 	info->min = nums[0];
-	info->max = nums[info->total_size - 1];
+	info->max = nums[size - 1];
 	info->f_pivot = nums[size * 1 / 3];
 	info->s_pivot = nums[size * 2 / 3];
 }
@@ -105,7 +104,8 @@ void	init_info(t_info *info, int argc, char **argv)
 
 	line = get_line(argc, argv);
 	nums = get_nums(line, info);
-	//check_dup();
 	init_stack(info, nums);
+	quick_sort(nums, 0, info->total_size - 1);
+	check_dup(nums, info->total_size);
 	init_pivot(info, nums);
 }
