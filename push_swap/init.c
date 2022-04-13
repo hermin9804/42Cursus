@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:52:56 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 22:28:27 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/14 02:49:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static char	*get_line(int argc, char **argv)
 	{
 		tmp = ft_strjoin(line, argv[i]);
 		if (!tmp)
-			error_exit();
+			exit(1);
 		free(line);
 		line = tmp;
 		tmp = ft_strjoin(line, " ");
 		if (!tmp)
-			error_exit();
+			exit(1);
 		free(line);
 		line = tmp;
 		++i;
@@ -51,18 +51,18 @@ static int	*get_nums(char *line, t_info *info)
 	while (strs[i])
 		++i;
 	info->total_size = i;
+	if (info->total_size == 1)
+		exit(1);
 	nums = (int *)malloc(info->total_size * sizeof(int));
 	if (!nums)
-		error_exit();
-	i = 0;
-	while (strs[i])
-	{
+		exit(1);
+	i = -1;
+	while (strs[++i])
 		nums[i] = ft_atoi(strs[i]);
-		++i;
-	}
 	i = 0;
 	while (strs[i])
 		free(strs[i++]);
+	free(strs);
 	return (nums);
 }
 
@@ -107,5 +107,8 @@ void	init_info(t_info *info, int argc, char **argv)
 	init_stack(info, nums);
 	quick_sort(nums, 0, info->total_size - 1);
 	check_dup(nums, info->total_size);
+	check_ascending(info, nums);
 	init_pivot(info, nums);
+	free(line);
+	free(nums);
 }

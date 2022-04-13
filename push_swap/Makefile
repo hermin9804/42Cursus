@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/13 22:15:57 by mher             ###   ########.fr        #
+#    Updated: 2022/04/14 02:50:24 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,19 +20,19 @@ SRC = \
 	main.c \
 	init.c \
 	push_swap.c \
-	get_rotate_cnt.c \
+	get_min_rotate_cnt.c \
 	set_position.c \
-	list_utils.c \
-	mem_utils.c \
-	quick_sort.c \
-	ft_split.c \
-	str_utils.c \
 	operator_p.c \
 	operator_r.c \
 	operator_rr.c \
 	operator_s.c \
 	pop_push_swap_rotate.c \
-	check_dup.c \
+	list_utils.c \
+	mem_utils.c \
+	quick_sort.c \
+	ft_split.c \
+	str_utils.c \
+	check.c \
 	error_exit.c \
 
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 21:16:31 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/14 03:59:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void	sort_ascending(t_info *info)
 	if (i < info->a.size / 2)
 	{
 		while (info->a.head->data != info->min)
-			ra(&info->a);
+			ra(info);
 	}
 	else
 	{
 		while (info->a.head->data != info->min)
-			rra(&info->a);
+			rra(info);
 	}
 }
 
@@ -49,27 +49,27 @@ static void	sort_three(t_info *info)
 	bot = info->a.head->prev->data;
 	if (top > mid && mid > bot && top > bot)
 	{
-		sa(&info->a);
-		rra(&info->a);
+		sa(info);
+		rra(info);
 	}
 	else if (top > mid && bot > mid && top > bot)
-		ra(&info->a);
+		ra(info);
 	else if (mid > top && mid > bot && bot > top)
 	{
-		sa(&info->a);
-		ra(&info->a);
+		sa(info);
+		ra(info);
 	}
 	else if (top > mid && bot > mid && bot > top)
-		sa(&info->a);
+		sa(info);
 	else if (mid > top && mid > bot && top > bot)
-		rra(&info->a);
+		rra(info);
 }
 
 static void	sort_stack(t_info *info)
 {
 	t_rotate	rotate;
 
-	pb_three_divisions(info);
+	sort_three(info);
 	while (info->b.size)
 	{
 		rotate = get_min_rotate_cnt(info);
@@ -84,6 +84,16 @@ void	push_swap(t_info *info)
 		sort_ascending(info);
 	else if (info->total_size == 3)
 		sort_three(info);
-	else
+	else if (info->total_size <= 5)
+	{
+		pb_leave_three(info);
 		sort_stack(info);
+	}
+	else
+	{
+		pb_by_pivot(info, info->f_pivot);
+		pb_by_pivot(info, info->s_pivot);
+		pb_leave_three(info);
+		sort_stack(info);
+	}
 }

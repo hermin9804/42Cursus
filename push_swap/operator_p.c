@@ -6,20 +6,20 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 00:18:52 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 00:58:03 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/14 02:12:19 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_stack *a, t_stack *b)
+void	pa(t_info *info)
 {
 	write(1, "pa\n", 3);
-	push_stack(a, b);
+	push_stack(&info->a, &info->b);
 }
 
-void	pb(t_stack *b, t_stack *a)
+void	pb(t_info *info)
 {
 	write(1, "pb\n", 3);
-	push_stack(b, a);
+	push_stack(&info->b, &info->a);
 }

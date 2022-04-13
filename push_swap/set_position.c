@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:56:31 by mher              #+#    #+#             */
-/*   Updated: 2022/04/13 21:50:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/14 04:06:47 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,25 @@ void	set_rotate_position(t_info *info, t_rotate rotate)
 {
 	while (rotate.a.r && rotate.b.r)
 	{
-		rr(&info->a, &info->b);
+		rr(info);
 		rotate.a.r--;
 		rotate.b.r--;
 	}
 	while (rotate.a.r--)
-		ra(&info->a);
+		ra(info);
 	while (rotate.b.r--)
-		rb(&info->b);
+		rb(info);
 	while (rotate.a.rr && rotate.b.rr)
 	{
-		rrr(&info->a, &info->b);
+		rrr(info);
 		rotate.a.rr--;
 		rotate.b.rr--;
 	}
 	while (rotate.a.rr--)
-		rra(&info->a);
+		rra(info);
 	while (rotate.b.rr--)
-		rrb(&info->b);
-	pa(&info->a, &info->b);
-}
-
-void	pb_three_divisions(t_info *info)
-{
-	int	tmp;
-
-	pb_by_pivot(info, info->f_pivot);
-	pb_by_pivot(info, info->s_pivot);
-	while (info->a.size > 2)
-	{
-		tmp = info->a.head->data;
-		if (tmp == info->max || tmp == info->min)
-			ra(&info->a);
-		else
-			pb(&info->b, &info->a);
-	}
+		rrb(info);
+	pa(info);
 }
 
 void	pb_by_pivot(t_info *info, int pivot)
@@ -62,9 +46,23 @@ void	pb_by_pivot(t_info *info, int pivot)
 	while (i--)
 	{
 		tmp = info->a.head->data;
-		if (tmp == info->max || tmp == info->min || tmp > pivot)
-			ra(&info->a);
+		if (tmp > pivot)
+			ra(info);
 		else
-			pb(&info->b, &info->a);
+			pb(info);
+	}
+}
+
+void	pb_leave_three(t_info *info)
+{
+	int	tmp;
+
+	while (info->a.size > 3)
+	{
+		tmp = info->a.head->data;
+		if (tmp == info->max)
+			ra(info);
+		else
+			pb(info);
 	}
 }
