@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 03:59:16 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 02:06:58 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	push_swap(t_info *info)
 	}
 	else
 	{
-		pb_by_pivot(info, info->f_pivot);
-		pb_by_pivot(info, info->s_pivot);
+		pb_smaller_than_pivot(info, info->f_pivot);
+		pb_smaller_than_pivot(info, info->s_pivot);
 		pb_leave_three(info);
 		sort_stack(info);
 	}

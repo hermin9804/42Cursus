@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:56:31 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 04:06:47 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 02:05:39 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ void	set_rotate_position(t_info *info, t_rotate rotate)
 	pa(info);
 }
 
-void	pb_by_pivot(t_info *info, int pivot)
+void	pb_smaller_than_pivot(t_info *info, int pivot)
 {
 	int	i;
 	int	tmp;
 
 	i = info->a.size;
-	while (i--)
+	while (0 < i--)
 	{
 		tmp = info->a.head->data;
-		if (tmp > pivot)
-			ra(info);
-		else
+		if (tmp < pivot)
 			pb(info);
+		else
+			ra(info);
 	}
 }
 

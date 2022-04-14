@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 17:12:01 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 03:41:48 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 02:06:25 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_rotate
 
 //push_swap
 void		push_swap(t_info *info);
-void		pb_by_pivot(t_info *info, int pivot);
+void		pb_smaller_than_pivot(t_info *info, int pivot);
 void		pb_leave_three(t_info *info);
 void		set_rotate_position(t_info *info, t_rotate rotate);
 t_rotate	get_min_rotate_cnt(t_info *info);
