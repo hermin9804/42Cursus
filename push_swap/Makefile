@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/14 02:50:24 by mher             ###   ########.fr        #
+#    Updated: 2022/04/15 02:32:49 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
 SRC = \
-	test_utils.c \
 	main.c \
 	init.c \
 	push_swap.c \

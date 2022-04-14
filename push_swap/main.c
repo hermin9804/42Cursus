@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:03:48 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 02:32:40 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 02:27:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int	main(int argc, char **argv)
 		return(0);
 	init_info(&info, argc, argv);
 	push_swap(&info);
-	return (0);
+	exit(0);
 }
