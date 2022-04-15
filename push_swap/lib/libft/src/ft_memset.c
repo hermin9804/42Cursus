@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator_p.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 00:18:52 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 02:12:19 by mher             ###   ########.fr       */
+/*   Created: 2021/11/27 18:30:41 by mher              #+#    #+#             */
+/*   Updated: 2021/11/27 18:30:55 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	pa(t_info *info)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	write(1, "pa\n", 3);
-	push_stack(&info->a, &info->b);
-}
+	unsigned char	*new_b;
+	unsigned char	new_c;
 
-void	pb(t_info *info)
-{
-	write(1, "pb\n", 3);
-	push_stack(&info->b, &info->a);
+	new_b = (unsigned char *)b;
+	new_c = (unsigned char)c;
+	while (len--)
+		*new_b++ = new_c;
+	return (b);
 }

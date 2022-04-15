@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator_rr.c                                      :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 16:14:30 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 02:13:43 by mher             ###   ########.fr       */
+/*   Created: 2021/11/16 14:26:00 by mher              #+#    #+#             */
+/*   Updated: 2021/11/16 15:32:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	rra(t_info *info)
+int	ft_isdigit(int c)
 {
-	write(1, "rra\n", 4);
-	reverse_rotate_stack(&info->a);
-}
-
-void	rrb(t_info *info)
-{
-	write(1, "rrb\n", 4);
-	reverse_rotate_stack(&info->b);
-}
-
-void	rrr(t_info *info)
-{
-	write(1, "rrr\n", 4);
-	reverse_rotate_stack(&info->a);
-	reverse_rotate_stack(&info->b);
+	return ('0' <= c && c <= '9');
 }

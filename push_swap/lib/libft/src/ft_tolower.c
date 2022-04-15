@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator_r.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 00:19:35 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 02:12:48 by mher             ###   ########.fr       */
+/*   Created: 2021/11/17 16:38:35 by mher              #+#    #+#             */
+/*   Updated: 2021/11/17 16:40:49 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ra(t_info *info)
+int	ft_tolower(int c)
 {
-	write(1, "ra\n", 3);
-	rotate_stack(&info->a);
-}
-
-void	rb(t_info *info)
-{
-	write(1, "rb\n", 3);
-	rotate_stack(&info->b);
-}
-
-void	rr(t_info *info)
-{
-	write(1, "rr\n", 3);
-	rotate_stack(&info->a);
-	rotate_stack(&info->b);
+	if ('A' <= c && c <= 'Z')
+		return (c - 'A' + 'a');
+	return (c);
 }

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_utils.c                                        :+:      :+:    :+:   */
+/*   operator_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 23:33:14 by mher              #+#    #+#             */
-/*   Updated: 2022/04/12 23:33:37 by mher             ###   ########.fr       */
+/*   Created: 2022/04/13 00:18:52 by mher              #+#    #+#             */
+/*   Updated: 2022/04/15 16:42:42 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "operator.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	pa(t_info *info)
 {
-	unsigned char	*new_b;
-	unsigned char	new_c;
-
-	new_b = (unsigned char *)b;
-	new_c = (unsigned char)c;
-	while (len--)
-		*new_b++ = new_c;
-	return (b);
+	write(1, "pa\n", 3);
+	push_stack(&info->a, &info->b);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	pb(t_info *info)
 {
-	ft_memset(s, 0, n);
+	write(1, "pb\n", 3);
+	push_stack(&info->b, &info->a);
 }

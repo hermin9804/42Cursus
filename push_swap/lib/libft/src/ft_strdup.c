@@ -1,46 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 22:02:44 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 02:53:00 by mher             ###   ########.fr       */
+/*   Created: 2021/11/19 16:13:31 by mher              #+#    #+#             */
+/*   Updated: 2021/11/25 14:32:30 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	check_dup(int *nums, int size)
+char	*ft_strdup(const char *s1)
 {
-	int	i;
+	size_t	len;
+	char	*ret;
+	char	*tmp;
 
-	i = 0;
-	while (i + 1 < size)
+	len = ft_strlen(s1);
+	ret = (char *)malloc(sizeof(char) * (len + 1));
+	if (!ret)
+		return (0);
+	tmp = ret;
+	while (len--)
 	{
-		if (nums[i] == nums[i + 1])
-			error_exit();
-		++i;
+		*tmp = *s1;
+		++tmp;
+		++s1;
 	}
-}
-
-void	check_ascending(t_info *info, int *nums)
-{
-	int	i;
-	int	cnt;
-	t_list	*cur;
-
-	i = 0;
-	cnt = 0;
-	cur = info->a.head;
-	while (i < info->total_size)
-	{
-		if (cur->data == nums[i])
-			++cnt;
-		cur = cur->next;
-		++i;
-	}
-	if (cnt == info->total_size)
-		exit(0);
+	*tmp = 0;
+	return (ret);
 }

@@ -6,11 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 23:31:31 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 02:23:40 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 17:43:23 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "data_struct.h"
 
 t_list	*ft_lstnew(int data)
 {

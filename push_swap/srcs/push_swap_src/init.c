@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:52:56 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 02:49:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 17:34:09 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	*get_nums(char *line, t_info *info)
 		exit(1);
 	i = -1;
 	while (strs[++i])
-		nums[i] = ft_atoi(strs[i]);
+		nums[i] = check_num_atoi(strs[i]);
 	i = 0;
 	while (strs[i])
 		free(strs[i++]);
