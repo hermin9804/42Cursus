@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/15 20:38:29 by mher             ###   ########.fr        #
+#    Updated: 2022/04/16 02:58:54 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ CHECKER_SRC = \
 	$(OPERATOR_SRC) \
 	$(DATA_STRUCT_SRC) \
 	$(INITALIZE_SRC) \
-	$(CHECKER_DIR)/main.c \
+	$(CHECKER_DIR)/checker.c \
 
 
 PUSH_SWAP_OBJ = $(PUSH_SWAP_SRC:.c=.o)
@@ -70,11 +70,11 @@ bonus: $(CHECKER)
 $(NAME): $(PUSH_SWAP_OBJ)
 	$(MAKE) -C $(FT_DIR) 
 	$(CC) $(CFLAGS) -o $@ $^ \
-		-L$(FT_DIR) -l$(FT)
+		-L$(FT_DIR) -l$(FT) 
 
 $(CHECKER) : $(CHECKER_OBJ)
 	$(MAKE) -C $(FT_DIR) 
-	$(MAKE) -C $(FT_GNL) 
+	$(MAKE) -C $(GNL_DIR) 
 	$(CC) $(CFLAGS) -o $@ $^ \
 		-L$(FT_DIR) -l$(FT) \
 		-L$(GNL_DIR) -l$(GNL)
@@ -84,12 +84,12 @@ $(CHECKER) : $(CHECKER_OBJ)
 	
 clean:
 	$(MAKE) clean -C $(FT_DIR)
-	$(MAKE) clean -C $(FT_GNL)
+	$(MAKE) clean -C $(GNL_DIR)
 	rm -f $(PUSH_SWAP_OBJ) $(CHECKER_OBJ)
 
 fclean: clean
 	$(MAKE) fclean -C $(FT_DIR)
-	$(MAKE) fclean -C $(FT_GNL)
+	$(MAKE) fclean -C $(GNL_DIR)
 	rm -f $(NAME) $(CHECKER)
 
 re: fclean all

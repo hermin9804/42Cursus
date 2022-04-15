@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:19:05 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 17:50:50 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 02:48:17 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ t_list		*pop_stack(t_stack *stack);
 void		push_stack(t_stack *dest, t_stack *from);
 void		rotate_stack(t_stack *stack);
 void		reverse_rotate_stack(t_stack *stack);
-void		sa(t_info *info);
-void		sb(t_info *info);
-void		ss(t_info *info);
-void		pa(t_info *info);
-void		pb(t_info *info);
-void		ra(t_info *info);
-void		rb(t_info *info);
-void		rr(t_info *info);
-void		rra(t_info *info);
-void		rrb(t_info *info);
-void		rrr(t_info *info);
+void		sa(t_info *info, char flag);
+void		sb(t_info *info, char flag);
+void		ss(t_info *info, char flag);
+void		pa(t_info *info, char flag);
+void		pb(t_info *info, char flag);
+void		ra(t_info *info, char flag);
+void		rb(t_info *info, char flag);
+void		rr(t_info *info, char flag);
+void		rra(t_info *info, char flag);
+void		rrb(t_info *info, char flag);
+void		rrr(t_info *info, char flag);
 
 #endif

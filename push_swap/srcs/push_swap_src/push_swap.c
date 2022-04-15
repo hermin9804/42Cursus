@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 21:52:59 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 02:06:58 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 02:53:19 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void	sort_ascending(t_info *info)
 	if (i < info->a.size / 2)
 	{
 		while (info->a.head->data != info->min)
-			ra(info);
+			ra(info, 'p');
 	}
 	else
 	{
 		while (info->a.head->data != info->min)
-			rra(info);
+			rra(info, 'p');
 	}
 }
 
@@ -49,20 +49,20 @@ static void	sort_three(t_info *info)
 	bot = info->a.head->prev->data;
 	if (top > mid && mid > bot && top > bot)
 	{
-		sa(info);
-		rra(info);
+		sa(info, 'p');
+		rra(info, 'p');
 	}
 	else if (top > mid && bot > mid && top > bot)
-		ra(info);
+		ra(info, 'p');
 	else if (mid > top && mid > bot && bot > top)
 	{
-		sa(info);
-		ra(info);
+		sa(info, 'p');
+		ra(info, 'p');
 	}
 	else if (top > mid && bot > mid && bot > top)
-		sa(info);
+		sa(info, 'p');
 	else if (mid > top && mid > bot && top > bot)
-		rra(info);
+		rra(info, 'p');
 }
 
 static void	sort_stack(t_info *info)

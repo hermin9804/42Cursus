@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:56:31 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 02:05:39 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 02:54:11 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ void	set_rotate_position(t_info *info, t_rotate rotate)
 {
 	while (rotate.a.r && rotate.b.r)
 	{
-		rr(info);
+		rr(info, 'p');
 		rotate.a.r--;
 		rotate.b.r--;
 	}
 	while (rotate.a.r--)
-		ra(info);
+		ra(info, 'p');
 	while (rotate.b.r--)
-		rb(info);
+		rb(info, 'p');
 	while (rotate.a.rr && rotate.b.rr)
 	{
-		rrr(info);
+		rrr(info, 'p');
 		rotate.a.rr--;
 		rotate.b.rr--;
 	}
 	while (rotate.a.rr--)
-		rra(info);
+		rra(info, 'p');
 	while (rotate.b.rr--)
-		rrb(info);
-	pa(info);
+		rrb(info, 'p');
+	pa(info, 'p');
 }
 
 void	pb_smaller_than_pivot(t_info *info, int pivot)
@@ -47,9 +47,9 @@ void	pb_smaller_than_pivot(t_info *info, int pivot)
 	{
 		tmp = info->a.head->data;
 		if (tmp < pivot)
-			pb(info);
+			pb(info, 'p');
 		else
-			ra(info);
+			ra(info, 'p');
 	}
 }
 
@@ -61,8 +61,8 @@ void	pb_leave_three(t_info *info)
 	{
 		tmp = info->a.head->data;
 		if (tmp == info->max)
-			ra(info);
+			ra(info, 'p');
 		else
-			pb(info);
+			pb(info, 'p');
 	}
 }
