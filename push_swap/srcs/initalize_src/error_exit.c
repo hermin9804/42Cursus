@@ -6,11 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 00:31:04 by mher              #+#    #+#             */
-/*   Updated: 2022/04/14 01:49:14 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 19:23:48 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "initialize.h"
 
 void	error_exit(void)
 {

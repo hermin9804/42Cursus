@@ -6,17 +6,20 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/15 18:12:44 by mher             ###   ########.fr        #
+#    Updated: 2022/04/15 20:38:29 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= push_swap
+CHECKER	= checker
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
 FT_DIR	= ./lib/Libft
+GNL_DIR	= ./lib/libgnl	
 FT 	= ft
+GNL	= gnl
 
 INCLUDE = -I./include
 
@@ -32,39 +35,63 @@ OPERATOR_SRC = \
 	$(OPERATOR_DIR)/operator_rr.c \
 	$(OPERATOR_DIR)/pop_push_swap_rotate.c \
 
+INITALIZE_DIR = ./srcs/initalize_src
+INITALIZE_SRC = \
+	$(INITALIZE_DIR)/init.c \
+	$(INITALIZE_DIR)/check.c \
+	$(INITALIZE_DIR)/quick_sort.c \
+	$(INITALIZE_DIR)/error_exit.c \
+
 PUSH_SWAP_DIR = ./srcs/push_swap_src
 PUSH_SWAP_SRC = \
 	$(OPERATOR_SRC) \
 	$(DATA_STRUCT_SRC) \
+	$(INITALIZE_SRC) \
 	$(PUSH_SWAP_DIR)/main.c \
-	$(PUSH_SWAP_DIR)/init.c \
 	$(PUSH_SWAP_DIR)/push_swap.c \
 	$(PUSH_SWAP_DIR)/set_position.c \
-	$(PUSH_SWAP_DIR)/quick_sort.c \
-	$(PUSH_SWAP_DIR)/check.c \
-	$(PUSH_SWAP_DIR)/error_exit.c \
 	$(PUSH_SWAP_DIR)/get_min_rotate_cnt.c \
 
+CHECKER_DIR =  ./srcs/checker_src
+CHECKER_SRC = \
+	$(OPERATOR_SRC) \
+	$(DATA_STRUCT_SRC) \
+	$(INITALIZE_SRC) \
+	$(CHECKER_DIR)/main.c \
+
+
 PUSH_SWAP_OBJ = $(PUSH_SWAP_SRC:.c=.o)
+CHECKER_OBJ = $(CHECKER_SRC:.c=.o)
 
 all: $(NAME)
+
+bonus: $(CHECKER)
 
 $(NAME): $(PUSH_SWAP_OBJ)
 	$(MAKE) -C $(FT_DIR) 
 	$(CC) $(CFLAGS) -o $@ $^ \
 		-L$(FT_DIR) -l$(FT)
 
+$(CHECKER) : $(CHECKER_OBJ)
+	$(MAKE) -C $(FT_DIR) 
+	$(MAKE) -C $(FT_GNL) 
+	$(CC) $(CFLAGS) -o $@ $^ \
+		-L$(FT_DIR) -l$(FT) \
+		-L$(GNL_DIR) -l$(GNL)
+
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
 	
 clean:
 	$(MAKE) clean -C $(FT_DIR)
-	rm -f $(OBJ)
+	$(MAKE) clean -C $(FT_GNL)
+	rm -f $(PUSH_SWAP_OBJ) $(CHECKER_OBJ)
 
 fclean: clean
 	$(MAKE) fclean -C $(FT_DIR)
-	rm -f $(NAME)
+	$(MAKE) fclean -C $(FT_GNL)
+	rm -f $(NAME) $(CHECKER)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

@@ -6,11 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 22:02:44 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 16:47:14 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 19:57:44 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "initialize.h"
 
 void	check_dup(int *nums, int size)
 {
@@ -25,7 +25,7 @@ void	check_dup(int *nums, int size)
 	}
 }
 
-void	check_ascending(t_info *info, int *nums)
+int	check_ascending(t_info *info, int *nums)
 {
 	int	i;
 	int	cnt;
@@ -42,7 +42,8 @@ void	check_ascending(t_info *info, int *nums)
 		++i;
 	}
 	if (cnt == info->total_size)
-		exit(0);
+		return (1);
+	return (0);
 }
 
 int	check_num_atoi(const char *str)

@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:52:56 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 17:34:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/15 20:27:50 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "initialize.h"
 
-static char	*get_line(int argc, char **argv)
+char	*get_line_num(int argc, char **argv)
 {
 	int		i;
 	char	*tmp;
@@ -38,7 +38,7 @@ static char	*get_line(int argc, char **argv)
 	return (line);
 }
 
-static int	*get_nums(char *line, t_info *info)
+int	*get_nums(char *line, t_info *info)
 {
 	int		i;
 	char	**strs;
@@ -66,7 +66,7 @@ static int	*get_nums(char *line, t_info *info)
 	return (nums);
 }
 
-static void	init_stack(t_info *info, int *nums)
+void	init_stack(t_info *info, int *nums)
 {
 	t_list	*tmp;
 
@@ -86,7 +86,7 @@ static void	init_stack(t_info *info, int *nums)
 	tmp->next = info->a.head;
 }
 
-static void	init_pivot(t_info *info, int *nums)
+void	init_pivot(t_info *info, int *nums)
 {
 	int	size;
 
@@ -95,20 +95,4 @@ static void	init_pivot(t_info *info, int *nums)
 	info->max = nums[size - 1];
 	info->f_pivot = nums[size * 1 / 3];
 	info->s_pivot = nums[size * 2 / 3];
-}
-
-void	init_info(t_info *info, int argc, char **argv)
-{
-	char	*line;
-	int		*nums;
-
-	line = get_line(argc, argv);
-	nums = get_nums(line, info);
-	init_stack(info, nums);
-	quick_sort(nums, 0, info->total_size - 1);
-	check_dup(nums, info->total_size);
-	check_ascending(info, nums);
-	init_pivot(info, nums);
-	free(line);
-	free(nums);
 }
