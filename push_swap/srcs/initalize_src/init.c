@@ -6,11 +6,12 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:52:56 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 20:27:50 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 16:45:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "initialize.h"
+#include <stdio.h>
 
 char	*get_line_num(int argc, char **argv)
 {
@@ -47,12 +48,10 @@ int	*get_nums(char *line, t_info *info)
 	i = 0;
 	strs = ft_split(line, ' ');
 	if (!strs)
-		error_exit();
+		exit(1);
 	while (strs[i])
 		++i;
 	info->total_size = i;
-	if (info->total_size == 1)
-		exit(1);
 	nums = (int *)malloc(info->total_size * sizeof(int));
 	if (!nums)
 		exit(1);

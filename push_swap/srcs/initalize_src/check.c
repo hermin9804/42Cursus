@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 22:02:44 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 19:57:44 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 16:44:06 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	check_num_atoi(const char *str)
 {
 	long	ret;
 	int		sign;
+	const char	*tmp;
 
 	ret = 0;
 	sign = 1;
@@ -58,14 +59,17 @@ int	check_num_atoi(const char *str)
 	if (*str == '+' || *str == '-')
 		if (*str++ == '-')
 			sign *= -1;
-	if (*str < '0' || '9' < *str)
-		error_exit();
+	tmp = str;
+	while (*tmp)
+	{
+		if (*tmp < '0' || '9' < *tmp)
+			error_exit();
+		++tmp;
+	}
 	while ('0' <= *str && *str <= '9')
 	{
 		ret = (ret * 10) + ((*str - '0') * sign);
 		if (ret < INT_MIN || INT_MAX < ret)
-			error_exit();
-		if (*str < '0' || '9' < *str)
 			error_exit();
 		++str;
 	}
