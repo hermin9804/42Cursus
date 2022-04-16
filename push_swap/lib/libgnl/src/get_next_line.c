@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2021/12/13 18:55:58 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/17 02:40:53 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_line(char *keep)
+static char	*get_line(char *keep)
 {
 	char	*line;
 	size_t	i;
@@ -40,7 +40,7 @@ char	*get_line(char *keep)
 	return (line);
 }
 
-char	*read_file(int fd, char *keep)
+static char	*read_file(int fd, char *keep)
 {
 	char	*buff;
 	char	*temp;
