@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 18:07:13 by mher              #+#    #+#              #
-#    Updated: 2022/03/27 02:19:54 by mher             ###   ########.fr        #
+#    Updated: 2022/04/17 02:43:43 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,4 +41,4 @@ fclean: clean
 
 re: clean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

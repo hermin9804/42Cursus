@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 13:44:52 by mher              #+#    #+#              #
-#    Updated: 2022/03/27 02:14:26 by mher             ###   ########.fr        #
+#    Updated: 2022/04/17 02:44:48 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,25 +54,11 @@ SRC = \
 	$(SRC_DIR)/ft_striteri.c \
 	$(SRC_DIR)/ft_toupper.c
 
-B_SRC= \
-	$(SRC_DIR)/ft_lstnew.c \
-	$(SRC_DIR)/ft_lstadd_front.c \
-	$(SRC_DIR)/ft_lstsize.c \
-	$(SRC_DIR)/ft_lstlast.c \
-	$(SRC_DIR)/ft_lstadd_back.c \
-	$(SRC_DIR)/ft_lstdelone.c \
-	$(SRC_DIR)/ft_lstclear.c \
-	$(SRC_DIR)/ft_lstiter.c \
-	$(SRC_DIR)/ft_lstmap.c
-
 OBJ	= $(SRC:.c=.o)
-
-B_OBJ	= $(B_SRC:.c=.o)
-
 
 $(NAME): $(OBJ)
 
-bonus: $(OBJ) $(B_OBJ)
+bonus: $(OBJ)
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
@@ -81,11 +67,11 @@ bonus: $(OBJ) $(B_OBJ)
 all: $(NAME)
 		
 clean:
-	rm -f $(OBJ) $(B_OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
 
-re: clean all
+re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
