@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:53:03 by mher              #+#    #+#             */
-/*   Updated: 2022/04/16 03:32:55 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 17:57:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	run_op(t_info *info, char *op)
 		rra(info, 'c');
 	else if (!ft_strncmp(op, "rrr\n", 4))
 		rrr(info, 'c');
+	else
+		error_exit("Error\n");
 }
 
 static void	checker(t_info *info)

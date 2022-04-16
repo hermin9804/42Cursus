@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 22:02:44 by mher              #+#    #+#             */
-/*   Updated: 2022/04/16 16:44:06 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 17:13:51 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_dup(int *nums, int size)
 	while (i + 1 < size)
 	{
 		if (nums[i] == nums[i + 1])
-			error_exit();
+			error_exit("Error\n");
 		++i;
 	}
 }
@@ -63,14 +63,14 @@ int	check_num_atoi(const char *str)
 	while (*tmp)
 	{
 		if (*tmp < '0' || '9' < *tmp)
-			error_exit();
+			error_exit("Error\n");
 		++tmp;
 	}
 	while ('0' <= *str && *str <= '9')
 	{
 		ret = (ret * 10) + ((*str - '0') * sign);
 		if (ret < INT_MIN || INT_MAX < ret)
-			error_exit();
+			error_exit("Error\n");
 		++str;
 	}
 	return (ret);

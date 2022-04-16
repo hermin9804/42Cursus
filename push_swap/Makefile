@@ -6,14 +6,14 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/16 02:58:54 by mher             ###   ########.fr        #
+#    Updated: 2022/04/16 17:35:35 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= push_swap
-CHECKER	= checker
+B_NAME	= checker
 
-CC		= gcc
+CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
 FT_DIR	= ./lib/Libft
@@ -65,14 +65,14 @@ CHECKER_OBJ = $(CHECKER_SRC:.c=.o)
 
 all: $(NAME)
 
-bonus: $(CHECKER)
+bonus: $(B_NAME)
 
 $(NAME): $(PUSH_SWAP_OBJ)
 	$(MAKE) -C $(FT_DIR) 
 	$(CC) $(CFLAGS) -o $@ $^ \
 		-L$(FT_DIR) -l$(FT) 
 
-$(CHECKER) : $(CHECKER_OBJ)
+$(B_NAME) : $(CHECKER_OBJ)
 	$(MAKE) -C $(FT_DIR) 
 	$(MAKE) -C $(GNL_DIR) 
 	$(CC) $(CFLAGS) -o $@ $^ \
@@ -90,7 +90,7 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C $(FT_DIR)
 	$(MAKE) fclean -C $(GNL_DIR)
-	rm -f $(NAME) $(CHECKER)
+	rm -f $(NAME) $(B_NAME)
 
 re: fclean all
 

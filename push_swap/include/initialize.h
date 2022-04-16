@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:18:22 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 20:28:08 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 17:05:30 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	check_num_atoi(const char *str);
 void		quick_sort(int *arr, int start, int end);
 
 // error_exit
-void		error_exit(void);
+void		error_exit(const char *msg);
 
 #endif

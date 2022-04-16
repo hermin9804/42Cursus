@@ -6,12 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:52:56 by mher              #+#    #+#             */
-/*   Updated: 2022/04/16 16:45:15 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 17:44:28 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "initialize.h"
-#include <stdio.h>
 
 char	*get_line_num(int argc, char **argv)
 {
@@ -24,14 +23,16 @@ char	*get_line_num(int argc, char **argv)
 	line = 0;
 	while (i < argc)
 	{
+		if (*argv[i] == 0)
+			error_exit("Error\n");
 		tmp = ft_strjoin(line, argv[i]);
 		if (!tmp)
-			exit(1);
+			error_exit("Error\n");
 		free(line);
 		line = tmp;
 		tmp = ft_strjoin(line, " ");
 		if (!tmp)
-			exit(1);
+			error_exit("Error\n");
 		free(line);
 		line = tmp;
 		++i;
@@ -48,16 +49,19 @@ int	*get_nums(char *line, t_info *info)
 	i = 0;
 	strs = ft_split(line, ' ');
 	if (!strs)
-		exit(1);
+		error_exit("Error\n");
 	while (strs[i])
 		++i;
 	info->total_size = i;
 	nums = (int *)malloc(info->total_size * sizeof(int));
 	if (!nums)
-		exit(1);
-	i = -1;
-	while (strs[++i])
+		error_exit("Error\n");
+	i = 0;
+	while (strs[i])
+	{
 		nums[i] = check_num_atoi(strs[i]);
+		++i;
+	}
 	i = 0;
 	while (strs[i])
 		free(strs[i++]);
@@ -76,7 +80,7 @@ void	init_stack(t_info *info, int *nums)
 	{
 		tmp = ft_lstnew(nums[info->a.size]);
 		if (!tmp)
-			error_exit();
+			error_exit("Error\n");
 		ft_lstadd_back(&info->a.head, tmp);
 		info->a.size++;
 	}
