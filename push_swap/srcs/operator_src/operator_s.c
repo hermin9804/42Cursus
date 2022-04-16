@@ -6,12 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 00:18:11 by mher              #+#    #+#             */
-/*   Updated: 2022/04/16 02:50:34 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 18:19:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operator.h"
-#include <stdio.h>
 
 void	sa(t_info *info, char flag)
 {

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:18:22 by mher              #+#    #+#             */
-/*   Updated: 2022/04/16 17:05:30 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/16 19:05:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,10 @@ char	*get_line_num(int argc, char **argv);
 int	*get_nums(char *line, t_info *info);
 void	init_stack(t_info *info, int *nums);
 void	init_pivot(t_info *info, int *nums);
-
 void	check_dup(int *nums, int size);
 int	check_ascending(t_info *info, int *nums);
 int	check_num_atoi(const char *str);
-
-//sort
-void		quick_sort(int *arr, int start, int end);
-
-// error_exit
-void		error_exit(const char *msg);
+void	quick_sort(int *arr, int start, int end);
+void	error_exit(const char *msg);
 
 #endif
