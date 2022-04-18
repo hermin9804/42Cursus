@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 22:02:44 by mher              #+#    #+#             */
-/*   Updated: 2022/04/16 17:13:51 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/18 14:28:03 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	check_dup(int *nums, int size)
 
 int	check_ascending(t_info *info, int *nums)
 {
-	int	i;
-	int	cnt;
+	int		i;
+	int		cnt;
 	t_list	*cur;
 
 	i = 0;
@@ -48,8 +48,8 @@ int	check_ascending(t_info *info, int *nums)
 
 int	check_num_atoi(const char *str)
 {
-	long	ret;
-	int		sign;
+	long		ret;
+	int			sign;
 	const char	*tmp;
 
 	ret = 0;
@@ -68,10 +68,9 @@ int	check_num_atoi(const char *str)
 	}
 	while ('0' <= *str && *str <= '9')
 	{
-		ret = (ret * 10) + ((*str - '0') * sign);
+		ret = (ret * 10) + ((*str++ - '0') * sign);
 		if (ret < INT_MIN || INT_MAX < ret)
 			error_exit("Error\n");
-		++str;
 	}
 	return (ret);
 }

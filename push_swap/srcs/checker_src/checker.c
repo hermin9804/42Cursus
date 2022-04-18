@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:53:03 by mher              #+#    #+#             */
-/*   Updated: 2022/04/16 17:57:21 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/18 14:24:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ int	main(int argc, char **argv)
 {
 	t_info	info;
 	char	*line;
-	int	*nums;
+	int		*nums;
 
 	if (argc < 2)
-		return(0);
+		return (0);
 	line = get_line_num(argc, argv);
 	nums = get_nums(line, &info);
 	init_stack(&info, nums);

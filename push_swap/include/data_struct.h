@@ -6,14 +6,14 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:28:10 by mher              #+#    #+#             */
-/*   Updated: 2022/04/15 18:10:26 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/18 14:21:29 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_STRUCT_H
 # define DATA_STRUCT_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 
 typedef struct s_list
 {
