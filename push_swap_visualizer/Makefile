@@ -6,20 +6,21 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/19 19:13:30 by mher             ###   ########.fr        #
+#    Updated: 2022/04/20 02:08:27 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= push_swap
-B_NAME	= checker
+NAME 	= visualizer
 
 CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
-FT_DIR	= ./lib/Libft
-GNL_DIR	= ./lib/libgnl	
-FT 	= ft
-GNL	= gnl
+FT_DIR		= ./lib/Libft
+GNL_DIR		= ./lib/libgnl	
+TESTER_DIR	= ./push_swap_tester	
+FT	 	= ft
+GNL		= gnl
+
 
 INCLUDE = -I./include
 
@@ -42,39 +43,23 @@ INITALIZE_SRC = \
 	$(INITALIZE_DIR)/quick_sort.c \
 	$(INITALIZE_DIR)/error_exit.c \
 
-PUSH_SWAP_DIR = ./srcs/push_swap_src
-PUSH_SWAP_SRC = \
+VISUALIZER_DIR =  ./srcs/visualizer_src
+VISUALIZER_SRC = \
 	$(OPERATOR_SRC) \
 	$(DATA_STRUCT_SRC) \
 	$(INITALIZE_SRC) \
-	$(PUSH_SWAP_DIR)/main.c \
-	$(PUSH_SWAP_DIR)/push_swap.c \
-	$(PUSH_SWAP_DIR)/set_position.c \
-	$(PUSH_SWAP_DIR)/get_min_rotate_cnt.c \
-
-CHECKER_DIR =  ./srcs/checker_src
-CHECKER_SRC = \
-	$(OPERATOR_SRC) \
-	$(DATA_STRUCT_SRC) \
-	$(INITALIZE_SRC) \
-	$(CHECKER_DIR)/checker.c \
+	$(VISUALIZER_DIR)/visualizer.c \
 
 
-PUSH_SWAP_OBJ = $(PUSH_SWAP_SRC:.c=.o)
-CHECKER_OBJ = $(CHECKER_SRC:.c=.o)
+PUSH_SWAP_OBJ	= $(PUSH_SWAP_SRC:.c=.o)
+VISUALIZER_OBJ	= $(VISUALIZER_SRC:.c=.o)
 
 all: $(NAME)
 
-bonus: $(B_NAME)
-
-$(NAME): $(PUSH_SWAP_OBJ)
-	$(MAKE) -C $(FT_DIR) 
-	$(CC) $(CFLAGS) -o $@ $^ \
-		-L$(FT_DIR) -l$(FT) 
-
-$(B_NAME) : $(CHECKER_OBJ)
+$(NAME) : $(VISUALIZER_OBJ)
 	$(MAKE) -C $(FT_DIR) 
 	$(MAKE) -C $(GNL_DIR) 
+	$(MAKE) -C $(TESTER_DIR) 
 	$(CC) $(CFLAGS) -o $@ $^ \
 		-L$(FT_DIR) -l$(FT) \
 		-L$(GNL_DIR) -l$(GNL)
@@ -85,13 +70,14 @@ $(B_NAME) : $(CHECKER_OBJ)
 clean:
 	$(MAKE) clean -C $(FT_DIR)
 	$(MAKE) clean -C $(GNL_DIR)
-	rm -f $(PUSH_SWAP_OBJ) $(CHECKER_OBJ)
+	rm -f $(PUSH_SWAP_OBJ) $(VISUALIZER_OBJ)
 
 fclean: clean
 	$(MAKE) fclean -C $(FT_DIR)
 	$(MAKE) fclean -C $(GNL_DIR)
-	rm -f $(NAME) $(B_NAME)
+	$(MAKE) fclean -C $(TESTER_DIR) 
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   visualizer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:53:03 by mher              #+#    #+#             */
-/*   Updated: 2022/04/19 21:37:58 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/20 01:43:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-#include <stdio.h>
 #include <fcntl.h>
 
 static void	run_op(t_info *info, char *op)
@@ -46,13 +45,13 @@ static void	run_op(t_info *info, char *op)
 static void	print_stick(int	cnt)
 {
 	while (cnt--)
-		printf("-");
+		write(1, "-", 1);
 }
 
 static void	print_space(int cnt)
 {
 	while (cnt--)
-		printf(" ");
+		write(1, " ", 1);
 }
 
 static void	braker(void)
@@ -85,10 +84,10 @@ static void	visualizer(const t_info *info)
 			print_space(info->max - a_cur->data);
 		else
 			print_space(info->max);
-		printf("|");
+		write(1, "|", 1);
 		if (0 < info->b.size && i < info->b.size)
 			print_stick(b_cur->data);
-		printf("\n");
+		write(1, "\n", 1);
 		if (1 < info->a.size)
 			a_cur = a_cur->next;
 		if (1 < info->b.size)
@@ -141,6 +140,5 @@ int	main(int argc, char **argv)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	system("rm push_swap_out");
 	exit(0);
 }
