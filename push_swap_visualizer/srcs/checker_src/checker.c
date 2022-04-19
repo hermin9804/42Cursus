@@ -6,12 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:53:03 by mher              #+#    #+#             */
-/*   Updated: 2022/04/18 18:33:13 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/19 21:37:58 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include <stdio.h>
+#include <fcntl.h>
 
 static void	run_op(t_info *info, char *op)
 {
@@ -34,7 +35,7 @@ static void	run_op(t_info *info, char *op)
 	else if (!ft_strncmp(op, "rra\n", 4))
 		rra(info, 'c');
 	else if (!ft_strncmp(op, "rrb\n", 4))
-		rra(info, 'c');
+		rrb(info, 'c');
 	else if (!ft_strncmp(op, "rrr\n", 4))
 		rrr(info, 'c');
 	else
@@ -54,6 +55,18 @@ static void	print_space(int cnt)
 		printf(" ");
 }
 
+static void	braker(void)
+{
+	char	*brake;
+
+	while(1)
+	{
+		brake = get_next_line(STDIN_FILENO);
+		if (!ft_strncmp(brake, "\n", 1))
+			return ;
+	}
+}
+
 static void	visualizer(const t_info *info)
 {
 	int		i;
@@ -63,6 +76,7 @@ static void	visualizer(const t_info *info)
 	i = 0;
 	a_cur = info->a.head;
 	b_cur = info->b.head;
+	system("clear");
 	while (i < info->total_size)
 	{
 		if (0 < info->a.size && i < info->a.size)
@@ -86,18 +100,26 @@ static void	visualizer(const t_info *info)
 static void	checker(t_info *info)
 {
 	char	*op;
+	int	fd;
+	int	cnt;
 
 	op = 0;
+	cnt = 0;
+	fd = open("push_swap_out", O_RDONLY);
+	if (fd < 0)
+		error_exit("Error: file open\n");
 	while (1)
 	{
-		system("clear");
 		visualizer(info);
-		op = get_next_line(1);
+		op = get_next_line(fd);
 		if (!op)
 			break ;
 		run_op(info, op);
+		braker();
 		free(op);
+		++cnt;
 	}
+	close(fd);
 }
 
 int	main(int argc, char **argv)
@@ -119,5 +141,6 @@ int	main(int argc, char **argv)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	system("rm push_swap_out");
 	exit(0);
 }

@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2022/04/17 02:40:53 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/19 18:01:12 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*get_line(char *keep)
+char	*get_line(char *keep)
 {
 	char	*line;
 	size_t	i;
@@ -24,23 +24,24 @@ static char	*get_line(char *keep)
 		++i;
 	line = (char *)malloc(sizeof(char) * (i + 1));
 	if (!line)
+	{
+		free(keep);
+		keep = 0;
 		return (0);
+	}
 	i = 0;
 	while (keep[i] != '\n' && keep[i])
 	{
 		line[i] = keep[i];
-		++i;
+		i++;
 	}
 	if (keep[i] == '\n')
-	{
-		line[i] = '\n';
-		++i;
-	}
+		line[i++] = '\n';
 	line[i] = 0;
 	return (line);
 }
 
-static char	*read_file(int fd, char *keep)
+char	*read_file(int fd, char *keep)
 {
 	char	*buff;
 	char	*temp;
@@ -68,31 +69,80 @@ static char	*read_file(int fd, char *keep)
 	return (keep);
 }
 
+t_fd_lst	*find_fd(int fd, t_fd_lst *head)
+{
+	t_fd_lst	*temp;
+
+	temp = head->next;
+	while (temp)
+	{
+		if (temp->fd == fd)
+			return (temp);
+		temp = temp->next;
+	}
+	temp = (t_fd_lst *)malloc(sizeof(t_fd_lst));
+	if (!temp)
+		return (0);
+	temp->fd = fd;
+	temp->keep = 0;
+	temp->prev = head;
+	temp->next = head->next;
+	if (head->next)
+		head->next->prev = temp;
+	head->next = temp;
+	return (temp);
+}
+
+char	*gnl_or_del(t_fd_lst **fd_lst)
+{
+	char	*line;
+	char	*temp;
+
+	if ((*fd_lst)->keep)
+	{
+		line = get_line((*fd_lst)->keep);
+		if (!line)
+			return (0);
+		temp = (*fd_lst)->keep;
+		(*fd_lst)->keep = ft_strdup(temp + ft_strlen(line));
+		free(temp);
+		temp = 0;
+		if (!((*fd_lst)->keep))
+			return (0);
+		return (line);
+	}
+	else
+	{
+		(*fd_lst)->prev->next = (*fd_lst)->next;
+		if ((*fd_lst)->next)
+			(*fd_lst)->next->prev = (*fd_lst)->prev;
+		free(*fd_lst);
+		*fd_lst = 0;
+		return (0);
+	}
+}
+
 char	*get_next_line(int fd)
 {
-	static char		*keep;
-	char			*line;
-	char			*temp;
+	static t_fd_lst	head;
+	t_fd_lst		*fd_lst;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (0);
-	keep = read_file(fd, keep);
-	if (!keep)
+	fd_lst = find_fd(fd, &head);
+	if (!fd_lst)
 		return (0);
-	if (!*keep)
+	fd_lst->keep = read_file(fd, fd_lst->keep);
+	//read_file에서 buff 할당실패 || keep 할당 실패
+	if (!(fd_lst->keep))
+		return (gnl_or_del(&fd_lst));
+	//read_file에서 empty_file || eof를 만난후 다시 읽은 경우 keep에 '\0' free
+	if (!*(fd_lst->keep))
 	{
-		free(keep);
-		keep = 0;
-		return (0);
+		free(fd_lst->keep);
+		fd_lst->keep = 0;
+		return (gnl_or_del(&fd_lst));
 	}
-	line = get_line(keep);
-	if (!line)
-		return (0);
-	temp = keep;
-	keep = ft_strdup(temp + ft_strlen(line));
-	free(temp);
-	temp = 0;
-	if (!keep)
-		return (0);
-	return (line);
+	//read_file에서 한줄을 잘 읽고 keep에 문자열이 저장된경우
+	return (gnl_or_del(&fd_lst));
 }
