@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/19 13:44:52 by mher              #+#    #+#              #
-#    Updated: 2022/04/17 02:44:48 by mher             ###   ########.fr        #
+#    Updated: 2022/04/20 03:02:33 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,16 +61,16 @@ $(NAME): $(OBJ)
 bonus: $(OBJ)
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
+	@$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
 	@ar crsu $(NAME) $@
 
 all: $(NAME)
 		
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

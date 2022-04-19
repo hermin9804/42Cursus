@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/20 02:08:27 by mher             ###   ########.fr        #
+#    Updated: 2022/04/20 03:03:49 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,23 +60,23 @@ $(NAME) : $(VISUALIZER_OBJ)
 	$(MAKE) -C $(FT_DIR) 
 	$(MAKE) -C $(GNL_DIR) 
 	$(MAKE) -C $(TESTER_DIR) 
-	$(CC) $(CFLAGS) -o $@ $^ \
+	@$(CC) $(CFLAGS) -o $@ $^ \
 		-L$(FT_DIR) -l$(FT) \
 		-L$(GNL_DIR) -l$(GNL)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
+	@$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
 	
 clean:
 	$(MAKE) clean -C $(FT_DIR)
 	$(MAKE) clean -C $(GNL_DIR)
-	rm -f $(PUSH_SWAP_OBJ) $(VISUALIZER_OBJ)
+	@rm -f $(PUSH_SWAP_OBJ) $(VISUALIZER_OBJ)
 
 fclean: clean
 	$(MAKE) fclean -C $(FT_DIR)
 	$(MAKE) fclean -C $(GNL_DIR)
 	$(MAKE) fclean -C $(TESTER_DIR) 
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
