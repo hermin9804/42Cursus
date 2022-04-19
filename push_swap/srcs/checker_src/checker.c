@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:53:03 by mher              #+#    #+#             */
-/*   Updated: 2022/04/18 14:24:15 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/19 21:31:05 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	run_op(t_info *info, char *op)
 	else if (!ft_strncmp(op, "rra\n", 4))
 		rra(info, 'c');
 	else if (!ft_strncmp(op, "rrb\n", 4))
-		rra(info, 'c');
+		rrb(info, 'c');
 	else if (!ft_strncmp(op, "rrr\n", 4))
 		rrr(info, 'c');
 	else
@@ -47,7 +47,7 @@ static void	checker(t_info *info)
 	op = 0;
 	while (1)
 	{
-		op = get_next_line(1);
+		op = get_next_line(STDIN_FILENO);
 		if (!op)
 			break ;
 		run_op(info, op);
