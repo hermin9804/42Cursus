@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:53:03 by mher              #+#    #+#             */
-/*   Updated: 2022/04/20 01:43:16 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/20 03:30:22 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@
 static void	run_op(t_info *info, char *op)
 {
 	if (!ft_strncmp(op, "sa\n", 3))
-		sa(info, 'c');
+		sa(info, 'p');
 	else if (!ft_strncmp(op, "sb\n", 3))
-		sb(info, 'c');
+		sb(info, 'p');
 	else if (!ft_strncmp(op, "ss\n", 3))
-		ss(info, 'c');
+		ss(info, 'p');
 	else if (!ft_strncmp(op, "pa\n", 3))
-		pa(info, 'c');
+		pa(info, 'p');
 	else if (!ft_strncmp(op, "pb\n", 3))
-		pb(info, 'c');
+		pb(info, 'p');
 	else if (!ft_strncmp(op, "ra\n", 3))
-		ra(info, 'c');
+		ra(info, 'p');
 	else if (!ft_strncmp(op, "rb\n", 3))
-		rb(info, 'c');
+		rb(info, 'p');
 	else if (!ft_strncmp(op, "rr\n", 3))
-		rr(info, 'c');
+		rr(info, 'p');
 	else if (!ft_strncmp(op, "rra\n", 4))
-		rra(info, 'c');
+		rra(info, 'p');
 	else if (!ft_strncmp(op, "rrb\n", 4))
-		rrb(info, 'c');
+		rrb(info, 'p');
 	else if (!ft_strncmp(op, "rrr\n", 4))
-		rrr(info, 'c');
+		rrr(info, 'p');
 	else
 		error_exit("Error\n");
 }
