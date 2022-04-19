@@ -34,5 +34,5 @@
 ```
 
 ```
-./run_visualizer.bash 50
+./run_visualizer.bash 30
 ```
