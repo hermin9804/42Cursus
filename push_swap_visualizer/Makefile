@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 11:24:10 by mher              #+#    #+#              #
-#    Updated: 2022/04/20 03:03:49 by mher             ###   ########.fr        #
+#    Updated: 2022/04/20 03:39:26 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,8 @@ $(NAME) : $(VISUALIZER_OBJ)
 clean:
 	$(MAKE) clean -C $(FT_DIR)
 	$(MAKE) clean -C $(GNL_DIR)
-	@rm -f $(PUSH_SWAP_OBJ) $(VISUALIZER_OBJ)
+	@rm -f $(VISUALIZER_OBJ) 
+	rm -f push_swap_out
 
 fclean: clean
 	$(MAKE) fclean -C $(FT_DIR)

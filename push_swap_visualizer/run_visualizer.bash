@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 00:29:53 by mher              #+#    #+#              #
-#    Updated: 2022/04/20 02:01:41 by mher             ###   ########.fr        #
+#    Updated: 2022/04/20 03:35:58 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,5 +53,3 @@ fi
 $PUSH_SWAP_DIR/push_swap $ARG >> push_swap_out
 
 ./visualizer $ARG
-
-rm push_swap_out
