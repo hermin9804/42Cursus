@@ -3,7 +3,7 @@
 ## Note
 
 - push_swap 보너스 과제인 checker 프로그램을 응용해서 만든 간단한 push_swap_visualizer 프로그램입니다.
-- 인자로 들어가는 난수는 minckim님의 [push_swap_tester](https://github.com/minckim42/push_swap_tester)에 있는 random_numbers 프로그램을 사용 했습니다.
+- 인자로 들어가는 난수는 minckim님의 [push_swap_tester](https://github.com/minckim42/push_swap_tester) repo에 있는 random_numbers 프로그램을 사용 했습니다.
 - 오류나 버그, 궁금한점은 슬랙 DM 혹은 메일로 연락 주세요!
 - 수정이나 배포는 자유 입니다!
 
