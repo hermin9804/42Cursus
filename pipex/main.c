@@ -6,64 +6,126 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/04/29 19:26:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/30 02:53:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <err.h>
 #include "pipex.h"
 
-static void child(int fd[2])
+//static void child(t_arg *arg, char *envp[])
+//{
+//	close(arg->pipe[READ]);
+//	dup2(arg->infile, STDIN_FILENO);
+//	dup2(arg->pipe[WRITE], STDOUT_FILENO);
+//	execve(arg->cmd1, arg->cmd_arg1, envp);
+//	exit(EXIT_FAILURE); //error_exit();
+//}
+//
+//static void parent(t_arg *arg, char *envp[])
+//{
+//	waitpid(arg->child_pid, NULL, WNOHANG);
+//	close(arg->pipe[WRITE]);
+//	dup2(arg->pipe[READ], STDIN_FILENO);
+//	dup2(arg->outfile, STDOUT_FILENO);
+//	execve(arg->cmd2, arg->cmd_arg2, envp);
+//	exit(EXIT_SUCCESS);
+//}
+
+char	**get_path_envp(char *envp[])
 {
-	dup2(fd[FD_OUT], STDOUT_FILENO);
-	char *args[] = {"/bin/echo", "hello", NULL};
-	printf("I'm child!\n");
-	fflush(stdout);
-	execve("/bin/echo", args, NULL);
-	err(EXIT_FAILURE, "exec() failed");
+	char	*path;
+
+	while (*envp && ft_strncmp("PATH=", *envp, 5))
+		++envp;
+	if (*envp == NULL)
+		exit(EXIT_FAILURE); //error_exit();
+	path = *envp + 5;
+	return (ft_split(path, ':'));
 }
 
-static void parent(int fd[2])
+static char *get_cmd_argv(char **path, char *cmd)
 {
-	char tmp[5];
-	int	cnt;
+	int		i;
+	int		fd;
+	char	*path_cmd;
+	char	*tmp;
 
-	printf("I'm parent!\n");
-	cnt = read(fd[FD_IN], tmp, 5);
-	printf("%d\n", cnt);
-	write(STDOUT_FILENO, tmp, 5);
-	exit(EXIT_SUCCESS);
+	fd = access(cmd, X_OK);
+	if (fd != -1)
+		return (cmd);
+	path_cmd = ft_strjoin("/", cmd);
+	i = 0;
+	while (path[i])
+	{
+		tmp = ft_strjoin(path[i], path_cmd);
+		fd = access(tmp, X_OK);
+		if (fd != -1)
+		{
+			free(path_cmd);
+			return (tmp);
+		}
+		close(fd);
+		free(tmp);
+		i++;
+	}
+	free(path_cmd);
+	return (NULL);
+}
+
+static void parse_arg(t_arg *arg, char *argv[], char *envp[])
+{
+	arg->infile = open(argv[1], O_RDONLY);
+	if (arg->infile == -1)
+		perror("infile");
+	arg->outfile = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (arg->outfile == -1)
+		exit(EXIT_FAILURE); //error_exit();
+	arg->path = get_path_envp(envp);
+	if (arg->path == 0)
+		exit(EXIT_FAILURE); //error_exit();
+	arg->cmd_arg1 = ft_split(argv[2], ' ');
+	arg->cmd_arg2 = ft_split(argv[3], ' ');
+	arg->cmd1 = get_cmd_argv(arg->path, arg->cmd_arg1[0]);
+	arg->cmd2 = get_cmd_argv(arg->path, arg->cmd_arg2[0]);
+	if (arg->cmd1 == NULL || arg->cmd2 == NULL)
+		perror("command not found");
+}
+
+void	control_fds(int closed, int std_in, int std_out)
+{
+	close(closed);
+	if (dup2(std_in, STDIN_FILENO) == -1)
+		exit(EXIT_FAILURE); //error_exit();
+	if (dup2(std_out, STDOUT_FILENO) == -1)
+		exit(EXIT_FAILURE); //error_exit();
+	close(std_in);
+	close(std_out);
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	pid_t	child_pid;
-	int	fd[2];
-	int	status;
+	t_arg	arg;
 
-	(void)argv;
-	(void)envp;
-	if (argc < 1)
-		return (0);
-	if (pipe(fd) < 0)
+	if (argc != 5)
+		exit(EXIT_FAILURE); //error_exit();
+	parse_arg(&arg, argv, envp);
+	if (pipe(arg.pipe) < 0)
+		exit(EXIT_FAILURE); //error_exit();
+	arg.child_pid = fork();
+	if (arg.child_pid == -1)
+		exit(EXIT_FAILURE); //error_exit();
+	else if (arg.child_pid == 0)
 	{
-		printf("pipe error\n");
-		exit(EXIT_FAILURE);
-	}
-	child_pid = fork();
-	if (child_pid == -1)
-		err(EXIT_FAILURE, "fork() failed");
-	if (child_pid == 0)
-	{
-		child(fd);
+		control_fds(arg.pipe[0], arg.infile, arg.pipe[1]);
+		if (execve(arg.cmd1, arg.cmd_arg1, envp) == -1)
+			exit(EXIT_FAILURE); //error_exit();
 	}
 	else
 	{
-		waitpid(child_pid, &status, 0);
-		parent(fd);
+		control_fds(arg.pipe[1], arg.pipe[0], arg.outfile);
+		waitpid(arg.child_pid, NULL, WNOHANG);
+		if (execve(arg.cmd2, arg.cmd_arg2, envp) == -1)
+			exit(EXIT_FAILURE); //error_exit();
 	}
-	err(EXIT_FAILURE, "shouldn't reach here");
+	exit(0);
 }
