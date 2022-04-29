@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/04/25 23:37:37 by mher             ###   ########.fr       */
+/*   Updated: 2022/04/29 18:15:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,26 @@ static void parent(pid_t pid_c)
 
 int	main(void)
 {
-	pid_t ret;
+	pid_t	ret;
+	int	fdA[2];
+	int	fdB[2];
+	
+	if (pipe(fdA) < 0)
+	{
+		printf("pipe error\n");
+		exit(1);
+	}
+	if (pipe(fdB) < 0)
+	{
+		printf("pipe error\n");
+		exit(1);
+	}
 	ret = fork();
 	if (ret == -1)
 		err(EXIT_FAILURE, "fork() failed");
 	if (ret == 0)
-	{
 		child();
-	}
 	else
-	{
 		parent(ret);
-	}
 	err(EXIT_FAILURE, "shouldn't reach here");
 }
