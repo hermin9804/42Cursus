@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:26:02 by mher              #+#    #+#             */
-/*   Updated: 2022/04/30 01:03:47 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/03 02:48:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "libft/include/libft.h"
+
+# include "libft/include/libft.h"//
 
 typedef struct s_arg
 {
-	int		infile;
-	int		outfile;
+	int	proc_cnt;
+	char	*infile;
+	char	*outfile;
 	char	**path;
-	char	*cmd1;
-	char	*cmd2;
-	char	**cmd_arg1;
-	char	**cmd_arg2;
-	int	pipe[2];
-	pid_t	child_pid;
+	char	*proc;
+	char	**cmd;
+	int	a[2];
+	int	b[2];
 	
 }	t_arg;
 
