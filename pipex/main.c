@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/03 04:01:42 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/04 03:00:57 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,21 @@ void	control_fds(t_arg *arg, int argc)
 		dup2(infile_fd, STDIN_FILENO);
 		dup2(arg->b[WRITE], STDOUT_FILENO);
 	}
+	else if (arg->proc_cnt == argc - 2)
+	{
+		close(arg->a[WRITE]);
+		outfile_fd = open(arg->outfile, O_RDWR | O_CREAT | O_TRUNC, 0755);
+		if (outfile_fd == -1)
+			exit(EXIT_FAILURE); //error_exit();
+		dup2(arg->a[READ], STDIN_FILENO);
+		dup2(outfile_fd, STDOUT_FILENO);
+	}
 	else if (arg->proc_cnt < argc - 2)
 	{
 		close(arg->a[WRITE]);
 		close(arg->b[READ]);
 		dup2(arg->a[READ], STDIN_FILENO);
 		dup2(arg->b[WRITE], STDOUT_FILENO);
-	}
-	else if (arg->proc_cnt == argc - 2)
-	{
-		close(arg->a[WRITE]);
-		outfile_fd = open(arg->outfile, O_RDWR | O_CREAT | O_TRUNC, 0644);
-		if (outfile_fd == -1)
-			exit(EXIT_FAILURE); //error_exit();
-		dup2(arg->a[READ], STDIN_FILENO);
-		dup2(outfile_fd, STDOUT_FILENO);
 	}
 }
 
@@ -138,8 +138,20 @@ int	main(int argc, char *argv[], char *envp[])
 		}
 		else
 		{
-		//	printf("%d %d\n", i, argc);
-			waitpid(child_pid, NULL, WNOHANG);
+			if (arg.proc_cnt == 2)
+			{
+				close(arg.b[WRITE]);
+			}
+			else if (arg.proc_cnt == argc - 2)
+			{
+				close(arg.a[READ]);
+			}
+			else if (arg.proc_cnt < argc - 2)
+			{
+				close(arg.a[READ]);
+				close(arg.b[WRITE]);
+			}
+			waitpid(child_pid, 0, WNOHANG);
 			swap_fd(arg.a, arg.b);
 		}
 		i++;
