@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:26:02 by mher              #+#    #+#             */
-/*   Updated: 2022/05/03 02:48:37 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/04 18:42:59 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 typedef struct s_arg
 {
+	pid_t	pid;
 	int	proc_cnt;
 	char	*infile;
 	char	*outfile;

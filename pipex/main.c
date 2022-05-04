@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/04 16:53:00 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/04 18:44:20 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char *get_cmd_argv(char **path, char *proc)
 	return (NULL);
 }
 
-void	control_fds(t_arg *arg, int argc)
+void	redirect_fd(t_arg *arg, int argc)
 {
 	int	fd;
 
@@ -100,15 +100,54 @@ void	assign_process(int argc, char *argv[], char *envp[], t_arg *arg)
 	if (arg->path == 0)
 		exit(EXIT_FAILURE); //error_exit();
 	arg->cmd = ft_split(argv[arg->proc_cnt], ' ');
+	if (arg->cmd)
+		exit(EXIT_FAILURE); //error_exit();
 	arg->proc = get_cmd_argv(arg->path, arg->cmd[0]);
 	if (arg->proc == NULL)
 		perror("command not found");
 }
 
+void	close_unused_fd(t_arg *arg)
+{
+	int	unused_a;
+	int	unused_b;
+
+	if (arg->pid == 0)
+	{
+		unused_a = WRITE;
+		unused_b = READ;
+	}
+	else
+	{
+		unused_a = READ;
+		unused_b = WRITE;
+	}
+	close(arg->a[unused_a]);
+	close(arg->b[unused_b]);
+}
+
+void	child(t_arg *arg, char *envp[])
+{
+	close_unused_fd(arg);
+	if (execve(arg->proc, arg->cmd, envp) == -1)
+		exit(EXIT_FAILURE); //error_exit();
+}
+
+void	parent(t_arg *arg)
+{
+//	if (arg->proc_cnt == argc - 2) // 해도 되나?
+//	{
+//		system("leaks pipex");
+//		exit(EXIT_SUCCESS);
+//	}
+	close_unused_fd(arg);
+	waitpid(arg->pid, 0, WNOHANG);
+	swap_fd(arg->a, arg->b);
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_arg	arg;
-	pid_t	child_pid;
 	int	i;
 
 	if (argc < 5)
@@ -116,55 +155,20 @@ int	main(int argc, char *argv[], char *envp[])
 	if (pipe(arg.a) < 0)
 		exit(EXIT_FAILURE); //error_exit();
 	i = 2;
-	while (i <= argc - 2)
+	while (i < argc - 1)
 	{
+		arg.proc_cnt = i++;
 		if (pipe(arg.b) < 0)
 			exit(EXIT_FAILURE); //error_exit();
-		arg.proc_cnt = i;
 		assign_process(argc, argv, envp, &arg);
-		control_fds(&arg, argc);
-		child_pid = fork();
-		if (child_pid == -1)
+		redirect_fd(&arg, argc);
+		arg.pid = fork();
+		if (arg.pid == -1)
 			exit(EXIT_FAILURE); //error_exit();
-		else if (child_pid == 0)
-		{
-			if (arg.proc_cnt == 2)
-			{
-				close(arg.b[READ]);
-			}
-			else if (arg.proc_cnt == argc - 2)
-			{
-				close(arg.a[WRITE]);
-			}
-			else if (arg.proc_cnt < argc - 2)
-			{
-				close(arg.a[WRITE]);
-				close(arg.b[READ]);
-			}
-			if (execve(arg.proc, arg.cmd, envp) == -1)
-				exit(EXIT_FAILURE); //error_exit();
-		}
+		else if (arg.pid == 0)
+			child(&arg, envp);
 		else
-		{
-			
-			if (arg.proc_cnt == 2)
-			{
-				close(arg.b[WRITE]);
-			}
-			else if (arg.proc_cnt == argc - 2)
-			{
-				close(arg.a[READ]);
-			}
-			else if (arg.proc_cnt < argc - 2)
-			{
-				close(arg.a[READ]);
-				close(arg.b[WRITE]);
-			}
-			waitpid(child_pid, 0, WNOHANG);
-			//waitpid(child_pid, 0, 0);
-			swap_fd(arg.a, arg.b);
-		}
-		i++;
+			parent(&arg);
 	}
-	exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
 }

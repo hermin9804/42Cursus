@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2022/04/29 18:44:36 by mher             ###   ########.fr        #
+#    Updated: 2022/05/04 18:32:25 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 	
@@ -31,9 +31,11 @@ $(NAME) : $(OBJS)
 
 all : $(NAME)
 
-bonus: $(NAME)
+bonus : $(NAME)
 
-re : fclean all
+re :
+	$(MAKE) fclean
+	$(MAKE) all
 
 clean :
 	$(MAKE) -C $(FT_DIR) 
