@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/04 03:00:57 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/04 16:53:00 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,31 +67,26 @@ static char *get_cmd_argv(char **path, char *proc)
 
 void	control_fds(t_arg *arg, int argc)
 {
-	int	infile_fd;
-	int	outfile_fd;
+	int	fd;
 
 	if (arg->proc_cnt == 2)
 	{
-		close(arg->b[READ]);
-		infile_fd = open(arg->infile, O_RDONLY);
-		if (infile_fd == -1)
+		fd = open(arg->infile, O_RDONLY);
+		if (fd == -1)
 			exit(EXIT_FAILURE); //error_exit();
-		dup2(infile_fd, STDIN_FILENO);
+		dup2(fd, STDIN_FILENO);
 		dup2(arg->b[WRITE], STDOUT_FILENO);
 	}
 	else if (arg->proc_cnt == argc - 2)
 	{
-		close(arg->a[WRITE]);
-		outfile_fd = open(arg->outfile, O_RDWR | O_CREAT | O_TRUNC, 0755);
-		if (outfile_fd == -1)
+		fd = open(arg->outfile, O_RDWR | O_CREAT | O_TRUNC, 0755);
+		if (fd == -1)
 			exit(EXIT_FAILURE); //error_exit();
 		dup2(arg->a[READ], STDIN_FILENO);
-		dup2(outfile_fd, STDOUT_FILENO);
+		dup2(fd, STDOUT_FILENO);
 	}
 	else if (arg->proc_cnt < argc - 2)
 	{
-		close(arg->a[WRITE]);
-		close(arg->b[READ]);
 		dup2(arg->a[READ], STDIN_FILENO);
 		dup2(arg->b[WRITE], STDOUT_FILENO);
 	}
@@ -120,24 +115,38 @@ int	main(int argc, char *argv[], char *envp[])
 		exit(EXIT_FAILURE); //error_exit();
 	if (pipe(arg.a) < 0)
 		exit(EXIT_FAILURE); //error_exit();
-	if (pipe(arg.b) < 0)
-		exit(EXIT_FAILURE); //error_exit();
 	i = 2;
 	while (i <= argc - 2)
 	{
+		if (pipe(arg.b) < 0)
+			exit(EXIT_FAILURE); //error_exit();
 		arg.proc_cnt = i;
 		assign_process(argc, argv, envp, &arg);
+		control_fds(&arg, argc);
 		child_pid = fork();
 		if (child_pid == -1)
 			exit(EXIT_FAILURE); //error_exit();
 		else if (child_pid == 0)
 		{
-			control_fds(&arg, argc);
+			if (arg.proc_cnt == 2)
+			{
+				close(arg.b[READ]);
+			}
+			else if (arg.proc_cnt == argc - 2)
+			{
+				close(arg.a[WRITE]);
+			}
+			else if (arg.proc_cnt < argc - 2)
+			{
+				close(arg.a[WRITE]);
+				close(arg.b[READ]);
+			}
 			if (execve(arg.proc, arg.cmd, envp) == -1)
 				exit(EXIT_FAILURE); //error_exit();
 		}
 		else
 		{
+			
 			if (arg.proc_cnt == 2)
 			{
 				close(arg.b[WRITE]);
@@ -152,6 +161,7 @@ int	main(int argc, char *argv[], char *envp[])
 				close(arg.b[WRITE]);
 			}
 			waitpid(child_pid, 0, WNOHANG);
+			//waitpid(child_pid, 0, 0);
 			swap_fd(arg.a, arg.b);
 		}
 		i++;
