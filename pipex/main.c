@@ -6,34 +6,36 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 01:54:13 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 02:45:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	here_doc(t_arg *arg)
+void	here_doc(t_arg *arg, char *argv[])
 {
 	char	*line;
+	char	*lim;
 	size_t	len;
 
-	arg->limiter = arg->argv[2];
-	len = ft_strlen(arg->limiter);
-	if (ft_strlen(arg->argv[1]) != 8 || ft_strncmp(arg->argv[1], "here_doc", 8))
+	if (ft_strlen(argv[1]) != 8 || ft_strncmp(argv[1], "here_doc", 8))
 		return ;
+	lim = argv[2];
+	len = ft_strlen(lim);
 	while (1)
 	{
 		handle_error_write(STDOUT_FILENO, "pipe heredoc> ", 14);
 		line = get_next_line(STDIN_FILENO);
-		if (ft_strlen(line) - 1 == len && ft_strncmp(line, arg->limiter, len) == 0)
+		if (ft_strlen(line) - 1 == len && !ft_strncmp(line, lim, len))
 		{
 			free(line);
 			break ;
 		}
-		handle_error_write(arg->a[WRITE], line, len);
+		handle_error_write(arg->a[WRITE], line, ft_strlen(line));
 		free(line);
 	}
 	arg->proc_cnt = 2;
+	arg->o_flag = O_WRONLY | O_CREAT | O_APPEND;
 }
 
 static void	child(t_arg *arg)
@@ -67,6 +69,7 @@ int	main(int argc, char *argv[], char *envp[])
 	if (pipe(arg.a) < 0)
 		perror_exit("pipe fail", EXIT_FAILURE);
 	init(&arg, argc, argv, envp);
+	here_doc(&arg, argv);
 	while (++arg.proc_cnt < argc - 1)
 	{
 		if (pipe(arg.b) < 0)

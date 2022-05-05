@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 22:57:12 by mher              #+#    #+#             */
-/*   Updated: 2022/05/05 23:00:57 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 02:35:55 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	handle_error_close(int fd)
 		perror_exit("close fail", EXIT_FAILURE);
 }
 
-void	handle_error_write(int fd, char *buff, size_t byte)
+void	handle_error_write(int fd, const char *buff, size_t byte)
 {
 	if (write(fd, buff, byte) == -1)
 		perror_exit("write fail", EXIT_FAILURE);

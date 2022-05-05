@@ -6,19 +6,19 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:16:51 by mher              #+#    #+#             */
-/*   Updated: 2022/05/05 22:58:08 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 02:36:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	perror_exit(char *error_msg, int exit_code)
+void	perror_exit(const char *error_msg, int exit_code)
 {
 	perror(error_msg);
 	exit(exit_code);
 }
 
-void	error_exit(char *error_msg, int exit_code)
+void	error_exit(const char *error_msg, int exit_code)
 {
 	size_t len;
 

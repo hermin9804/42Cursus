@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:26:02 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 01:53:52 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 02:36:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,16 @@ typedef struct s_arg
 	char	**argv;
 	char	**envp;
 	char	**path_env;
+	char	**cmd_options;
 	char	*first_arg;
 	char	*last_arg;
-	int	proc_cnt;
+	char	*path_cmd;
 	pid_t	pid;
+	int	proc_cnt;
 	int	a[2];
 	int	b[2];
-	char	**cmd_options;
-	char	*path_cmd;
-	char	*limiter;
+	int	o_flag;
 }	t_arg;
-
 
 char	**get_path_env(char *envp[]);
 char	*get_path_cmd(char **path_env, char *cmd);
@@ -50,13 +49,13 @@ void	init(t_arg *arg, int argc, char *argv[], char *envp[]);
 void	close_unused_fd(t_arg *arg);
 void	redirect_std_fd(t_arg *arg);
 
-void	perror_exit(char *error_msg, int exit_code);
-void	error_exit(char *error_msg, int exit_code);
+void	perror_exit(const char *error_msg, int exit_code);
+void	error_exit(const char *error_msg, int exit_code);
 
 void	handle_error_dup2(int fd1, int fd2);
 void	handle_error_close(int fd);
-void	handle_error_write(int fd, char *buff, size_t byte);
+void	handle_error_write(int fd, const char *buff, size_t byte);
 
-void	here_doc(t_arg *arg);
+void	here_doc(t_arg *arg, char *argv[]);
 
 #endif

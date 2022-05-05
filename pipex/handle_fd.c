@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:12:41 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 01:46:39 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 02:29:39 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	redirect_std_fd(t_arg *arg)
 	}
 	else if (arg->proc_cnt == arg->argc - 2)
 	{
-		fd = open(arg->last_arg, O_RDWR | O_CREAT | O_TRUNC, 0644);
+		fd = open(arg->last_arg, arg->o_flag, 0644);
 		if (fd == -1)
 			perror_exit("open fail", EXIT_FAILURE);
 		handle_error_dup2(arg->a[READ], STDIN_FILENO);

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:11:12 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 01:49:14 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 02:40:34 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	init(t_arg *arg, int argc, char *argv[], char *envp[])
 	if (arg->path_env == 0)
 		error_exit("PATH not found", EXIT_FAILURE);
 	arg->proc_cnt = 1;
-	here_doc(arg);
+	arg->o_flag = O_WRONLY | O_CREAT | O_TRUNC;
 }
