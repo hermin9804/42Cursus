@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2022/05/05 17:03:55 by mher             ###   ########.fr        #
+#    Updated: 2022/05/05 22:59:12 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 	
@@ -20,7 +20,8 @@ SRCS	= \
 	  init.c \
 	  path.c \
 	  handle_fd.c \
-	  error.c
+	  handle_error_funs.c \
+	  error_exit.c \
 
 OBJS	= $(SRCS:.c=.o)
 RM	= rm -f

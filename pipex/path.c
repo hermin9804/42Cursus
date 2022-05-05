@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:14:35 by mher              #+#    #+#             */
-/*   Updated: 2022/05/05 17:28:45 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/05 23:07:57 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**get_path_env(char *envp[])
 	while (*envp && ft_strncmp("PATH=", *envp, 5))
 		++envp;
 	if (*envp == NULL)
-		exit(EXIT_FAILURE); //error_exit();
+		return (NULL);
 	path = *envp + 5;
 	return (ft_split(path, ':'));
 }
@@ -31,10 +31,16 @@ char	*get_path_cmd(char **path_env, char *cmd)
 	char	*tmp;
 
 	i = 0;
+	if (access(cmd, X_OK) == 0)
+		return (cmd);
 	tmp = ft_strjoin("/", cmd);
+	if (tmp == NULL)
+		return (NULL);
 	while (path_env[i])
 	{
 		ret = ft_strjoin(path_env[i], tmp);
+		if (ret == NULL)
+			return (NULL);
 		if (access(ret, X_OK) == 0)
 		{
 			free(tmp);
