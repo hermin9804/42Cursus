@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2022/05/04 18:32:25 by mher             ###   ########.fr        #
+#    Updated: 2022/05/05 17:03:55 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 	
@@ -16,7 +16,11 @@ FT_DIR	= ./Libft
 FT 	= ft
 
 SRCS	= \
-	  main.c\
+	  main.c \
+	  init.c \
+	  path.c \
+	  handle_fd.c \
+	  error.c
 
 OBJS	= $(SRCS:.c=.o)
 RM	= rm -f
