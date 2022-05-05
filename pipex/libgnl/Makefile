@@ -5,54 +5,39 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2022/05/06 00:51:58 by mher             ###   ########.fr        #
+#    Created: 2022/03/26 18:07:13 by mher              #+#    #+#              #
+#    Updated: 2022/04/18 15:12:44 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-	
-NAME	= pipex
 
-FT_DIR	= ./libft
-FT 	= ft
-GNL_DIR	= ./libgnl
-GNL= gnl
+NAME	= libgnl.a
 
-SRCS	= \
-	  main.c \
-	  init.c \
-	  path.c \
-	  handle_fd.c \
-	  handle_error_funs.c \
-	  error_exit.c \
-
-OBJS	= $(SRCS:.c=.o)
-RM	= rm -f
 CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
-$(NAME) : $(OBJS)
-	$(MAKE) -C $(FT_DIR) 
-	$(MAKE) -C $(GNL_DIR) 
-	$(CC) $(CFLAGS) -o  $@ $^ \
-		-L$(FT_DIR) -l$(FT) \
-		-L$(GNL_DIR) -l$(GNL) 
+INCLUDE	= -I./include
 
-all : $(NAME)
+SRC_DIR	= ./src
+SRC = \
+	$(SRC_DIR)/get_next_line.c\
+	$(SRC_DIR)/get_next_line_utils.c\
 
-bonus : $(NAME)
+OBJ	= $(SRC:.c=.o)
 
-re :
-	$(MAKE) fclean
-	$(MAKE) all
+$(NAME): $(OBJ)
 
-clean :
-	$(MAKE) -C $(FT_DIR) 
-	$(MAKE) -C $(GNL_DIR) 
-	$(RM) $(OBJS)
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
+	@ar crsu $(NAME) $@
 
-fclean : clean
-	$(MAKE) fclean -C $(FT_DIR)
-	$(MAKE) fclean -C $(GNL_DIR)
-	$(RM) $(NAME)
+all: $(NAME)
+		
+clean:
+	rm -f $(OBJ)
 
-.PHONY: all bonus clean fclean re
+fclean: clean
+	rm -f $(NAME)
+
+re: clean all
+
+.PHONY: all clean fclean re

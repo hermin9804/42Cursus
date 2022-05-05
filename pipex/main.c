@@ -6,11 +6,35 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/05 22:08:08 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 01:54:13 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	here_doc(t_arg *arg)
+{
+	char	*line;
+	size_t	len;
+
+	arg->limiter = arg->argv[2];
+	len = ft_strlen(arg->limiter);
+	if (ft_strlen(arg->argv[1]) != 8 || ft_strncmp(arg->argv[1], "here_doc", 8))
+		return ;
+	while (1)
+	{
+		handle_error_write(STDOUT_FILENO, "pipe heredoc> ", 14);
+		line = get_next_line(STDIN_FILENO);
+		if (ft_strlen(line) - 1 == len && ft_strncmp(line, arg->limiter, len) == 0)
+		{
+			free(line);
+			break ;
+		}
+		handle_error_write(arg->a[WRITE], line, len);
+		free(line);
+	}
+	arg->proc_cnt = 2;
+}
 
 static void	child(t_arg *arg)
 {
@@ -39,18 +63,18 @@ int	main(int argc, char *argv[], char *envp[])
 	t_arg	arg;
 
 	if (argc < 5)
-		error_exit("argument error", EXIT_FAILURE);
+		error_exit("wrong argument input error", EXIT_FAILURE);
 	if (pipe(arg.a) < 0)
-		perror_exit("pipe error", EXIT_FAILURE);
+		perror_exit("pipe fail", EXIT_FAILURE);
 	init(&arg, argc, argv, envp);
 	while (++arg.proc_cnt < argc - 1)
 	{
 		if (pipe(arg.b) < 0)
-			perror_exit("pipe error", EXIT_FAILURE);
+			perror_exit("pipe fail", EXIT_FAILURE);
 		redirect_std_fd(&arg);
 		arg.pid = fork();
 		if (arg.pid == -1)
-			perror_exit("fork error", EXIT_FAILURE);
+			perror_exit("fork failr", EXIT_FAILURE);
 		else if (arg.pid == 0)
 			child(&arg);
 		else
