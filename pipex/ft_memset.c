@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 16:11:12 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 22:25:25 by mher             ###   ########.fr       */
+/*   Created: 2021/11/27 18:30:41 by mher              #+#    #+#             */
+/*   Updated: 2022/05/06 18:23:22 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	init(t_arg *arg, int argc, char *argv[], char *envp[])
+void	*ft_memset(void *b, int c, size_t len)
 {
-	arg->argc = argc;
-	arg->argv = argv;
-	arg->envp = envp;
-	arg->first_arg = argv[1];
-	arg->last_arg = argv[argc - 1];
-	arg->path_env = get_path_env(envp);
-	if (arg->path_env == 0)
-		error_exit("PATH not found", EXIT_FAILURE);
-	arg->proc_cnt = 1;
-	arg->o_flag = O_WRONLY | O_CREAT | O_TRUNC;
+	unsigned char	*new_b;
+	unsigned char	new_c;
+
+	new_b = (unsigned char *)b;
+	new_c = (unsigned char)c;
+	while (len--)
+		*new_b++ = new_c;
+	return (b);
 }

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:26:02 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 16:42:39 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 22:25:22 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_arg
 	int		a[2];
 	int		b[2];
 	int		o_flag;
-	pid_t	pid;
+	pid_t	pid;//
 }	t_arg;
 
 char	**get_path_env(char *envp[]);
@@ -69,5 +69,6 @@ size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			**ft_split(char const *s, char c);
+void	*ft_memset(void *b, int c, size_t len);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2022/05/06 17:01:03 by mher             ###   ########.fr        #
+#    Updated: 2022/05/06 18:24:40 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 	
@@ -23,10 +23,11 @@ SRCS	= \
 	  str_utils1.c \
 	  str_utils2.c \
 	  ft_split.c \
+	  ft_memset.c \
 
 OBJS	= $(SRCS:.c=.o)
 RM	= rm -f
-CC	= gcc
+CC	= gcc -fsanitize=address -g3
 CFLAGS	= -Wall -Wextra -Werror
 
 $(NAME) : $(OBJS)

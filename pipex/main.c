@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 16:44:08 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 22:25:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ static void	child(t_arg *arg)
 		perror_exit("execve fail", EXIT_FAILURE);
 }
 
-static void	parent(t_arg *arg)
-{
-	if (arg->proc_cnt == arg->argc - 2)
-		exit(EXIT_SUCCESS);
-	close_unused_fd(arg);
-	waitpid(arg->pid, 0, WNOHANG);
-	arg->a[READ] = arg->b[READ];
-}
+//static void	parent(t_arg *arg)
+//{
+//	if (arg->proc_cnt == arg->argc - 2)
+//		exit(EXIT_SUCCESS);
+//	close_unused_fd(arg);
+//	//arg->a[READ] = arg->b[READ];
+//}
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -70,6 +69,19 @@ int	main(int argc, char *argv[], char *envp[])
 		perror_exit("pipe fail", EXIT_FAILURE);
 	init(&arg, argc, argv, envp);
 	here_doc(&arg, argv);
+	//while (++arg.proc_cnt < argc - 1)
+	//{
+	//	if (pipe(arg.b) < 0)
+	//		perror_exit("pipe fail", EXIT_FAILURE);
+	//	redirect_std_fd(&arg);
+	//	arg.pid = fork();
+	//	if (arg.pid == -1)
+	//		perror_exit("fork failr", EXIT_FAILURE);
+	//	else if (arg.pid == 0)
+	//		child(&arg);
+	//	else
+	//		parent(&arg);
+	//}
 	while (++arg.proc_cnt < argc - 1)
 	{
 		if (pipe(arg.b) < 0)
@@ -77,11 +89,12 @@ int	main(int argc, char *argv[], char *envp[])
 		redirect_std_fd(&arg);
 		arg.pid = fork();
 		if (arg.pid == -1)
-			perror_exit("fork failr", EXIT_FAILURE);
+			perror_exit("fork fail", EXIT_FAILURE);
 		else if (arg.pid == 0)
 			child(&arg);
-		else
-			parent(&arg);
+		close_unused_fd(&arg);
+		arg.a[READ] = arg.b[READ];
 	}
+	while (waitpid(-1, 0, WNOHANG) != arg.pid);
 	return (0);
 }
