@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:26:02 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 22:25:22 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/07 05:50:01 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ typedef struct s_arg
 	int		a[2];
 	int		b[2];
 	int		o_flag;
-	pid_t	pid;//
+	pid_t	pid;
+	int	hd_fd;
+	int	is_hd;
 }	t_arg;
 
 char	**get_path_env(char *envp[]);
@@ -59,6 +61,8 @@ void	error_exit(const char *error_msg, int exit_code);
 void	handle_error_dup2(int fd1, int fd2);
 void	handle_error_close(int fd);
 void	handle_error_write(int fd, const char *buff, size_t byte);
+
+void	child(t_arg *arg);
 
 char			*get_next_line(int fd);
 

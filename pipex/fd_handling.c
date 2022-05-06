@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:12:41 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 22:25:23 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/07 06:06:01 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	redirect_std_fd(t_arg *arg)
 	{
 		fd = open(arg->first_arg, O_RDONLY);
 		if (fd == -1)
-			perror_exit("open fail", EXIT_FAILURE);
+			perror_exit("in open fail", EXIT_FAILURE);
 		handle_error_dup2(fd, STDIN_FILENO);
 		handle_error_dup2(arg->b[WRITE], STDOUT_FILENO);
 	}
@@ -28,7 +28,7 @@ void	redirect_std_fd(t_arg *arg)
 	{
 		fd = open(arg->last_arg, arg->o_flag, 0644);
 		if (fd == -1)
-			perror_exit("open fail", EXIT_FAILURE);
+			perror_exit("out open fail", EXIT_FAILURE);
 		handle_error_dup2(arg->a[READ], STDIN_FILENO);
 		handle_error_dup2(fd, STDOUT_FILENO);
 	}
