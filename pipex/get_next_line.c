@@ -6,11 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:31:47 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 00:33:56 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:40:49 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "pipex.h"
 
 static char	*get_line(char *keep)
 {

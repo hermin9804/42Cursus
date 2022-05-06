@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 02:45:21 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:44:08 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	here_doc(t_arg *arg, char *argv[])
+static void	here_doc(t_arg *arg, char *argv[])
 {
 	char	*line;
 	char	*lim;

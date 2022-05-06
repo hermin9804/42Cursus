@@ -6,12 +6,16 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:26:02 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 02:36:31 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:42:39 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE	4096
+# endif
 
 # define READ 0
 # define WRITE 1
@@ -21,12 +25,12 @@
 # include <unistd.h>
 # include <stdio.h>
 
-# include "libft/include/libft.h"//
-# include "libgnl/include/get_next_line.h"//
+//# include "libft/include/libft.h"//
+//# include "libgnl/include/get_next_line.h"//
 
 typedef struct s_arg
 {
-	int	argc;
+	int		argc;
 	char	**argv;
 	char	**envp;
 	char	**path_env;
@@ -34,11 +38,11 @@ typedef struct s_arg
 	char	*first_arg;
 	char	*last_arg;
 	char	*path_cmd;
+	int		proc_cnt;
+	int		a[2];
+	int		b[2];
+	int		o_flag;
 	pid_t	pid;
-	int	proc_cnt;
-	int	a[2];
-	int	b[2];
-	int	o_flag;
 }	t_arg;
 
 char	**get_path_env(char *envp[]);
@@ -56,6 +60,14 @@ void	handle_error_dup2(int fd1, int fd2);
 void	handle_error_close(int fd);
 void	handle_error_write(int fd, const char *buff, size_t byte);
 
-void	here_doc(t_arg *arg, char *argv[]);
+char			*get_next_line(int fd);
+
+char			*ft_strdup(const char *s1);
+char			*ft_strchr(const char *s, int c);
+char			*ft_strjoin(char const *s1, char const *s2);
+size_t			ft_strlen(const char *s);
+size_t			ft_strlcpy(char *dst, const char *src, size_t size);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+char			**ft_split(char const *s, char c);
 
 #endif

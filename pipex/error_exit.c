@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:16:51 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 02:36:15 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 16:32:08 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	perror_exit(const char *error_msg, int exit_code)
 
 void	error_exit(const char *error_msg, int exit_code)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(error_msg);
 	if (len > 0)

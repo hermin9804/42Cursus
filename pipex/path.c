@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:14:35 by mher              #+#    #+#             */
-/*   Updated: 2022/05/05 23:07:57 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/06 15:48:40 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**get_path_env(char *envp[])
 
 char	*get_path_cmd(char **path_env, char *cmd)
 {
-	int	i;
+	int		i;
 	char	*ret;
 	char	*tmp;
 
