@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 16:11:12 by mher              #+#    #+#             */
-/*   Updated: 2022/05/07 06:54:05 by mher             ###   ########.fr       */
+/*   Created: 2021/11/16 14:26:00 by mher              #+#    #+#             */
+/*   Updated: 2021/11/16 15:32:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	init(t_arg *arg, int argc, char *argv[], char *envp[])
+int	ft_isdigit(int c)
 {
-	arg->argc = argc;
-	arg->argv = argv;
-	arg->envp = envp;
-	arg->first_arg = argv[1];
-	arg->last_arg = argv[argc - 1];
-	arg->path_env = get_path_env(envp);
-	if (arg->path_env == 0)
-		error_exit("PATH not found", EXIT_FAILURE);
-	arg->proc_cnt = 2;
-	arg->o_flag = O_RDWR | O_CREAT | O_TRUNC;
+	return ('0' <= c && c <= '9');
 }

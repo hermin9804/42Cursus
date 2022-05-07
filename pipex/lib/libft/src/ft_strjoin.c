@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 20:10:33 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 16:54:36 by mher             ###   ########.fr       */
+/*   Created: 2021/11/19 16:42:05 by mher              #+#    #+#             */
+/*   Updated: 2021/12/09 13:04:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-
-char	*ft_strdup(const char *s1)
-{
-	size_t	len;
-	char	*ret;
-	char	*tmp;
-
-	len = ft_strlen(s1);
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	if (!ret)
-		return (0);
-	tmp = ret;
-	while (len--)
-	{
-		*tmp = *s1;
-		++tmp;
-		++s1;
-	}
-	*tmp = 0;
-	return (ret);
-}
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

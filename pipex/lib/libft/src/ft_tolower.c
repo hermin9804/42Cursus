@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 18:30:41 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 18:23:22 by mher             ###   ########.fr       */
+/*   Created: 2021/11/17 16:38:35 by mher              #+#    #+#             */
+/*   Updated: 2021/11/17 16:40:49 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int	ft_tolower(int c)
 {
-	unsigned char	*new_b;
-	unsigned char	new_c;
-
-	new_b = (unsigned char *)b;
-	new_c = (unsigned char)c;
-	while (len--)
-		*new_b++ = new_c;
-	return (b);
+	if ('A' <= c && c <= 'Z')
+		return (c - 'A' + 'a');
+	return (c);
 }

@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_exit.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 16:16:51 by mher              #+#    #+#             */
-/*   Updated: 2022/05/06 16:32:08 by mher             ###   ########.fr       */
+/*   Created: 2021/11/19 16:38:10 by mher              #+#    #+#             */
+/*   Updated: 2021/11/19 16:38:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	perror_exit(const char *error_msg, int exit_code)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	perror(error_msg);
-	exit(exit_code);
-}
-
-void	error_exit(const char *error_msg, int exit_code)
-{
-	size_t	len;
-
-	len = ft_strlen(error_msg);
-	if (len > 0)
+	while (n--)
 	{
-		handle_error_write(STDERR_FILENO, error_msg, len);
-		handle_error_write(STDERR_FILENO, "\n", 1);
+		if (*(unsigned char *)s == (unsigned char)c)
+			return ((void *)s);
+		++s;
 	}
-	exit(exit_code);
+	return (0);
 }
