@@ -6,22 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/08 03:38:43 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/12 00:21:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-// print arg.a, arg.b
-static void	test(t_arg *arg)
-{
-	char tmp[5];
-
-	sprintf(tmp, "%d %d\n", arg->a[0], arg->a[1]);
-	write(2, tmp, 4);
-	sprintf(tmp, "%d %d\n", arg->b[0], arg->b[1]);
-	write(2, tmp, 4);
-}
 
 static void	init(t_arg *arg, int argc, char *argv[], char *envp[])
 {
@@ -57,7 +46,6 @@ static void	fork_and_exec(t_arg *arg)
 		if (pipe(arg->b) < 0)
 			exit_with_perror("pipe fail", EXIT_FAILURE);
 		redirect_std_fd(arg);
-		test(arg);
 		arg->pid = fork();
 		if (arg->pid == -1)
 			exit_with_perror("fork fail", EXIT_FAILURE);
