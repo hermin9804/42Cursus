@@ -6,14 +6,14 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2022/05/07 18:55:14 by mher             ###   ########.fr        #
+#    Updated: 2022/05/08 01:19:50 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 	
 NAME	= pipex
 
-RM = rm -f
-CC = gcc
+RM	= rm -f
+CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
 FT_DIR	= ./lib/Libft
@@ -58,12 +58,12 @@ bonus : $(B_OBJS)
 clean :
 	$(MAKE) clean -C $(FT_DIR)
 	$(MAKE) clean -C $(GNL_DIR)
-	$(RM) $(M_OBJS) $(B_OBJS)
+	$(RM) $(M_OBJS)
 
 fclean : clean
 	$(MAKE) fclean -C $(FT_DIR)
 	$(MAKE) fclean -C $(GNL_DIR)
-	$(RM) $(NAME) $(B_NAME)
+	$(RM) $(NAME)
 
 re :
 	$(MAKE) fclean
