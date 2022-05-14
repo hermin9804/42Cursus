@@ -1,4 +1,4 @@
-### 42 SEOUL CURSUS (2021.11.15. ~ Ongoing)
+### 42 SEOUL CURSUS (2021.11.15. ~ Ongoing) [Notion 정리](https://mher9804.notion.site/42Seoul-5894bd84c8fb4807a71e344a9e7bb087)
 [![mher's 42 stats](https://badge42.vercel.app/api/v2/cl1lsh0a2012409mehrtcwu8k/stats?cursusId=21&coalitionId=86)](https://github.com/JaeSeoKim/badge42)
 
 
