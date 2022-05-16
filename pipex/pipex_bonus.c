@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:37:31 by mher              #+#    #+#             */
-/*   Updated: 2022/05/12 00:21:32 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/12 00:41:47 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	execute(t_arg *arg)
 
 static void	fork_and_exec(t_arg *arg)
 {
+
 	while (arg->proc_cnt < arg->argc - 1)
 	{
 		if (pipe(arg->b) < 0)
