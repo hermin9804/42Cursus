@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 18:26:02 by mher              #+#    #+#             */
-/*   Updated: 2022/05/07 19:53:27 by mher             ###   ########.fr       */
+/*   Updated: 2022/05/26 18:38:36 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	4096
@@ -24,8 +24,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "lib/libft/include/libft.h"
-# include "lib/libgnl/include/get_next_line.h"
+
+# include "../lib/libft/include/libft.h"
+# include "../lib/libgnl/include/get_next_line.h"
 
 typedef struct s_arg
 {

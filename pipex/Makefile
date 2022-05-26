@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/17 15:50:40 by mher              #+#    #+#              #
-#    Updated: 2022/05/08 01:19:50 by mher             ###   ########.fr        #
+#    Updated: 2022/05/26 18:40:54 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 	
@@ -22,17 +22,17 @@ FT 	= ft
 GNL	= gnl
 
 M_SRCS	= \
-	  pipex.c \
-	  path.c \
-	  fd_handling.c \
-	  error_handling.c \
+	  ./mandatory/pipex.c \
+	  ./mandatory/path.c \
+	  ./mandatory/fd_handling.c \
+	  ./mandatory/error_handling.c \
 
 B_SRCS	= \
-	  pipex_bonus.c \
-	  path_bonus.c \
-	  here_doc_bonus.c \
-	  fd_handling_bonus.c \
-	  error_handling_bonus.c \
+	  ./bonus/pipex_bonus.c \
+	  ./bonus/path_bonus.c \
+	  ./bonus/here_doc_bonus.c \
+	  ./bonus/fd_handling_bonus.c \
+	  ./bonus/error_handling_bonus.c \
 
 M_OBJS	= $(M_SRCS:.c=.o)
 B_OBJS	= $(B_SRCS:.c=.o)
@@ -63,7 +63,7 @@ clean :
 fclean : clean
 	$(MAKE) fclean -C $(FT_DIR)
 	$(MAKE) fclean -C $(GNL_DIR)
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(B_OBJS)
 
 re :
 	$(MAKE) fclean
