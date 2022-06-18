@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:19:56 by mher              #+#    #+#             */
-/*   Updated: 2022/06/18 18:31:36 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/18 18:37:01 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static enum	e_exit_status exit_with(enum e_exit_status exit_status)
 int	main(int argc, char *argv[])
 {
 	t_info	info;
-	//t_vars	vars;
+	t_vars	vars;
 	//t_philo	*philo;
 
 	if (init_info(&info, argc, argv))
 		return (exit_with(PARSE_FAIL));
-	//if (init_vars(&vars, args))
-	//	return (exit_with(ALLOC_FAIL));
+	if (init_vars(&vars, info))
+		return (exit_with(ALLOC_FAIL));
 	return (exit_with(SUCCESS));
 }

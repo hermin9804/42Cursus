@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/18 18:30:04 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/18 19:40:07 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 # define INT_MIN	-2147483648
 # define INT_MAX	2147483647
@@ -43,10 +44,9 @@ typedef struct s_info
 typedef struct s_vars
 {
 	int	dead_flag;
-	int	full_philo;
-	pthread_mutex_t	*fork;
+	int	full_flag;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	key; // ??
-	time_t			start_time;
 }	t_vars;
 
 typedef struct s_philo
@@ -54,6 +54,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	unsigned int	index;
 	time_t			last_eat_time;
+	time_t			start_eat_time;
 	unsigned int	eat_count;
 	unsigned int	already_full;
 	pthread_mutex_t	*left;
@@ -62,7 +63,7 @@ typedef struct s_philo
 
 // initalizer
 int	init_info(t_info *info, int argc, char *argv[]);
-int	init_vars(t_vars *vears, t_info info);
+int	init_vars(t_vars *vars, const t_info info);
 
 // utils
 int check_valid_atoi(const char *str, int *num);
