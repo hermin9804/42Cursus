@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/18 23:39:23 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/19 00:13:07 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	parse_args(t_info *info, int argc, char *argv[])
 {
 	if (check_args(argc, argv))
 			return (1);
-	memset(info, 0, sizeof(t_info));
 	info->nop = ft_atoi(argv[1]);
 	info->ttd = ft_atoi(argv[2]);
 	info->tte = ft_atoi(argv[3]);
