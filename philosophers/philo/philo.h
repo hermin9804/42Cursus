@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/18 19:40:07 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/18 23:40:36 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PHILO_H
 
 # include <stdio.h>
-# include <string.h> //memset 쓰나??
+# include <string.h>
 # include <pthread.h>
 # include <sys/time.h>
 # include <unistd.h>
@@ -61,12 +61,14 @@ typedef struct s_philo
 	pthread_mutex_t	*right;
 }	t_philo;
 
-// initalizer
-int	init_info(t_info *info, int argc, char *argv[]);
-int	init_vars(t_vars *vars, const t_info info);
+// parser
+int		parse_args(t_info *info, int argc, char *argv[]);
+int		init_vars(t_vars *vars, const t_info info);
 
 // utils
-int check_valid_atoi(const char *str, int *num);
 size_t	ft_strlen(const char *s);
+int		ft_isdigit(const char c);
+int		ft_isspace(const char c);
+int		ft_atoi(const char *str);
 
 #endif

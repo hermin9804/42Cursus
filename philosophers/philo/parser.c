@@ -1,44 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initalizer.c                                       :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/18 23:40:22 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/18 23:39:23 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	init_forks(pthread_mutex_t *forks, int nop)
+static int	check_args(int argc, char *argv[])
 {
-	int	i;
+	int			i;
+	int			j;
+	long long	tmp;
 
-	forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * nop);
-	if (forks == NULL)
+	if (argc != 5 && argc != 6)
 		return (1);
-	i = 0;
-	while (i < nop)
+	i = 1;
+	while (i < argc)
 	{
-		if (pthread_mutex_init(&forks[i], NULL))
+		j = 0;
+		tmp = 0;
+		while (ft_isdigit(argv[i][j]))
 		{
-			while (i--)
-				pthread_mutex_destroy(&forks[i]);
-			free(forks);
-			return (1);
+			tmp = tmp * 10 + (argv[i][j] - '0');
+			if (tmp > INT_MAX)
+				return (1);
+			++j;
 		}
+		if (argv[i][j] != '\0')
+			return (1);
 		++i;
 	}
 	return (0);
 }
 
-int	init_vars(t_vars *vars, const t_info info)
+int	parse_args(t_info *info, int argc, char *argv[])
 {
-	vars->dead_flag = 0;
-	vars->full_flag = 0;
-	if (init_forks(vars->forks, info.nop))
-		return (1);
+	if (check_args(argc, argv))
+			return (1);
+	memset(info, 0, sizeof(t_info));
+	info->nop = ft_atoi(argv[1]);
+	info->ttd = ft_atoi(argv[2]);
+	info->tte = ft_atoi(argv[3]);
+	info->tts = ft_atoi(argv[4]);
+	if (argc == 6)
+		info->nome = ft_atoi(argv[5]);
 	return (0);
 }

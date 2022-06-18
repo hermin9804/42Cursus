@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/11 23:17:57 by mher              #+#    #+#              #
-#    Updated: 2022/06/18 18:06:29 by mher             ###   ########.fr        #
+#    Updated: 2022/06/18 23:40:06 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CFLAGS	= -Wall -Wextra -Werror
 
 SRCS	= \
 		  main.c \
+		  parser.c \
 		  initalizer.c \
 		  utils.c \
 

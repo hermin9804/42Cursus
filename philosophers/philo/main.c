@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:19:56 by mher              #+#    #+#             */
-/*   Updated: 2022/06/18 18:37:01 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/18 23:42:53 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char *argv[])
 	t_vars	vars;
 	//t_philo	*philo;
 
-	if (init_info(&info, argc, argv))
+	if (parse_args(&info, argc, argv))
 		return (exit_with(PARSE_FAIL));
 	if (init_vars(&vars, info))
 		return (exit_with(ALLOC_FAIL));
