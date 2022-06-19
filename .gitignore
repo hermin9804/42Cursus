@@ -1,2 +1,5 @@
 # ignore all .o files
 *.o
+
+# ignore ctags files
+tags
