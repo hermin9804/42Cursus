@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 00:19:23 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 02:00:07 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	check_args(int argc, char *argv[])
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
+	int	j;
 	long long		tmp;
 
 	if (argc != 5 && argc != 6)

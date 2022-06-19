@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 01:07:56 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 02:04:41 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ enum e_exit_status
 {
 	SUCCESS = 0,
 	PARSE_FAIL,
-	ALLOC_FAIL,
+	MALLOC_FAIL,
 	MUTEX_FAIL,
 	RUNTIME_FAIL
 };
 
 typedef struct s_info
 {
-	int				nop;
-	int				ttd;
-	int				tte;
-	int				tts;
-	int				nome;
+	unsigned int	nop;
+	unsigned int	ttd;
+	unsigned int	tte;
+	unsigned int	tts;
+	unsigned int	nome;
 }	t_info;
 
 typedef struct s_shared
@@ -75,11 +75,14 @@ void	*do_routine(void *philo);
 int		parse_args(t_info *info, int argc, char *argv[]);
 
 // allocator
-int		alloc_philo(t_philo *philo, t_info *info);
+int		alloc_philo(t_philo **philo, t_info *info);
 
-// initalizer
+// initalizer 
 void	init_philo(t_philo *philo, t_info info, t_shared *shared);
 int		init_mutex(t_philo *philo, t_info info);
+
+// destroyer
+void	destroy_mutex(t_philo *philo);
 
 // utils
 size_t	ft_strlen(const char *s);

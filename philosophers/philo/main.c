@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:19:56 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 00:04:47 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 02:04:09 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	main(int argc, char *argv[])
 
 	if (parse_args(&info, argc, argv))
 		return (exit_with(PARSE_FAIL));
-	if (alloc_philo(philo, &info))
-		return (exit_with(ALLOC_FAIL));
+	if (alloc_philo(&philo, &info))
+		return (exit_with(MALLOC_FAIL));
 	init_philo(philo, info, &shared);
 	if (init_mutex(philo, info))
 	{
@@ -48,10 +48,10 @@ int	main(int argc, char *argv[])
 	if (run_simulation(philo, info, &shared))
 	{
 		free(philo);
-		//destroy();
+		destroy_mutex(philo);
 		return (RUNTIME_FAIL);
 	}
 	free(philo);
-	//destroy();
+	destroy_mutex(philo);
 	return (exit_with(SUCCESS));
 }
