@@ -6,21 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/18 23:01:19 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 00:12:38 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	ft_isspace(const char c)
-{
-	return (c == ' ' || (9 <= c && c <= 13));
-}
-
-int	ft_isdigit(const char c)
-{
-	return ('0' <= c && c <= '9');
-}
 
 size_t	ft_strlen(const char *s)
 {
@@ -42,16 +32,29 @@ int	ft_atoi(const char *str)
 
 	ret = 0;
 	sign = 1;
-	while (ft_isspace(*str))
+	while (*str == ' ' || (9 <= *str && *str <= 13))
 		++str;
 	if (*str == '+' || *str == '-')
 		if (*str++ == '-')
 			sign *= -1;
-	while (ft_isdigit(*str))
+	while ('0' <= *str && *str <= '9')
 	{
 		ret = ret * 10 + (*str++ - '0');
 		if (ret < 0)
 			return ((sign + 1) / -2);
 	}
 	return (sign * ret);
+}
+
+time_t	get_time_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+time_t	get_passed_time_ms(time_t start_time)
+{
+	return (get_time_ms() - start_time);
 }

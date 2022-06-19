@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/19 14:57:31 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 00:19:23 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	check_args(int argc, char *argv[])
 {
-	int			i;
-	int			j;
-	long long	tmp;
+	unsigned int	i;
+	unsigned int	j;
+	long long		tmp;
 
 	if (argc != 5 && argc != 6)
 		return (1);
@@ -25,7 +25,7 @@ static int	check_args(int argc, char *argv[])
 	{
 		j = 0;
 		tmp = 0;
-		while (ft_isdigit(argv[i][j]))
+		while ('0' <= argv[i][j] && argv[i][j] <= '9')
 		{
 			tmp = tmp * 10 + (argv[i][j] - '0');
 			if (tmp > INT_MAX)

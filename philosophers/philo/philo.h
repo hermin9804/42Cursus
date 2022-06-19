@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/19 15:43:19 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 01:07:56 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdio.h>
 # include <string.h>
 # include <pthread.h>
-# include <sys/time.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <sys/time.h>
 
 # define INT_MIN	-2147483648
 # define INT_MAX	2147483647
@@ -39,9 +39,14 @@ typedef struct s_info
 	int				tte;
 	int				tts;
 	int				nome;
-	time_t			start_time;
-	pthread_mutex_t	key;
 }	t_info;
+
+typedef struct s_shared
+{
+	time_t			start_time;
+	pthread_mutex_t	is_end_lock;
+	int				is_end;
+}	t_shared;
 
 typedef struct s_philo
 {
@@ -51,11 +56,20 @@ typedef struct s_philo
 	int				already_full;
 	time_t			last_eat_time;
 	time_t			start_eat_time;
+	pthread_mutex_t	event_lock;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	*rfork;
-	t_info			*info;
+	t_info			info;
+	t_shared		*shared;
 }	t_philo;
+
+// simulation
+int		run_simulation(t_philo *philo, t_info info, t_shared *shared);
+void	*monitor_dead(void *philo);
+
+// routine
+void	*do_routine(void *philo);
 
 // parser
 int		parse_args(t_info *info, int argc, char *argv[]);
@@ -64,14 +78,14 @@ int		parse_args(t_info *info, int argc, char *argv[]);
 int		alloc_philo(t_philo *philo, t_info *info);
 
 // initalizer
-void	init_philo(t_philo *philo, t_info *info);
-int		init_mutex(t_philo *philo, t_info *info);
+void	init_philo(t_philo *philo, t_info info, t_shared *shared);
+int		init_mutex(t_philo *philo, t_info info);
 
 // utils
 size_t	ft_strlen(const char *s);
-int		ft_isdigit(const char c);
-int		ft_isspace(const char c);
 int		ft_atoi(const char *str);
 void	*ft_free(void *ptr);
+time_t	get_time_ms(void);
+time_t	get_passed_time_ms(time_t start_time);
 
 #endif
