@@ -2,4 +2,4 @@
 *.o
 
 # ignore ctags files
-tags
+*tags
