@@ -6,18 +6,18 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 01:07:01 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 02:41:38 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*monitor_dead(void *philo)
+void	*monitor_dead(void *philos)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (i < ((t_philo *)philo)->info.nop)
+	while (i < ((t_philo *)philos)->info.nop)
 	{
 		++i;
 	}
