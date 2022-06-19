@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/19 00:13:07 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/19 14:57:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	check_args(int argc, char *argv[])
 				return (1);
 			++j;
 		}
-		if (argv[i][j] != '\0')
+		if (argv[i][j] != '\0' || tmp == 0)
 			return (1);
 		++i;
 	}

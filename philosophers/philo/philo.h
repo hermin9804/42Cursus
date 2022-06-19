@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/19 02:35:39 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/19 15:19:38 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,37 +34,27 @@ enum e_exit_status
 
 typedef struct s_info
 {
-	int	nop;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	nome;
+	int		nop;
+	int		ttd;
+	int		tte;
+	int		tts;
+	int		nome;
+	time_t	start_time;
 }	t_info;
 
 typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	int				tte;
-	int				tts;
 	int				eat_count;
 	int				already_full;
 	time_t			last_eat_time;
 	time_t			start_eat_time;
-
-	pthread_mutex_t	event_lock;
+	pthread_mutex_t	fork;
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	*rfork;
-
-	char			*is_end;	// ??
-	pthread_mutex_t	*is_end_lock;
+	t_info			*info;
 }	t_philo;
-
-typedef struct	s_shared
-{
-	pthread_mutex_t	*is_end_lock;
-	char			*is_end;
-} t_shared;
 
 // parser
 int		parse_args(t_info *info, int argc, char *argv[]);
@@ -74,7 +64,7 @@ int		alloc_philo(t_philo *philo, t_info *info);
 
 // initalizer
 int		init_philo(t_philo *philo, t_info *info);
-int		init_mutex(t_philo *philo, t_shared *shared_var, t_info *info);
+int		init_mutex(t_philo *philo, t_info *info);
 
 // utils
 size_t	ft_strlen(const char *s);
