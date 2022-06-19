@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:19:56 by mher              #+#    #+#             */
-/*   Updated: 2022/06/19 14:39:53 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/19 15:39:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int	main(int argc, char *argv[])
 		return (exit_with(ALLOC_FAIL));
 	init_philo(philo, &info);
 	if (init_mutex(philo, &info))
+	{
+		free(philo);
 		return (exit_with(MUTEX_FAIL));
+	}
 	return (exit_with(SUCCESS));
 }

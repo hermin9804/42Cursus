@@ -6,13 +6,14 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/19 15:20:35 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/19 15:44:26 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <pthread.h>
 
-int	init_philo(t_philo *philo, t_info *info)
+void	init_philo(t_philo *philo, t_info *info)
 {
 	int	i;
 
@@ -27,10 +28,25 @@ int	init_philo(t_philo *philo, t_info *info)
 		philo[i].info = info;
 		++i;
 	}
-	return (0);
 }
 
 int	init_mutex(t_philo *philo, t_info *info)
 {
+	int	i;
+
+	if (pthread_mutex_init(&(info->key), NULL))
+		return (1);
+	i = 0;
+	while (i < info->nop)
+	{
+		if (pthread_mutex_init(&(philo[i].fork), NULL))
+		{
+			while (i--)
+				pthread_mutex_destroy(&(philo[i].fork));
+			pthread_mutex_destroy(&(info->key));
+			return (1);
+		}
+		++i;
+	}
 	return (0);
 }

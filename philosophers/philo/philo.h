@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/19 15:19:38 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/19 15:43:19 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ enum e_exit_status
 
 typedef struct s_info
 {
-	int		nop;
-	int		ttd;
-	int		tte;
-	int		tts;
-	int		nome;
-	time_t	start_time;
+	int				nop;
+	int				ttd;
+	int				tte;
+	int				tts;
+	int				nome;
+	time_t			start_time;
+	pthread_mutex_t	key;
 }	t_info;
 
 typedef struct s_philo
@@ -63,7 +64,7 @@ int		parse_args(t_info *info, int argc, char *argv[]);
 int		alloc_philo(t_philo *philo, t_info *info);
 
 // initalizer
-int		init_philo(t_philo *philo, t_info *info);
+void	init_philo(t_philo *philo, t_info *info);
 int		init_mutex(t_philo *philo, t_info *info);
 
 // utils
