@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 02:40:28 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 13:58:51 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	join_all_thread(pthread_t *monitor, t_philo *philos, unsigned int i)
 		pthread_join(philos[i].thread, NULL);
 }
 
-// TODO
-static int	abort_simulation(t_philo *philos, t_info info, unsigned int i)
+// TODO: 만들어야함 
+static int	abort_simulation(t_philo *philos, t_info *info, unsigned int i)
 {
 	(void)philos;
 	(void)info;
@@ -29,15 +29,15 @@ static int	abort_simulation(t_philo *philos, t_info info, unsigned int i)
 	return (1);
 }
 
-int	run_simulation(t_philo *philos, t_info info, t_shared *shared)
+int	run_simulation(t_philo *philos, t_info *info)
 {
 	unsigned int	i;
 	time_t			now;
 	pthread_t		monitor;
 
-	shared->start_time = get_time_ms();
+	info->start_time = get_time_ms();
 	i = 0;
-	while (i < info.nop)
+	while (i < info->nop)
 	{
 		now	= get_time_ms();
 		philos[i].start_eat_time = now;

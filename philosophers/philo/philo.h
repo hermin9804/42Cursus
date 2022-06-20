@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 02:22:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 13:59:00 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ typedef struct s_info
 	unsigned int	tte;
 	unsigned int	tts;
 	unsigned int	nome;
+	time_t			start_time;
 }	t_info;
 
 typedef struct s_shared
 {
-	time_t			start_time;
 	pthread_mutex_t	is_end_lock;
 	int				is_end;
 }	t_shared;
@@ -60,12 +60,12 @@ typedef struct s_philo
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	*rfork;
-	t_info			info;
+	t_info			*info;
 	t_shared		*shared;
 }	t_philo;
 
 // simulation
-int		run_simulation(t_philo *philo, t_info info, t_shared *shared);
+int		run_simulation(t_philo *philos, t_info *info);
 void	*monitor_dead(void *philo);
 
 // routine
@@ -78,8 +78,8 @@ int		parse_args(t_info *info, int argc, char *argv[]);
 int		alloc_philo(t_philo **philo, t_info *info);
 
 // initalizer 
-void	init_philo(t_philo *philo, t_info info, t_shared *shared);
-int		init_mutex(t_philo *philo, t_info info, t_shared *shared);
+void	init_philo(t_philo *philo, t_info *info, t_shared *shared);
+int		init_mutex(t_philo *philo, t_info *info, t_shared *shared);
 
 // destroyer
 void	destroy_mutex(t_philo *philo);

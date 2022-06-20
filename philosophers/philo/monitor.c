@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 02:41:38 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 13:39:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*monitor_dead(void *philos)
 	unsigned int	i;
 
 	i = 0;
-	while (i < ((t_philo *)philos)->info.nop)
+	while (i < ((t_philo *)philos)->info->nop)
 	{
 		++i;
 	}
