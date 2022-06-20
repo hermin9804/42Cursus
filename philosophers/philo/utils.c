@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 14:50:38 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 16:44:38 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,8 @@ time_t	get_passed_time_ms(time_t start_time)
 {
 	return (get_time_ms() - start_time);
 }
+
+// TODO: 스핀락으로 하면 뭐가 좋지?
+//void	pass_time_ms(t_philo *philo, time_t wait_time)
+//{
+//}

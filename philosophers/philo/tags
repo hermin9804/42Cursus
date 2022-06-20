@@ -23,11 +23,13 @@ TASGS	Makefile	/^TASGS   = tags$/;"	m
 abort_simulation	simulation.c	/^static int	abort_simulation(t_philo *philos, t_info *info, unsigned int i)$/;"	f	file:
 alloc_philo	allocator.c	/^int	alloc_philo(t_philo **philos, t_info *info)$/;"	f
 already_full	philo.h	/^	int				already_full;$/;"	m	struct:s_philo
+check_all_full	monitor.c	/^int	check_all_full(t_philo *philos)$/;"	f
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
+check_starvation	monitor.c	/^int	check_starvation(t_philo *philos)$/;"	f
 destroy_mutex	destroyer.c	/^void	destroy_mutex(t_philo *philos)$/;"	f
-do_routine	routine.c	/^void	*do_routine(void *philo)$/;"	f
+do_routine	routine.c	/^void	*do_routine(void *_philo)$/;"	f
 e_exit_status	philo.h	/^enum e_exit_status$/;"	g
-eat_count	philo.h	/^	int				eat_count;$/;"	m	struct:s_philo
+eat_count	philo.h	/^	unsigned int	eat_count;$/;"	m	struct:s_philo
 eating	routine.c	/^static	int eating(t_philo *philo)$/;"	f	file:
 event_lock	philo.h	/^	pthread_mutex_t	event_lock;$/;"	m	struct:s_philo
 exit_with	main.c	/^static enum	e_exit_status exit_with(enum e_exit_status exit_status)$/;"	f	file:
@@ -43,12 +45,13 @@ init_mutex_fork_event	initalizer.c	/^static int	init_mutex_fork_event(t_philo *p
 init_philo	initalizer.c	/^void	init_philo(t_philo *philos, t_info *info, t_shared *shared)$/;"	f
 is_end	philo.h	/^	int				is_end;$/;"	m	struct:s_shared
 is_end_lock	philo.h	/^	pthread_mutex_t	is_end_lock;$/;"	m	struct:s_shared
+is_end_simulation	simulation.c	/^int	is_end_simulation(t_philo *philo)$/;"	f
 join_all_thread	simulation.c	/^static void	join_all_thread(pthread_t *monitor, t_philo *philos, unsigned int i)$/;"	f	file:
 last_eat_time	philo.h	/^	time_t			last_eat_time;$/;"	m	struct:s_philo
 lfork	philo.h	/^	pthread_mutex_t	*lfork;$/;"	m	struct:s_philo
 main	main.c	/^int	main(int argc, char *argv[])$/;"	f
 main	pthread_create_test.c	/^int main()$/;"	f
-monitor_dead	monitor.c	/^void	*monitor_dead(void *philos)$/;"	f
+monitor_philos	monitor.c	/^void	*monitor_philos(void *_philos)$/;"	f
 nome	philo.h	/^	unsigned int	nome;$/;"	m	struct:s_info
 nop	philo.h	/^	unsigned int	nop;$/;"	m	struct:s_info
 p_function	pthread_create_test.c	/^void	p_function(void *data)$/;"	f
@@ -62,7 +65,6 @@ s_shared	philo.h	/^typedef struct s_shared$/;"	s
 shared	philo.h	/^	t_shared		*shared;$/;"	m	struct:s_philo
 sleeping	routine.c	/^static int sleeping(t_philo *philo)$/;"	f	file:
 start_eat_time	philo.h	/^	time_t			start_eat_time;$/;"	m	struct:s_philo
-start_time	philo.h	/^	time_t			start_time;$/;"	m	struct:s_info
 t_info	philo.h	/^}	t_info;$/;"	t	typeref:struct:s_info
 t_philo	philo.h	/^}	t_philo;$/;"	t	typeref:struct:s_philo
 t_shared	philo.h	/^}	t_shared;$/;"	t	typeref:struct:s_shared

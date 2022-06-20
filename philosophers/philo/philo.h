@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 13:59:00 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 20:56:58 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_info
 	unsigned int	tte;
 	unsigned int	tts;
 	unsigned int	nome;
-	time_t			start_time;
 }	t_info;
 
 typedef struct s_shared
@@ -52,7 +51,7 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	int				eat_count;
+	unsigned int	eat_count;
 	int				already_full;
 	time_t			last_eat_time;
 	time_t			start_eat_time;
@@ -66,7 +65,8 @@ typedef struct s_philo
 
 // simulation
 int		run_simulation(t_philo *philos, t_info *info);
-void	*monitor_dead(void *philo);
+void	*monitor_philos(void *_philos);
+int		is_end_simulation(t_philo *philo);
 
 // routine
 void	*do_routine(void *philo);

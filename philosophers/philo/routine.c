@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 16:53:54 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/20 20:36:11 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->lfork);
-	printf("%d has taken a fork\n", philo->id);
 	pthread_mutex_lock(philo->rfork);
 	printf("%d has taken a fork\n", philo->id);
 }
@@ -53,20 +52,20 @@ static int thinking(t_philo *philo)
 	return (is_end_simulation(philo));
 }
 
-void	*do_routine(void *philo)
+void	*do_routine(void *_philo)
 {
-	t_philo	*p;
+	t_philo	*philo;
 	
-	p = (t_philo *)philo;
-	if (p->id % 2 == 0)
+	philo = (t_philo *)_philo;
+	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (1)
 	{
-		if (eating(p))
+		if (eating(philo))
 			return (NULL);
-		if (sleeping(p))
+		if (sleeping(philo))
 			return (NULL);
-		if (thinking(p))
+		if (thinking(philo))
 			return (NULL);
 	}
 	return (NULL);
