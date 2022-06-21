@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroyer.c                                        :+:      :+:    :+:   */
+/*   routine_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 01:42:28 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 13:58:27 by mher             ###   ########.fr       */
+/*   Created: 2022/06/21 16:48:44 by mher              #+#    #+#             */
+/*   Updated: 2022/06/21 16:49:17 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	destroy_mutex(t_philo *philos)
+void	take_forks(t_philo *philo)
 {
-	unsigned int i;
+	pthread_mutex_lock(philo->lfork);
+	pthread_mutex_lock(philo->rfork);
+	print_log(philo, FORK);
+}
 
-	pthread_mutex_destroy(&(philos->shared->is_end_lock));
-	i = 0;
-	while (i < philos->info->nop)
-	{
-		pthread_mutex_destroy(&(philos[i].fork));
-		pthread_mutex_destroy(&(philos[i].event_lock));
-		++i;
-	}
+void	release_forks(t_philo *philo)
+{
+	pthread_mutex_unlock(philo->rfork);
+	pthread_mutex_unlock(philo->lfork);
 }

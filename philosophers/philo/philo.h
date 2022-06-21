@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 16:15:37 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 16:49:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@
 # define INT_MIN	-2147483648
 # define INT_MAX	2147483647
 
-# define COLOR_RED      "\033[1;31m"
-# define COLOR_GREEN    "\033[1;32m"
-# define COLOR_YELLOW   "\033[1;33m"
-# define COLOR_BLUE     "\033[1;34m"
-# define COLOR_RESET    "\033[0m"
+# define C_RED		"\033[1;31m"
+# define C_GREN		"\033[1;32m"
+# define C_YLLW		"\033[1;33m"
+# define C_BLUE		"\033[1;34m"
+# define C_PRPL		"\033[1;35m"
+# define C_RESET	"\033[0m"
 
-enum e_color
+enum e_log_type
 {
-	RED = 0,
-	GREEN,
-	YELLOW,
-	BLUE,
-	MAGENTA,
-	CYAN,
+	FORK= 0,
+	EAT,
+	SLEEP,
+	THINK,
+	DEAD,
 };
 
 enum e_exit_status
@@ -86,6 +86,8 @@ int		is_end_simulation(t_philo *philo);
 
 // routine
 void	*do_routine(void *philo);
+void	take_forks(t_philo *philo);
+void	release_forks(t_philo *philo);
 
 // parser
 int		parse_args(t_info *info, int argc, char *argv[]);
@@ -102,8 +104,8 @@ void	destroy_mutex(t_philo *philo);
 
 // utils
 size_t	ft_strlen(const char *s);
-void	print_log(t_philo *philo, const char *msg, enum e_color color);
 time_t	get_time_ms(void);
 time_t	get_passed_time_ms(time_t start_time);
+void	print_log(t_philo *philo, enum e_log_type type);
 
 #endif

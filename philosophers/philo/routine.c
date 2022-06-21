@@ -6,24 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 16:03:42 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 16:48:59 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	take_forks(t_philo *philo)
-{
-	pthread_mutex_lock(philo->lfork);
-	pthread_mutex_lock(philo->rfork);
-	print_log(philo, "has taken a fork", BLUE);
-}
-
-void	release_forks(t_philo *philo)
-{
-	pthread_mutex_unlock(philo->rfork);
-	pthread_mutex_unlock(philo->lfork);
-}
 
 static	int eating(t_philo *philo)
 {
@@ -31,7 +18,7 @@ static	int eating(t_philo *philo)
 	pthread_mutex_lock(&(philo->event_lock));
 	philo->last_eat_time = get_time_ms();
 	usleep(philo->info->tte * 1000);
-	print_log(philo, "is eating", RED);
+	print_log(philo, EAT);
 	philo->eat_count++;
 	pthread_mutex_unlock(&(philo->event_lock));
 	release_forks(philo);
@@ -40,14 +27,14 @@ static	int eating(t_philo *philo)
 
 static int sleeping(t_philo *philo)
 {
-	print_log(philo, "is sleeping", GREEN);
+	print_log(philo, SLEEP);
 	usleep(philo->info->tts * 1000);
 	return (is_end_simulation(philo));
 }
 
 static int thinking(t_philo *philo)
 {
-	print_log(philo, "is thinking", YELLOW);
+	print_log(philo, THINK);
 	return (is_end_simulation(philo));
 }
 
