@@ -44,6 +44,7 @@ e_exit_status	philo.h	/^enum e_exit_status$/;"	g
 e_log_type	philo.h	/^enum e_log_type$/;"	g
 eat_count	philo.h	/^	unsigned int	eat_count;$/;"	m	struct:s_philo
 eating	routine.c	/^static	int eating(t_philo *philo)$/;"	f	file:
+end_state	philo.h	/^	t_end_state		*end_state;$/;"	m	struct:s_philo
 event_lock	philo.h	/^	pthread_mutex_t	event_lock;$/;"	m	struct:s_philo
 exit_with	main.c	/^static enum	e_exit_status exit_with(enum e_exit_status exit_status)$/;"	f	file:
 fork	philo.h	/^	pthread_mutex_t	fork;$/;"	m	struct:s_philo
@@ -53,11 +54,11 @@ get_passed_time_ms	utils.c	/^time_t	get_passed_time_ms(time_t start_time)$/;"	f
 get_time_ms	utils.c	/^time_t	get_time_ms(void)$/;"	f
 id	philo.h	/^	unsigned int	id;$/;"	m	struct:s_philo
 info	philo.h	/^	t_info			*info;$/;"	m	struct:s_philo
-init_mutex	mutex_init_destroy.c	/^int	init_mutex(t_philo *philos, t_info *info, t_shared *shared)$/;"	f
+init_mutex	mutex_init_destroy.c	/^int	init_mutex(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
 init_mutex_fork_event	mutex_init_destroy.c	/^static int	init_mutex_fork_event(t_philo *philo)$/;"	f	file:
-init_philo	initalizer.c	/^void	init_philo(t_philo *philos, t_info *info, t_shared *shared)$/;"	f
-is_end	philo.h	/^	int				is_end;$/;"	m	struct:s_shared
-is_end_lock	philo.h	/^	pthread_mutex_t	is_end_lock;$/;"	m	struct:s_shared
+init_philo	initalizer.c	/^void	init_philo(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
+is_end	philo.h	/^	int				is_end;$/;"	m	struct:s_end_state
+is_end_lock	philo.h	/^	pthread_mutex_t	is_end_lock;$/;"	m	struct:s_end_state
 is_end_simulation	simulation.c	/^int	is_end_simulation(t_philo *philo)$/;"	f
 join_all_thread	simulation.c	/^static int	join_all_thread(pthread_t *monitor, t_philo *philos, unsigned int i)$/;"	f	file:
 join_philo_threads	simulation.c	/^static int	join_philo_threads(t_philo *philos, unsigned int i)$/;"	f	file:
@@ -72,16 +73,15 @@ print_log	utils.c	/^void	print_log(t_philo *philo, enum e_log_type type)$/;"	f
 release_forks	routine_utils.c	/^void	release_forks(t_philo *philo)$/;"	f
 rfork	philo.h	/^	pthread_mutex_t	*rfork;$/;"	m	struct:s_philo
 run_simulation	simulation.c	/^int	run_simulation(t_philo *philos, t_info *info)$/;"	f
+s_end_state	philo.h	/^typedef struct s_end_state$/;"	s
 s_info	philo.h	/^typedef struct s_info$/;"	s
 s_philo	philo.h	/^typedef struct s_philo$/;"	s
-s_shared	philo.h	/^typedef struct s_shared$/;"	s
-shared	philo.h	/^	t_shared		*shared;$/;"	m	struct:s_philo
 sleeping	routine.c	/^static int sleeping(t_philo *philo)$/;"	f	file:
 start_time	philo.h	/^	time_t			start_time;$/;"	m	struct:s_philo
 stop_simulation	simulation.c	/^void	stop_simulation(t_philo *philo)$/;"	f
+t_end_state	philo.h	/^}	t_end_state;$/;"	t	typeref:struct:s_end_state
 t_info	philo.h	/^}	t_info;$/;"	t	typeref:struct:s_info
 t_philo	philo.h	/^}	t_philo;$/;"	t	typeref:struct:s_philo
-t_shared	philo.h	/^}	t_shared;$/;"	t	typeref:struct:s_shared
 take_forks	routine_utils.c	/^void	take_forks(t_philo *philo)$/;"	f
 thinking	routine.c	/^static int thinking(t_philo *philo)$/;"	f	file:
 thread	philo.h	/^	pthread_t		thread;$/;"	m	struct:s_philo

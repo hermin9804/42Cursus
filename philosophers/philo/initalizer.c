@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 17:13:31 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/22 02:20:59 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	alloc_philo(t_philo **philos, t_info *info)
 	return (0);
 }
 
-void	init_philo(t_philo *philos, t_info *info, t_shared *shared)
+void	init_philo(t_philo *philos, t_info *info, t_end_state *end_state)
 {
 	unsigned int	i;
 
-	shared->is_end = 0;
+	end_state->is_end = 0;
 	i = 0;
 	while (i < info->nop)
 	{
@@ -33,7 +33,7 @@ void	init_philo(t_philo *philos, t_info *info, t_shared *shared)
 		philos[i].lfork = &(philos[i].fork);
 		philos[i].rfork = &(philos[(i + 1) % info->nop].fork);
 		philos[i].info = info;
-		philos[i].shared = shared;
+		philos[i].end_state = end_state;
 		++i;
 	}
 }
