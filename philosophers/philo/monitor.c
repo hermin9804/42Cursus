@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 15:09:35 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 15:11:49 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ int	check_philos_state(t_philo *philos)
 	int				some_one_starved;
 
 	all_philos_full = (0 < philos->info->nome);
+	some_one_starved = 0;
 	i = 0;
 	while (i < philos->info->nop)
 	{
 		pthread_mutex_lock(&(philos[i].event_lock));
 		all_philos_full &= (philos->info->nome <= philos[i].eat_count);
-		some_one_starved = (philos->info->ttd <= get_passed_time_ms(philos[i].last_eat_time));
+		if (philos->info->ttd <= get_passed_time_ms(philos[i].last_eat_time))
+			some_one_starved = 1;
 		pthread_mutex_unlock(&(philos[i].event_lock));
 		if (some_one_starved)
 			break ;
