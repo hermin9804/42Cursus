@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 16:44:38 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 16:17:58 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,26 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int	ft_atoi(const char *str)
+void	print_log(t_philo *philo, const char *msg, enum e_color color_num)
 {
-	long	ret;
-	int		sign;
+	time_t 			time_stamp;
+	unsigned int	id;
 
-	ret = 0;
-	sign = 1;
-	while (*str == ' ' || (9 <= *str && *str <= 13))
-		++str;
-	if (*str == '+' || *str == '-')
-		if (*str++ == '-')
-			sign *= -1;
-	while ('0' <= *str && *str <= '9')
+	time_stamp = get_passed_time_ms(philo->start_time);
+	id = philo->id;
+	pthread_mutex_lock(&(philo->shared->is_end_lock));
+	if (!philo->shared->is_end)
 	{
-		ret = ret * 10 + (*str++ - '0');
-		if (ret < 0)
-			return ((sign + 1) / -2);
+		if (color_num == BLUE)
+			printf(COLOR_BLUE "%ld %u %s\n" COLOR_RESET, time_stamp, id, msg);
+		else if (color_num == RED)
+			printf(COLOR_RED "%ld %u %s\n" COLOR_RESET, time_stamp, id, msg);
+		else if (color_num == GREEN)
+			printf(COLOR_GREEN "%ld %u %s\n" COLOR_RESET, time_stamp, id, msg);
+		else if (color_num == YELLOW)
+			printf(COLOR_YELLOW "%ld %u %s\n" COLOR_RESET, time_stamp, id, msg);
 	}
-	return (sign * ret);
+	pthread_mutex_unlock(&(philo->shared->is_end_lock));
 }
 
 time_t	get_time_ms(void)

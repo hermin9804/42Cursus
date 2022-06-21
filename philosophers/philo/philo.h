@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 14:55:47 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 16:15:37 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@
 
 # define INT_MIN	-2147483648
 # define INT_MAX	2147483647
+
+# define COLOR_RED      "\033[1;31m"
+# define COLOR_GREEN    "\033[1;32m"
+# define COLOR_YELLOW   "\033[1;33m"
+# define COLOR_BLUE     "\033[1;34m"
+# define COLOR_RESET    "\033[0m"
+
+enum e_color
+{
+	RED = 0,
+	GREEN,
+	YELLOW,
+	BLUE,
+	MAGENTA,
+	CYAN,
+};
 
 enum e_exit_status
 {
@@ -50,11 +66,11 @@ typedef struct s_shared
 typedef struct s_philo
 {
 	pthread_t		thread;
-	int				id;
+	unsigned int	id;
 	unsigned int	eat_count;
 	//int				already_full;
 	time_t			last_eat_time;
-	time_t			start_eat_time;
+	time_t			start_time;
 	pthread_mutex_t	event_lock;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*lfork;
@@ -86,8 +102,7 @@ void	destroy_mutex(t_philo *philo);
 
 // utils
 size_t	ft_strlen(const char *s);
-int		ft_atoi(const char *str);
-void	*ft_free(void *ptr);
+void	print_log(t_philo *philo, const char *msg, enum e_color color);
 time_t	get_time_ms(void);
 time_t	get_passed_time_ms(time_t start_time);
 
