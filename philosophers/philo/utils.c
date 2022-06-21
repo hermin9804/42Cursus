@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 18:43:38 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/22 02:16:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ time_t	get_passed_time_ms(time_t start_time)
 	return (get_time_ms() - start_time);
 }
 
-// TODO: 스핀락으로 하면 뭐가 좋지?
 void	busy_wait(time_t start, time_t wait_time)
 {
 	while (1)
@@ -55,8 +54,8 @@ void	print_log(t_philo *philo, enum e_log_type type)
 
 	time_stamp = get_passed_time_ms(philo->start_time);
 	id = philo->id;
-	pthread_mutex_lock(&(philo->shared->is_end_lock));
-	if (!philo->shared->is_end)
+	pthread_mutex_lock(&(philo->end_state->is_end_lock));
+	if (!philo->end_state->is_end)
 	{
 		if (type == FORK)
 			printf(C_BLUE "%ld %u has taken a fork\n" C_RESET, time_stamp, id);
@@ -69,5 +68,5 @@ void	print_log(t_philo *philo, enum e_log_type type)
 		else if (type == DEAD)
 			printf(C_PRPL "%ld %u died\n" C_RESET, time_stamp, id);
 	}
-	pthread_mutex_unlock(&(philo->shared->is_end_lock));
+	pthread_mutex_unlock(&(philo->end_state->is_end_lock));
 }

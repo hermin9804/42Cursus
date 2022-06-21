@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 18:19:05 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/22 01:57:55 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 static void	broadcast_somone_dead(t_philo *philo)
 {
 	print_log(philo, DEAD);
-	pthread_mutex_lock(&(philo->shared->is_end_lock));
-	philo->shared->is_end = 1;
-	pthread_mutex_unlock(&(philo->shared->is_end_lock));
+	stop_simulation(philo);
 }
 
 static void	broadcast_everyone_full(t_philo *philos)
 {
-	pthread_mutex_lock(&(philos->shared->is_end_lock));
-	philos->shared->is_end = 1;
-	pthread_mutex_unlock(&(philos->shared->is_end_lock));
+	stop_simulation(philos);
 }
 
 static int	check_philos_state(t_philo *philos)

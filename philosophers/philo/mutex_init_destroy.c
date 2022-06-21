@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:47:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 16:47:53 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/22 02:16:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static int	init_mutex_fork_event(t_philo *philo)
 	return (0);
 }
 
-int	init_mutex(t_philo *philos, t_info *info, t_shared *shared)
+int	init_mutex(t_philo *philos, t_info *info, t_end_state *end_state)
 {
 	unsigned int	i;
 
-	if (pthread_mutex_init(&(shared->is_end_lock), NULL))
+	if (pthread_mutex_init(&(end_state->is_end_lock), NULL))
 		return (1);
 	i = 0;
 	while (i < info->nop)
@@ -40,7 +40,7 @@ int	init_mutex(t_philo *philos, t_info *info, t_shared *shared)
 				pthread_mutex_destroy(&(philos[i].fork));
 				pthread_mutex_destroy(&(philos[i].event_lock));
 			}
-			pthread_mutex_destroy(&(shared->is_end_lock));
+			pthread_mutex_destroy(&(end_state->is_end_lock));
 			return (1);
 		}
 		++i;
@@ -52,7 +52,7 @@ void	destroy_mutex(t_philo *philos)
 {
 	unsigned int i;
 
-	pthread_mutex_destroy(&(philos->shared->is_end_lock));
+	pthread_mutex_destroy(&(philos->end_state->is_end_lock));
 	i = 0;
 	while (i < philos->info->nop)
 	{

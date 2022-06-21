@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 18:44:01 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 18:58:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int sleeping(t_philo *philo)
 static int thinking(t_philo *philo)
 {
 	print_log(philo, THINK);
-	usleep(1000); // 다른 스레드가 실행되도록 대기
+	usleep(FOR_OTHER_PHILOS);
 	return (is_end_simulation(philo));
 }
 

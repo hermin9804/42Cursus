@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 18:43:52 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/22 02:16:50 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define C_BLUE		"\033[1;34m"
 # define C_PRPL		"\033[0;35m"
 # define C_RESET	"\033[0m"
+
+# define FOR_OTHER_PHILOS 1000
 
 enum e_log_type
 {
@@ -57,11 +59,11 @@ typedef struct s_info
 	unsigned int	nome;
 }	t_info;
 
-typedef struct s_shared
+typedef struct s_end_state
 {
 	pthread_mutex_t	is_end_lock;
 	int				is_end;
-}	t_shared;
+}	t_end_state;
 
 typedef struct s_philo
 {
@@ -75,12 +77,13 @@ typedef struct s_philo
 	pthread_mutex_t	*lfork;
 	pthread_mutex_t	*rfork;
 	t_info			*info;
-	t_shared		*shared;
+	t_end_state		*end_state;
 }	t_philo;
 
 // simulation
 int		run_simulation(t_philo *philos, t_info *info);
 void	*monitor_philos(void *_philos);
+void	stop_simulation(t_philo *philo);
 int		is_end_simulation(t_philo *philo);
 
 // routine
@@ -95,8 +98,8 @@ int		parse_args(t_info *info, int argc, char *argv[]);
 int		alloc_philo(t_philo **philo, t_info *info);
 
 // initalizer 
-void	init_philo(t_philo *philo, t_info *info, t_shared *shared);
-int		init_mutex(t_philo *philo, t_info *info, t_shared *shared);
+void	init_philo(t_philo *philo, t_info *info, t_end_state *end_state);
+int		init_mutex(t_philo *philo, t_info *info, t_end_state *end_state);
 
 // destroyer
 void	destroy_mutex(t_philo *philo);
