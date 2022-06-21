@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 20:56:58 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 14:55:47 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	int				id;
 	unsigned int	eat_count;
-	int				already_full;
+	//int				already_full;
 	time_t			last_eat_time;
 	time_t			start_eat_time;
 	pthread_mutex_t	event_lock;

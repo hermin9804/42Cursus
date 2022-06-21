@@ -22,10 +22,8 @@ SUCCESS	philo.h	/^	SUCCESS = 0,$/;"	e	enum:e_exit_status
 TASGS	Makefile	/^TASGS   = tags$/;"	m
 abort_simulation	simulation.c	/^static int	abort_simulation(t_philo *philos, t_info *info, unsigned int i)$/;"	f	file:
 alloc_philo	allocator.c	/^int	alloc_philo(t_philo **philos, t_info *info)$/;"	f
-already_full	philo.h	/^	int				already_full;$/;"	m	struct:s_philo
-check_all_full	monitor.c	/^int	check_all_full(t_philo *philos)$/;"	f
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
-check_starvation	monitor.c	/^int	check_starvation(t_philo *philos)$/;"	f
+check_philos_state	monitor.c	/^int	check_philos_state(t_philo *philos)$/;"	f
 destroy_mutex	destroyer.c	/^void	destroy_mutex(t_philo *philos)$/;"	f
 do_routine	routine.c	/^void	*do_routine(void *_philo)$/;"	f
 e_exit_status	philo.h	/^enum e_exit_status$/;"	g

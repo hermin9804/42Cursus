@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 13:39:13 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 14:56:08 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_philo(t_philo *philos, t_info *info, t_shared *shared)
 	{
 		philos[i].id = i + 1;
 		philos[i].eat_count = 0;
-		philos[i].already_full = 0;
+		//philos[i].already_full = 0;
 		philos[i].lfork = &(philos[i].fork);
 		philos[i].rfork = &(philos[(i + 1) % info->nop].fork);
 		philos[i].info = info;

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/20 20:57:51 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 14:02:52 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static int	abort_simulation(t_philo *philos, t_info *info, unsigned int i)
 
 int	is_end_simulation(t_philo *philo)
 {
-	int	is_end;
+	int ret;
 
 	pthread_mutex_lock(&philo->shared->is_end_lock);
-	is_end = philo->shared->is_end;
+	ret = philo->shared->is_end;
 	pthread_mutex_unlock(&philo->shared->is_end_lock);
-	return (is_end);
+	return (ret);
 }
 
 int	run_simulation(t_philo *philos, t_info *info)
