@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/22 01:57:55 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/22 02:23:27 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	broadcast_somone_dead(t_philo *philo)
 {
 	print_log(philo, DEAD);
 	stop_simulation(philo);
+	release_forks(philo);
 }
 
 static void	broadcast_everyone_full(t_philo *philos)
