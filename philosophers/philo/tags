@@ -35,6 +35,7 @@ abort_simulation	simulation.c	/^static int	abort_simulation(t_philo *philos, t_i
 alloc_philo	initalizer.c	/^int	alloc_philo(t_philo **philos, t_info *info)$/;"	f
 broadcast_everyone_full	monitor.c	/^static void	broadcast_everyone_full(t_philo *philos)$/;"	f	file:
 broadcast_somone_dead	monitor.c	/^static void	broadcast_somone_dead(t_philo *philo)$/;"	f	file:
+busy_waiting	utils.c	/^void	busy_waiting(time_t start, time_t wait_time)$/;"	f
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
 check_philos_state	monitor.c	/^static int	check_philos_state(t_philo *philos)$/;"	f	file:
 destroy_mutex	mutex_init_destroy.c	/^void	destroy_mutex(t_philo *philos)$/;"	f

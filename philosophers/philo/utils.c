@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 18:21:48 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 18:43:38 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,14 @@ time_t	get_passed_time_ms(time_t start_time)
 }
 
 // TODO: 스핀락으로 하면 뭐가 좋지?
-//void	pass_time_ms(t_philo *philo, time_t wait_time)
-//{
-//}
+void	busy_wait(time_t start, time_t wait_time)
+{
+	while (1)
+	{
+		if (wait_time <= get_passed_time_ms(start))
+			break ;
+	}
+}
 
 void	print_log(t_philo *philo, enum e_log_type type)
 {
