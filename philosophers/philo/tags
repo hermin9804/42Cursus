@@ -15,7 +15,7 @@ C_RESET	philo.h	/^# define C_RESET	/;"	d
 C_YLLW	philo.h	/^# define C_YLLW	/;"	d
 DEAD	philo.h	/^	DEAD,$/;"	e	enum:e_log_type
 EAT	philo.h	/^	EAT,$/;"	e	enum:e_log_type
-FORK	philo.h	/^	FORK= 0,$/;"	e	enum:e_log_type
+FORK	philo.h	/^	FORK,$/;"	e	enum:e_log_type
 INT_MAX	philo.h	/^# define INT_MAX	/;"	d
 INT_MIN	philo.h	/^# define INT_MIN	/;"	d
 MALLOC_FAIL	philo.h	/^	MALLOC_FAIL,$/;"	e	enum:e_exit_status
@@ -28,13 +28,15 @@ RM	Makefile	/^RM		= rm -f$/;"	m
 RUNTIME_FAIL	philo.h	/^	RUNTIME_FAIL$/;"	e	enum:e_exit_status
 SLEEP	philo.h	/^	SLEEP,$/;"	e	enum:e_log_type
 SRCS	Makefile	/^SRCS	= \\$/;"	m
-SUCCESS	philo.h	/^	SUCCESS = 0,$/;"	e	enum:e_exit_status
+SUCCESS	philo.h	/^	SUCCESS,$/;"	e	enum:e_exit_status
 TASGS	Makefile	/^TASGS   = tags$/;"	m
 THINK	philo.h	/^	THINK,$/;"	e	enum:e_log_type
 abort_simulation	simulation.c	/^static int	abort_simulation(t_philo *philos, t_info *info, unsigned int i)$/;"	f	file:
-alloc_philo	allocator.c	/^int	alloc_philo(t_philo **philos, t_info *info)$/;"	f
+alloc_philo	initalizer.c	/^int	alloc_philo(t_philo **philos, t_info *info)$/;"	f
+broadcast_everyone_full	monitor.c	/^static void	broadcast_everyone_full(t_philo *philos)$/;"	f	file:
+broadcast_somone_dead	monitor.c	/^static void	broadcast_somone_dead(t_philo *philo)$/;"	f	file:
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
-check_philos_state	monitor.c	/^int	check_philos_state(t_philo *philos)$/;"	f
+check_philos_state	monitor.c	/^static int	check_philos_state(t_philo *philos)$/;"	f	file:
 destroy_mutex	mutex_init_destroy.c	/^void	destroy_mutex(t_philo *philos)$/;"	f
 do_routine	routine.c	/^void	*do_routine(void *_philo)$/;"	f
 e_exit_status	philo.h	/^enum e_exit_status$/;"	g

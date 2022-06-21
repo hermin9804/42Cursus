@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 16:43:00 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 18:21:48 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	print_log(t_philo *philo, enum e_log_type type)
 		else if (type == THINK)
 			printf(C_YLLW "%ld %u is thinking\n" C_RESET, time_stamp, id);
 		else if (type == DEAD)
-			printf(C_PRPL "%ld %u is thinking\n" C_RESET, time_stamp, id);
+			printf(C_PRPL "%ld %u died\n" C_RESET, time_stamp, id);
 	}
 	pthread_mutex_unlock(&(philo->shared->is_end_lock));
 }

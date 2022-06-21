@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/11 23:17:57 by mher              #+#    #+#              #
-#    Updated: 2022/06/21 16:51:27 by mher             ###   ########.fr        #
+#    Updated: 2022/06/21 17:03:38 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ TASGS   = tags
 SRCS	= \
 		  main.c \
 		  parser.c \
-		  allocator.c \
 		  initalizer.c \
 		  mutex_init_destroy.c \
 		  monitor.c \

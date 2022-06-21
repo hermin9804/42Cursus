@@ -6,11 +6,19 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 16:47:45 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 17:13:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	alloc_philo(t_philo **philos, t_info *info)
+{
+	*philos = (t_philo *)malloc(sizeof(t_philo) * info->nop);
+	if (*philos == NULL)
+		return (1);
+	return (0);
+}
 
 void	init_philo(t_philo *philos, t_info *info, t_shared *shared)
 {
@@ -22,7 +30,6 @@ void	init_philo(t_philo *philos, t_info *info, t_shared *shared)
 	{
 		philos[i].id = i + 1;
 		philos[i].eat_count = 0;
-		//philos[i].already_full = 0;
 		philos[i].lfork = &(philos[i].fork);
 		philos[i].rfork = &(philos[(i + 1) % info->nop].fork);
 		philos[i].info = info;

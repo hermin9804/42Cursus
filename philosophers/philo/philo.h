@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 16:49:32 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 17:13:05 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@
 # define C_GREN		"\033[1;32m"
 # define C_YLLW		"\033[1;33m"
 # define C_BLUE		"\033[1;34m"
-# define C_PRPL		"\033[1;35m"
+# define C_PRPL		"\033[0;35m"
 # define C_RESET	"\033[0m"
 
 enum e_log_type
 {
-	FORK= 0,
+	FORK,
 	EAT,
 	SLEEP,
 	THINK,
@@ -41,7 +41,7 @@ enum e_log_type
 
 enum e_exit_status
 {
-	SUCCESS = 0,
+	SUCCESS,
 	PARSE_FAIL,
 	MALLOC_FAIL,
 	MUTEX_FAIL,
@@ -68,7 +68,6 @@ typedef struct s_philo
 	pthread_t		thread;
 	unsigned int	id;
 	unsigned int	eat_count;
-	//int				already_full;
 	time_t			last_eat_time;
 	time_t			start_time;
 	pthread_mutex_t	event_lock;

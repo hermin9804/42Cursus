@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 15:34:38 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/21 18:14:50 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	join_all_thread(pthread_t *monitor, t_philo *philos, unsigned int i)
 		pthread_join(philos[i].thread, NULL);
 }
 
-// TODO: 만들어야함 
+// TODO:
 static int	abort_simulation(t_philo *philos, t_info *info, unsigned int i)
 {
 	(void)philos;
