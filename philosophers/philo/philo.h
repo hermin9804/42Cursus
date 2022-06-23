@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/22 02:16:50 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/23 22:09:00 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ int		alloc_philo(t_philo **philo, t_info *info);
 
 // initalizer 
 void	init_philo(t_philo *philo, t_info *info, t_end_state *end_state);
-int		init_mutex(t_philo *philo, t_info *info, t_end_state *end_state);
 
-// destroyer
+// mutex
+int		init_mutex(t_philo *philo, t_info *info, t_end_state *end_state);
 void	destroy_mutex(t_philo *philo);
 
 // utils
