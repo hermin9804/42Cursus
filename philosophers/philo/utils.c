@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/22 02:41:19 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/24 00:03:58 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-time_t	get_time_ms(void)
+time_t	get_current_time_ms(void)
 {
 	struct timeval	tv;
 
@@ -35,16 +35,13 @@ time_t	get_time_ms(void)
 
 time_t	get_passed_time_ms(time_t start_time)
 {
-	return (get_time_ms() - start_time);
+	return (get_current_time_ms() - start_time);
 }
 
-void	busy_wait(time_t start, time_t wait_time)
+void	wait_and_sleep(time_t start_time, time_t time_to_wait)
 {
-	while (1)
-	{
-		if (wait_time <= get_passed_time_ms(start))
-			break ;
-	}
+	while (get_passed_time_ms(start_time) < time_to_wait)
+		usleep(FOR_CONTEXT_SWITCHING);
 }
 
 void	print_log(t_philo *philo, enum e_log_type type)

@@ -16,7 +16,7 @@ C_YLLW	philo.h	/^# define C_YLLW	/;"	d
 DEAD	philo.h	/^	DEAD,$/;"	e	enum:e_log_type
 EAT	philo.h	/^	EAT,$/;"	e	enum:e_log_type
 FORK	philo.h	/^	FORK,$/;"	e	enum:e_log_type
-FOR_OTHER_PHILOS	philo.h	/^# define FOR_OTHER_PHILOS /;"	d
+FOR_CONTEXT_SWITCHING	philo.h	/^# define FOR_CONTEXT_SWITCHING /;"	d
 INT_MAX	philo.h	/^# define INT_MAX	/;"	d
 INT_MIN	philo.h	/^# define INT_MIN	/;"	d
 MALLOC_FAIL	philo.h	/^	MALLOC_FAIL,$/;"	e	enum:e_exit_status
@@ -35,7 +35,6 @@ THINK	philo.h	/^	THINK,$/;"	e	enum:e_log_type
 alloc_philo	initalizer.c	/^int	alloc_philo(t_philo **philos, t_info *info)$/;"	f
 broadcast_everyone_full	monitor.c	/^static void	broadcast_everyone_full(t_philo *philos)$/;"	f	file:
 broadcast_somone_dead	monitor.c	/^static void	broadcast_somone_dead(t_philo *philo)$/;"	f	file:
-busy_wait	utils.c	/^void	busy_wait(time_t start, time_t wait_time)$/;"	f
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
 check_philos_state	monitor.c	/^static int	check_philos_state(t_philo *philos)$/;"	f	file:
 destroy_mutex	mutex_init_destroy.c	/^void	destroy_mutex(t_philo *philos)$/;"	f
@@ -50,8 +49,8 @@ exit_with	main.c	/^static enum	e_exit_status exit_with(enum e_exit_status exit_s
 fork	philo.h	/^	pthread_mutex_t	fork;$/;"	m	struct:s_philo
 ft_atoi	parser.c	/^static int	ft_atoi(const char *str)$/;"	f	file:
 ft_strlen	utils.c	/^size_t	ft_strlen(const char *s)$/;"	f
+get_current_time_ms	utils.c	/^time_t	get_current_time_ms(void)$/;"	f
 get_passed_time_ms	utils.c	/^time_t	get_passed_time_ms(time_t start_time)$/;"	f
-get_time_ms	utils.c	/^time_t	get_time_ms(void)$/;"	f
 id	philo.h	/^	unsigned int	id;$/;"	m	struct:s_philo
 info	philo.h	/^	t_info			*info;$/;"	m	struct:s_philo
 init_mutex	mutex_init_destroy.c	/^int	init_mutex(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
@@ -88,3 +87,4 @@ thread	philo.h	/^	pthread_t		thread;$/;"	m	struct:s_philo
 ttd	philo.h	/^	unsigned int	ttd;$/;"	m	struct:s_info
 tte	philo.h	/^	unsigned int	tte;$/;"	m	struct:s_info
 tts	philo.h	/^	unsigned int	tts;$/;"	m	struct:s_info
+wait_and_sleep	utils.c	/^void	wait_and_sleep(time_t start_time, time_t time_to_wait)$/;"	f
