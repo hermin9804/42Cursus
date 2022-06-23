@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/22 02:16:50 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/23 23:58:45 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define C_PRPL		"\033[0;35m"
 # define C_RESET	"\033[0m"
 
-# define FOR_OTHER_PHILOS 1000
+# define FOR_CONTEXT_SWITCHING 100
 
 enum e_log_type
 {
@@ -99,16 +99,16 @@ int		alloc_philo(t_philo **philo, t_info *info);
 
 // initalizer 
 void	init_philo(t_philo *philo, t_info *info, t_end_state *end_state);
-int		init_mutex(t_philo *philo, t_info *info, t_end_state *end_state);
 
-// destroyer
+// mutex
+int		init_mutex(t_philo *philo, t_info *info, t_end_state *end_state);
 void	destroy_mutex(t_philo *philo);
 
 // utils
 size_t	ft_strlen(const char *s);
-time_t	get_time_ms(void);
+time_t	get_current_time_ms(void);
 time_t	get_passed_time_ms(time_t start_time);
-void	busy_wait(time_t start, time_t wait_time);
+void	wait_and_sleep(time_t start_time, time_t time_to_wait);
 void	print_log(t_philo *philo, enum e_log_type type);
 
 #endif

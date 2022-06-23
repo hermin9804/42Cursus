@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/23 23:58:45 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/24 00:59:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define C_PRPL		"\033[0;35m"
 # define C_RESET	"\033[0m"
 
-# define FOR_CONTEXT_SWITCHING 100
+# define TIME_FOR_CONTEXT_SWITCHING 100
 
 enum e_log_type
 {
@@ -98,7 +98,7 @@ int		parse_args(t_info *info, int argc, char *argv[]);
 int		alloc_philo(t_philo **philo, t_info *info);
 
 // initalizer 
-void	init_philo(t_philo *philo, t_info *info, t_end_state *end_state);
+void	init_philo(t_philo *philos, t_info *info, t_end_state *end_state);
 
 // mutex
 int		init_mutex(t_philo *philo, t_info *info, t_end_state *end_state);

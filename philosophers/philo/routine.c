@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/24 00:00:55 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/24 00:59:43 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int sleeping(t_philo *philo)
 static int thinking(t_philo *philo)
 {
 	print_log(philo, THINK);
-	usleep(FOR_CONTEXT_SWITCHING);
+	usleep(TIME_FOR_CONTEXT_SWITCHING);
 	return (is_end_simulation(philo));
 }
 
@@ -47,7 +47,7 @@ void	*do_routine(void *_philo)
 	
 	philo = (t_philo *)_philo;
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		usleep(TIME_FOR_CONTEXT_SWITCHING);
 	while (1)
 	{
 		if (eating(philo))

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/24 00:03:58 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/24 00:59:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ time_t	get_passed_time_ms(time_t start_time)
 void	wait_and_sleep(time_t start_time, time_t time_to_wait)
 {
 	while (get_passed_time_ms(start_time) < time_to_wait)
-		usleep(FOR_CONTEXT_SWITCHING);
+		usleep(TIME_FOR_CONTEXT_SWITCHING);
 }
 
 void	print_log(t_philo *philo, enum e_log_type type)
