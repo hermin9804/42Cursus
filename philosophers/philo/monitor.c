@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/22 02:23:27 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/24 17:14:05 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	*monitor_philos(void *_philos)
 	{
 		if (check_philos_state(philos))
 			return (NULL);
+		usleep(TIME_FOR_CONTEXT_SWITCHING);
 	}
 }

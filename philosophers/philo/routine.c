@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/24 16:47:04 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/24 17:06:06 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,5 @@ void	*do_routine(void *_philo)
 		if (thinking(philo))
 			return (NULL);
 	}
+	return (NULL);
 }
