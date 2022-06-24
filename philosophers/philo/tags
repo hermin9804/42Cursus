@@ -67,6 +67,7 @@ main	main.c	/^int	main(int argc, char *argv[])$/;"	f
 monitor_philos	monitor.c	/^void	*monitor_philos(void *_philos)$/;"	f
 nome	philo.h	/^	unsigned int	nome;$/;"	m	struct:s_info
 nop	philo.h	/^	unsigned int	nop;$/;"	m	struct:s_info
+one_philo_routine	routine.c	/^static	void	*one_philo_routine(t_philo *philo)$/;"	f	file:
 parse_args	parser.c	/^int	parse_args(t_info *info, int argc, char *argv[])$/;"	f
 print_log	utils.c	/^void	print_log(t_philo *philo, enum e_log_type type)$/;"	f
 release_forks	routine_utils.c	/^void	release_forks(t_philo *philo)$/;"	f
