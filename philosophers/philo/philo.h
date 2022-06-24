@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/24 17:05:51 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 01:58:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define C_PRPL		"\033[0;35m"
 # define C_RESET	"\033[0m"
 
-# define TIME_FOR_CONTEXT_SWITCHING 100
+# define TIME_FOR_CONTEXT_SWITCHING 1000
 
 enum e_log_type
 {
