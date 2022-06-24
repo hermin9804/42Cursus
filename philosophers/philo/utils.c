@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/24 00:59:46 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/24 16:24:54 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ time_t	get_passed_time_ms(time_t start_time)
 	return (get_current_time_ms() - start_time);
 }
 
-void	wait_and_sleep(time_t start_time, time_t time_to_wait)
+void	snooze(time_t time_to_wait)
 {
+	time_t	start_time;
+
+	start_time = get_current_time_ms();
 	while (get_passed_time_ms(start_time) < time_to_wait)
 		usleep(TIME_FOR_CONTEXT_SWITCHING);
 }

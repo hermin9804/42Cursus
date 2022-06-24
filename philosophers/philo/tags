@@ -37,7 +37,7 @@ broadcast_everyone_full	monitor.c	/^static void	broadcast_everyone_full(t_philo 
 broadcast_somone_dead	monitor.c	/^static void	broadcast_somone_dead(t_philo *philo)$/;"	f	file:
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
 check_philos_state	monitor.c	/^static int	check_philos_state(t_philo *philos)$/;"	f	file:
-destroy_mutex	mutex_init_destroy.c	/^void	destroy_mutex(t_philo *philos)$/;"	f
+destroy_mutex	mutex.c	/^void	destroy_mutex(t_philo *philos)$/;"	f
 do_routine	routine.c	/^void	*do_routine(void *_philo)$/;"	f
 e_exit_status	philo.h	/^enum e_exit_status$/;"	g
 e_log_type	philo.h	/^enum e_log_type$/;"	g
@@ -53,8 +53,8 @@ get_current_time_ms	utils.c	/^time_t	get_current_time_ms(void)$/;"	f
 get_passed_time_ms	utils.c	/^time_t	get_passed_time_ms(time_t start_time)$/;"	f
 id	philo.h	/^	unsigned int	id;$/;"	m	struct:s_philo
 info	philo.h	/^	t_info			*info;$/;"	m	struct:s_philo
-init_mutex	mutex_init_destroy.c	/^int	init_mutex(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
-init_mutex_fork_event	mutex_init_destroy.c	/^static int	init_mutex_fork_event(t_philo *philo)$/;"	f	file:
+init_mutex	mutex.c	/^int	init_mutex(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
+init_mutex_fork_event	mutex.c	/^static int	init_mutex_fork_event(t_philo *philo)$/;"	f	file:
 init_philo	initalizer.c	/^void	init_philo(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
 is_end	philo.h	/^	int				is_end;$/;"	m	struct:s_end_state
 is_end_lock	philo.h	/^	pthread_mutex_t	is_end_lock;$/;"	m	struct:s_end_state
@@ -76,6 +76,7 @@ s_end_state	philo.h	/^typedef struct s_end_state$/;"	s
 s_info	philo.h	/^typedef struct s_info$/;"	s
 s_philo	philo.h	/^typedef struct s_philo$/;"	s
 sleeping	routine.c	/^static int sleeping(t_philo *philo)$/;"	f	file:
+snooze	utils.c	/^void	snooze(time_t time_to_wait)$/;"	f
 start_time	philo.h	/^	time_t			start_time;$/;"	m	struct:s_philo
 stop_simulation	simulation.c	/^void	stop_simulation(t_philo *philo)$/;"	f
 t_end_state	philo.h	/^}	t_end_state;$/;"	t	typeref:struct:s_end_state
@@ -87,4 +88,3 @@ thread	philo.h	/^	pthread_t		thread;$/;"	m	struct:s_philo
 ttd	philo.h	/^	unsigned int	ttd;$/;"	m	struct:s_info
 tte	philo.h	/^	unsigned int	tte;$/;"	m	struct:s_info
 tts	philo.h	/^	unsigned int	tts;$/;"	m	struct:s_info
-wait_and_sleep	utils.c	/^void	wait_and_sleep(time_t start_time, time_t time_to_wait)$/;"	f

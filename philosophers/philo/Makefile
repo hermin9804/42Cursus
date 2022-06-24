@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/11 23:17:57 by mher              #+#    #+#              #
-#    Updated: 2022/06/21 17:03:38 by mher             ###   ########.fr        #
+#    Updated: 2022/06/24 16:28:39 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS	= \
 		  main.c \
 		  parser.c \
 		  initalizer.c \
-		  mutex_init_destroy.c \
+		  mutex.c \
 		  monitor.c \
 		  routine.c \
 		  routine_utils.c \
