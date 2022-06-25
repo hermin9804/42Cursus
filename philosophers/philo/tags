@@ -32,7 +32,6 @@ SUCCESS	philo.h	/^	SUCCESS,$/;"	e	enum:e_exit_status
 TASGS	Makefile	/^TASGS   = tags$/;"	m
 THINK	philo.h	/^	THINK,$/;"	e	enum:e_log_type
 TIME_FOR_CONTEXT_SWITCHING	philo.h	/^# define TIME_FOR_CONTEXT_SWITCHING /;"	d
-alloc_philo	initalizer.c	/^int	alloc_philo(t_philo **philos, t_info *info)$/;"	f
 broadcast_everyone_full	monitor.c	/^static void	broadcast_everyone_full(t_philo *philos)$/;"	f	file:
 broadcast_somone_dead	monitor.c	/^static void	broadcast_somone_dead(t_philo *philo)$/;"	f	file:
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
@@ -55,7 +54,7 @@ id	philo.h	/^	unsigned int	id;$/;"	m	struct:s_philo
 info	philo.h	/^	t_info			*info;$/;"	m	struct:s_philo
 init_mutex	mutex.c	/^int	init_mutex(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
 init_mutex_fork_event	mutex.c	/^static int	init_mutex_fork_event(t_philo *philo)$/;"	f	file:
-init_philo	initalizer.c	/^void	init_philo(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
+init_philos	initalizer.c	/^void	init_philos(t_philo *philos, t_info *info, t_end_state *end_state)$/;"	f
 is_end	philo.h	/^	int				is_end;$/;"	m	struct:s_end_state
 is_end_lock	philo.h	/^	pthread_mutex_t	is_end_lock;$/;"	m	struct:s_end_state
 is_end_simulation	simulation.c	/^int	is_end_simulation(t_philo *philo)$/;"	f
@@ -64,6 +63,7 @@ join_philo_threads	simulation.c	/^static int	join_philo_threads(t_philo *philos,
 last_eat_time	philo.h	/^	time_t			last_eat_time;$/;"	m	struct:s_philo
 lfork	philo.h	/^	pthread_mutex_t	*lfork;$/;"	m	struct:s_philo
 main	main.c	/^int	main(int argc, char *argv[])$/;"	f
+malloc_philos	initalizer.c	/^int	malloc_philos(t_philo **philos, t_info *info)$/;"	f
 monitor_philos	monitor.c	/^void	*monitor_philos(void *_philos)$/;"	f
 nome	philo.h	/^	unsigned int	nome;$/;"	m	struct:s_info
 nop	philo.h	/^	unsigned int	nop;$/;"	m	struct:s_info
