@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 21:21:19 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 22:43:12 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ static void thinking(t_philo *philo)
 
 int	do_routine(t_philo *philo)
 {
-//	if (philo->info->nop == 1)
-//		return (one_philo_routine(philo));
-	if (philo->id % 2 == 0)
-		usleep(TIME_FOR_CONTEXT_SWITCHING);
+	char	sem_name[30];
+
+	init_sem_name(sem_name, philo->id);
+	if (sem_open(sem_name, 1, philo->event_lock))
+		return (1);
 	while (1)
 	{
 		eating(philo); 

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 21:17:39 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 22:43:43 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_philo
 	unsigned int	id;
 	unsigned int	eat_count;
 	time_t			last_eat_time;
+	sem_t			*event_lock;
 	t_info			*info;
 	t_shared		*shared;
 }	t_philo;
@@ -85,7 +86,8 @@ int		run_simulation(t_philo *philo);
 // routine
 int		do_routine(t_philo *philo);
 void	take_forks(t_philo *philo);
-void	release_forks(t_shared *shared);
+void	release_forks(t_philo *philo);
+void	init_sem_name(char sem_name[30], unsigned int id);
 
 // parser
 int		parse_args(t_info *info, int argc, char *argv[]);

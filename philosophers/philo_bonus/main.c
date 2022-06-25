@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:19:56 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 21:11:25 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 21:30:14 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char *argv[])
 	memset(&philo, 0, sizeof(t_philo));
 	philo.info = &info;
 	philo.shared = &shared;
-	if (run_simulation(&philo, &info, &shared))
+	if (run_simulation(&philo))
 	{
 		destroy_semaphore(&shared);
 		return (exit_with(RUNTIME_FAIL));
