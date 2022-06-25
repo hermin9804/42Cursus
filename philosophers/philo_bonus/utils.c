@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/24 00:03:58 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 21:19:02 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@ time_t	get_passed_time_ms(time_t start_time)
 	return (get_current_time_ms() - start_time);
 }
 
-void	wait_and_sleep(time_t start_time, time_t time_to_wait)
+void	snooze(time_t time_to_wait)
 {
+	time_t	start_time;
+
+	start_time = get_current_time_ms();
 	while (get_passed_time_ms(start_time) < time_to_wait)
-		usleep(FOR_CONTEXT_SWITCHING);
+		usleep(TIME_FOR_CONTEXT_SWITCHING);
 }
 
 void	print_log(t_philo *philo, enum e_log_type type)
@@ -49,21 +52,18 @@ void	print_log(t_philo *philo, enum e_log_type type)
 	time_t 			time_stamp;
 	unsigned int	id;
 
-	time_stamp = get_passed_time_ms(philo->start_time);
+	time_stamp = get_passed_time_ms(philo->info->start_at);
 	id = philo->id;
-	pthread_mutex_lock(&(philo->end_state->is_end_lock));
-	if (!philo->end_state->is_end)
-	{
-		if (type == FORK)
-			printf(C_BLUE "%ld %u has taken a fork\n" C_RESET, time_stamp, id);
-		else if (type == EAT)
-			printf(C_RED "%ld %u is eating\n" C_RESET, time_stamp, id);
-		else if (type == SLEEP)
-			printf(C_GREN "%ld %u is sleeping\n" C_RESET, time_stamp, id);
-		else if (type == THINK)
-			printf(C_YLLW "%ld %u is thinking\n" C_RESET, time_stamp, id);
-		else if (type == DEAD)
-			printf(C_PRPL "%ld %u died\n" C_RESET, time_stamp, id);
-	}
-	pthread_mutex_unlock(&(philo->end_state->is_end_lock));
+	sem_wait(philo->shared->is_end_lock);
+	if (type == FORK)
+		printf(C_BLUE "%ld %u has taken a fork\n" C_RESET, time_stamp, id);
+	else if (type == EAT)
+		printf(C_RED "%ld %u is eating\n" C_RESET, time_stamp, id);
+	else if (type == SLEEP)
+		printf(C_GREN "%ld %u is sleeping\n" C_RESET, time_stamp, id);
+	else if (type == THINK)
+		printf(C_YLLW "%ld %u is thinking\n" C_RESET, time_stamp, id);
+	else if (type == DEAD)
+		printf(C_PRPL "%ld %u died\n" C_RESET, time_stamp, id);
+	sem_post(philo->shared->is_end_lock);
 }

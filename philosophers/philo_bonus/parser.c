@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/21 15:28:04 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 20:49:26 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ static int	check_args(int argc, char *argv[])
 	return (0);
 }
 
-int	parse_args(t_info *info, int argc, char *argv[])
+int	parse_args(t_info *info_out, int argc, char *argv[])
 {
 	if (check_args(argc, argv))
 			return (1);
-	memset(info, 0, sizeof(t_info));
-	info->nop = ft_atoi(argv[1]);
-	info->ttd = ft_atoi(argv[2]);
-	info->tte = ft_atoi(argv[3]);
-	info->tts = ft_atoi(argv[4]);
+	memset(info_out, 0, sizeof(t_info));
+	info_out->nop = ft_atoi(argv[1]);
+	info_out->ttd = ft_atoi(argv[2]);
+	info_out->tte = ft_atoi(argv[3]);
+	info_out->tts = ft_atoi(argv[4]);
 	if (argc == 6)
-		info->nome = ft_atoi(argv[5]);
+		info_out->nome = ft_atoi(argv[5]);
 	return (0);
 }

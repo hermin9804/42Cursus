@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/23 23:58:45 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 21:17:39 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define PHILO_H
 
 # include <stdio.h>
-# include <string.h>
 # include <pthread.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/time.h>
+# include <semaphore.h>
 
 # define INT_MIN	-2147483648
 # define INT_MAX	2147483647
@@ -30,7 +31,7 @@
 # define C_PRPL		"\033[0;35m"
 # define C_RESET	"\033[0m"
 
-# define FOR_CONTEXT_SWITCHING 100
+# define TIME_FOR_CONTEXT_SWITCHING 1000
 
 enum e_log_type
 {
@@ -45,8 +46,7 @@ enum e_exit_status
 {
 	SUCCESS,
 	PARSE_FAIL,
-	MALLOC_FAIL,
-	MUTEX_FAIL,
+	SEMAPHORE_FAIL,
 	RUNTIME_FAIL
 };
 
@@ -57,58 +57,48 @@ typedef struct s_info
 	unsigned int	tte;
 	unsigned int	tts;
 	unsigned int	nome;
+	time_t			start_at;
 }	t_info;
 
-typedef struct s_end_state
+typedef struct s_shared
 {
-	pthread_mutex_t	is_end_lock;
-	int				is_end;
-}	t_end_state;
+	sem_t			*forks_lock;
+	sem_t			*forks;
+	sem_t			*is_end_lock;
+}	t_shared;
 
 typedef struct s_philo
 {
-	pthread_t		thread;
 	unsigned int	id;
 	unsigned int	eat_count;
 	time_t			last_eat_time;
-	time_t			start_time;
-	pthread_mutex_t	event_lock;
-	pthread_mutex_t	fork;
-	pthread_mutex_t	*lfork;
-	pthread_mutex_t	*rfork;
 	t_info			*info;
-	t_end_state		*end_state;
+	t_shared		*shared;
 }	t_philo;
 
 // simulation
-int		run_simulation(t_philo *philos, t_info *info);
-void	*monitor_philos(void *_philos);
-void	stop_simulation(t_philo *philo);
-int		is_end_simulation(t_philo *philo);
+int		run_simulation(t_philo *philo);
+//void	*monitor_philos(void *_philos);
+//void	stop_simulation(t_philo *philo);
+//int		is_end_simulation(t_philo *philo);
 
 // routine
-void	*do_routine(void *philo);
+int		do_routine(t_philo *philo);
 void	take_forks(t_philo *philo);
-void	release_forks(t_philo *philo);
+void	release_forks(t_shared *shared);
 
 // parser
 int		parse_args(t_info *info, int argc, char *argv[]);
 
-// allocator
-int		alloc_philo(t_philo **philo, t_info *info);
-
-// initalizer 
-void	init_philo(t_philo *philo, t_info *info, t_end_state *end_state);
-
-// mutex
-int		init_mutex(t_philo *philo, t_info *info, t_end_state *end_state);
-void	destroy_mutex(t_philo *philo);
+// semaphore
+int		init_semaphore(t_shared *shared, t_info *info);
+int		destroy_semaphore(t_shared *shared);
 
 // utils
 size_t	ft_strlen(const char *s);
 time_t	get_current_time_ms(void);
 time_t	get_passed_time_ms(time_t start_time);
-void	wait_and_sleep(time_t start_time, time_t time_to_wait);
+void	snooze(time_t time_to_wait);
 void	print_log(t_philo *philo, enum e_log_type type);
 
 #endif
