@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:19:56 by mher              #+#    #+#             */
-/*   Updated: 2022/06/22 17:40:52 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 19:13:39 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	main(int argc, char *argv[])
 
 	if (parse_args(&info, argc, argv))
 		return (exit_with(PARSE_FAIL));
-	if (alloc_philo(&philos, &info))
+	if (malloc_philos(&philos, &info))
 		return (exit_with(MALLOC_FAIL));
-	init_philo(philos, &info, &end_state);
+	init_philos(philos, &info, &end_state);
 	if (init_mutex(philos, &info, &end_state))
 	{
 		free(philos);

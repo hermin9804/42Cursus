@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 17:32:01 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 19:13:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ void	release_forks(t_philo *philo);
 int		parse_args(t_info *info, int argc, char *argv[]);
 
 // allocator
-int		alloc_philo(t_philo **philo, t_info *info);
+int		malloc_philos(t_philo **philo, t_info *info);
 
 // initalizer 
-void	init_philo(t_philo *philos, t_info *info, t_end_state *end_state);
+void	init_philos(t_philo *philos, t_info *info, t_end_state *end_state);
 
 // mutex
 int		init_mutex(t_philo *philo, t_info *info, t_end_state *end_state);

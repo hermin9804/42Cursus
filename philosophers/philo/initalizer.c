@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/24 02:45:29 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 19:13:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	alloc_philo(t_philo **philos, t_info *info)
 	return (0);
 }
 
-void	init_philo(t_philo *philos, t_info *info, t_end_state *end_state)
+void	init_philos(t_philo *philos, t_info *info, t_end_state *end_state)
 {
 	unsigned int	i;
 
