@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:44 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 22:40:54 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 02:11:20 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	release_forks(t_philo *philo)
 	sem_post(philo->shared->forks_lock);
 }
 
-void	init_sem_name(char sem_name[30], unsigned int id)
+void	init_sem_name(char *sem_name, unsigned int id)
 {
 	const char		*suffix = "event_lock";
 	unsigned int	tmp;

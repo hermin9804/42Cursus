@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 22:43:12 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 02:13:22 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@
 static	void eating(t_philo *philo)
 {
 	take_forks(philo);
+	sem_wait(philo->event_lock);
 	philo->last_eat_time = get_current_time_ms();
+	sem_post(philo->event_lock);
 	print_log(philo, EAT);
-	philo->eat_count++;
 	snooze(philo->info->tte);
-	release_forks(philo->shared);
+	sem_wait(philo->event_lock);
+	philo->eat_count++;
+	sem_post(philo->event_lock);
+	release_forks(philo);
 }
 
 static void sleeping(t_philo *philo)
@@ -46,10 +50,10 @@ static void thinking(t_philo *philo)
 
 int	do_routine(t_philo *philo)
 {
-	char	sem_name[30];
+	char	sem_name[20];
 
 	init_sem_name(sem_name, philo->id);
-	if (sem_open(sem_name, 1, philo->event_lock))
+	if (open_semaphore(sem_name, 1, &(philo->event_lock)))
 		return (1);
 	while (1)
 	{

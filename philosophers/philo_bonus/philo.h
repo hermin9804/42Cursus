@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 22:43:43 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 02:11:26 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,14 @@ int		run_simulation(t_philo *philo);
 int		do_routine(t_philo *philo);
 void	take_forks(t_philo *philo);
 void	release_forks(t_philo *philo);
-void	init_sem_name(char sem_name[30], unsigned int id);
+void	init_sem_name(char *sem_name, unsigned int id);
 
 // parser
 int		parse_args(t_info *info, int argc, char *argv[]);
 
 // semaphore
 int		init_semaphore(t_shared *shared, t_info *info);
+int		open_semaphore(char *name, unsigned int value, sem_t **sem_out);
 int		destroy_semaphore(t_shared *shared);
 
 // utils

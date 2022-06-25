@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 20:58:21 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 02:07:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	unlink_semaphore(t_shared *shared)
 		sem_unlink("is_end_lock");
 }
 
-static int	open_semaphore(char *name, unsigned int value, sem_t **sem_out)
+int	open_semaphore(char *name, unsigned int value, sem_t **sem_out)
 {
 	sem_t *sem;
 
