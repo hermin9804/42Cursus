@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 01:58:32 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 17:32:01 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_info
 	unsigned int	tte;
 	unsigned int	tts;
 	unsigned int	nome;
+	time_t			simulation_start_time;
 }	t_info;
 
 typedef struct s_end_state
@@ -71,7 +72,6 @@ typedef struct s_philo
 	unsigned int	id;
 	unsigned int	eat_count;
 	time_t			last_eat_time;
-	time_t			start_time;
 	pthread_mutex_t	event_lock;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*lfork;

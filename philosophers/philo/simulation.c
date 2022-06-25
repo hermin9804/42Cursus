@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/23 22:49:34 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 17:32:44 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int	run_simulation(t_philo *philos, t_info *info)
 	pthread_t		monitor;
 
 	current_time = get_current_time_ms();
+	philos->info->simulation_start_time = current_time;
 	i = 0;
 	while (i < info->nop)
 	{
-		philos[i].start_time = current_time;
 		philos[i].last_eat_time = current_time;
 		if (pthread_create(&(philos[i].thread), NULL, do_routine, &philos[i]))
 		{

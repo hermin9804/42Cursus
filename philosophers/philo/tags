@@ -76,9 +76,9 @@ run_simulation	simulation.c	/^int	run_simulation(t_philo *philos, t_info *info)$
 s_end_state	philo.h	/^typedef struct s_end_state$/;"	s
 s_info	philo.h	/^typedef struct s_info$/;"	s
 s_philo	philo.h	/^typedef struct s_philo$/;"	s
+simulation_start_time	philo.h	/^	time_t			simulation_start_time;$/;"	m	struct:s_info
 sleeping	routine.c	/^static int sleeping(t_philo *philo)$/;"	f	file:
 snooze	utils.c	/^void	snooze(time_t time_to_wait)$/;"	f
-start_time	philo.h	/^	time_t			start_time;$/;"	m	struct:s_philo
 stop_simulation	simulation.c	/^void	stop_simulation(t_philo *philo)$/;"	f
 t_end_state	philo.h	/^}	t_end_state;$/;"	t	typeref:struct:s_end_state
 t_info	philo.h	/^}	t_info;$/;"	t	typeref:struct:s_info

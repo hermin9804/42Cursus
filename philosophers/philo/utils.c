@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 01:51:03 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/25 17:33:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_log(t_philo *philo, enum e_log_type type)
 	time_t 			time_stamp;
 	unsigned int	id;
 
-	time_stamp = get_passed_time_ms(philo->start_time);
+	time_stamp = get_passed_time_ms(philo->info->simulation_start_time);
 	id = philo->id;
 	pthread_mutex_lock(&(philo->end_state->is_end_lock));
 	if (!philo->end_state->is_end)
