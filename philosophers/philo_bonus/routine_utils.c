@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
+/*   routine_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:44 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 02:11:20 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 15:55:54 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	release_forks(t_philo *philo)
 	sem_post(philo->shared->forks_lock);
 }
 
-void	init_sem_name(char *sem_name, unsigned int id)
+void	set_sem_name(char *sem_name, unsigned int id)
 {
 	const char		*suffix = "event_lock";
 	unsigned int	tmp;
@@ -42,17 +42,17 @@ void	init_sem_name(char *sem_name, unsigned int id)
 		tmp /= 10;
 		++len;
 	}
-	memset(sem_name, 0, 30);
 	i = len;
 	while (i)
 	{
 		sem_name[--i] = (id % 10) + '0';
 		id /= 10;
 	}
-	i = len;
+	i = 0;
 	while (suffix[i])
 	{
-		sem_name[i] = suffix[i];
+		sem_name[len + i] = suffix[i];
 		++i;
 	}
+	sem_name[len + i] = '\0';
 }

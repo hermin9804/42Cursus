@@ -6,59 +6,33 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 01:40:02 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 16:04:04 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	broadcast_somone_dead(t_philo *philo)
+static void	*broadcast_somone_dead(t_philo *philo)
 {
 	print_log(philo, DEAD);
-	stop_simulation(philo);
+	sem_wait(philo->shared->is_end_lock);
+	exit(0);
+	return (NULL);
 }
 
-static void	broadcast_everyone_full(t_philo *philos)
+void	*monitor_dead(void *_philo)
 {
-	stop_simulation(philos);
-}
+	t_philo	*philo;
+	int		is_dead;
 
-static int	check_philos_state(t_philo *philos)
-{
-	unsigned int	i;
-	int				somone_dead;
-	unsigned int	everyone_full;
-
-	somone_dead = 0;
-	everyone_full = (0 < philos->info->nome);
-	i = 0;
-	while (i < philos->info->nop)
-	{
-		pthread_mutex_lock(&(philos[i].event_lock));
-		everyone_full &= (philos->info->nome <= philos[i].eat_count);
-		if (philos->info->ttd <= get_passed_time_ms(philos[i].last_eat_time))
-			somone_dead = 1;
-		pthread_mutex_unlock(&(philos[i].event_lock));
-		if (somone_dead)
-			break ;
-		++i;
-	}
-	if (somone_dead)
-		(broadcast_somone_dead(&philos[i]));
-	else if (everyone_full)
-		(broadcast_everyone_full(philos));
-	return (somone_dead || everyone_full);
-}
-
-void	*monitor_philos(void *_philos)
-{
-	t_philo			*philos;
-
-	philos = _philos;
+	philo = (t_philo *)_philo;
 	while (1)
 	{
-		if (check_philos_state(philos))
-			return (NULL);
+		sem_wait(philo->event_lock);
+		is_dead = philo->info->ttd <= get_passed_time_ms(philo->last_eat_time);
+		sem_post(philo->event_lock);
+		if (is_dead)
+			return (broadcast_somone_dead(philo));
 		usleep(TIME_FOR_CONTEXT_SWITCHING);
 	}
 }

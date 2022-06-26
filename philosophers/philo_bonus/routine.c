@@ -6,21 +6,11 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 02:13:22 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 16:00:27 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-//static	void	*one_philo_routine(t_philo *philo)
-//{
-//	pthread_mutex_lock(philo->lfork);
-//	print_log(philo, FORK);
-//	while (!is_end_simulation(philo))
-//		usleep(TIME_FOR_CONTEXT_SWITCHING);
-//	pthread_mutex_unlock(philo->lfork);
-//	return (NULL);
-//}
 
 static	void eating(t_philo *philo)
 {
@@ -50,10 +40,13 @@ static void thinking(t_philo *philo)
 
 int	do_routine(t_philo *philo)
 {
-	char	sem_name[20];
+	char		sem_name[21];
+	pthread_t	monitor;
 
-	init_sem_name(sem_name, philo->id);
+	set_sem_name(sem_name, philo->id);
 	if (open_semaphore(sem_name, 1, &(philo->event_lock)))
+		return (1);
+	if (pthread_create(&monitor, NULL, monitor_dead, philo))
 		return (1);
 	while (1)
 	{
@@ -61,5 +54,4 @@ int	do_routine(t_philo *philo)
 		sleeping(philo);
 		thinking(philo);
 	}
-	return (0);
 }

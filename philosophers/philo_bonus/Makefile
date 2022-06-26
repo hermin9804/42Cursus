@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/11 23:17:57 by mher              #+#    #+#              #
-#    Updated: 2022/06/25 21:04:06 by mher             ###   ########.fr        #
+#    Updated: 2022/06/26 14:55:51 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ SRCS	= \
 		  parser.c \
 		  semaphore.c \
 		  routine.c \
-		  fork.c \
+		  routine_utils.c \
 		  simulation.c \
+		  monitor.c \
 		  utils.c \
-		  #monitor.c \
 
 OBJS	= $(SRCS:.c=.o)
 

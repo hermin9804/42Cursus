@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 02:11:26 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 15:32:12 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_philo
 
 // simulation
 int		run_simulation(t_philo *philo);
+void	*monitor_dead(void *_philo);
 //void	*monitor_philos(void *_philos);
 //void	stop_simulation(t_philo *philo);
 //int		is_end_simulation(t_philo *philo);
@@ -87,7 +88,7 @@ int		run_simulation(t_philo *philo);
 int		do_routine(t_philo *philo);
 void	take_forks(t_philo *philo);
 void	release_forks(t_philo *philo);
-void	init_sem_name(char *sem_name, unsigned int id);
+void	set_sem_name(char *sem_name, unsigned int id);
 
 // parser
 int		parse_args(t_info *info, int argc, char *argv[]);
