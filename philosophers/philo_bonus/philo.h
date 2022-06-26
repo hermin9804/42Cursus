@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 15:32:12 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 16:33:44 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <semaphore.h>
+# include <signal.h>
 
 # define INT_MIN	-2147483648
 # define INT_MAX	2147483647
