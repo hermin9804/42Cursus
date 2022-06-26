@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 21:19:02 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 17:23:01 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,5 @@ void	print_log(t_philo *philo, enum e_log_type type)
 		printf(C_GREN "%ld %u is sleeping\n" C_RESET, time_stamp, id);
 	else if (type == THINK)
 		printf(C_YLLW "%ld %u is thinking\n" C_RESET, time_stamp, id);
-	else if (type == DEAD)
-		printf(C_PRPL "%ld %u died\n" C_RESET, time_stamp, id);
 	sem_post(philo->shared->is_end_lock);
 }

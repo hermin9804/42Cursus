@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 16:33:44 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/26 17:51:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ enum e_log_type
 	EAT,
 	SLEEP,
 	THINK,
-	DEAD,
 };
 
 enum e_exit_status
@@ -66,10 +65,12 @@ typedef struct s_shared
 	sem_t			*forks_lock;
 	sem_t			*forks;
 	sem_t			*is_end_lock;
+	sem_t			*full_philos;
 }	t_shared;
 
 typedef struct s_philo
 {
+	pid_t			*pids;
 	unsigned int	id;
 	unsigned int	eat_count;
 	time_t			last_eat_time;
@@ -81,9 +82,7 @@ typedef struct s_philo
 // simulation
 int		run_simulation(t_philo *philo);
 void	*monitor_dead(void *_philo);
-//void	*monitor_philos(void *_philos);
-//void	stop_simulation(t_philo *philo);
-//int		is_end_simulation(t_philo *philo);
+void	*monitor_full(void *_philo);
 
 // routine
 int		do_routine(t_philo *philo);
