@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 17:51:31 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/27 15:34:53 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_shared
 {
 	sem_t			*forks_lock;
 	sem_t			*forks;
-	sem_t			*is_end_lock;
+	sem_t			*end_lock;
 	sem_t			*full_philos;
 }	t_shared;
 

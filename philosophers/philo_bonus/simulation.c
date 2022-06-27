@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 17:51:52 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/27 16:38:52 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	wait_end(t_philo *philo, pid_t *pids, pthread_t *full_monitor)
 			waitpid(-1, &status, 0);
 		++i;
 	}
+	(void)full_monitor;
 	pthread_join(*full_monitor, NULL);
 	return (0);
 }

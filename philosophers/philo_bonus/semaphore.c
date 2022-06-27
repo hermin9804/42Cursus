@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 17:41:23 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/27 15:35:10 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void close_semaphore(t_shared *shared)
 		sem_close(shared->forks_lock);
 	if (shared->forks != 0)
 		sem_close(shared->forks);
-	if (shared->is_end_lock != 0)
-		sem_close(shared->is_end_lock);
+	if (shared->end_lock != 0)
+		sem_close(shared->end_lock);
 	if (shared->full_philos != 0)
 		sem_close(shared->full_philos);
 }
@@ -30,9 +30,9 @@ static void	unlink_semaphore(t_shared *shared)
 		sem_unlink("forks_lock");
 	if (shared->forks != 0)
 		sem_unlink("forks");
-	if (shared->is_end_lock != 0)
-		sem_unlink("is_end_lock");
-	if (shared->is_end_lock != 0)
+	if (shared->end_lock != 0)
+		sem_unlink("end_lock");
+	if (shared->full_philos != 0)
 		sem_unlink("full_philos");
 }
 
@@ -63,9 +63,9 @@ int	init_semaphore(t_shared *shared, t_info *info)
 		return (destroy_semaphore(shared));
 	if (open_semaphore("forks", info->nop, &(shared->forks)))
 		return (destroy_semaphore(shared));
-	if (open_semaphore("is_end_lock", 1, &(shared->is_end_lock)))
+	if (open_semaphore("end_lock", 1, &(shared->end_lock)))
 		return (destroy_semaphore(shared));
-	if (open_semaphore("full_philos", 0, &(shared->is_end_lock)))
+	if (open_semaphore("full_philos", 0, &(shared->full_philos)))
 		return (destroy_semaphore(shared));
 	return (0);
 }

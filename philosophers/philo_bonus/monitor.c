@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 17:52:43 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/27 16:38:47 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	*broadcast_somone_dead(t_philo *philo)
 	time_t	time_stamp;
 
 	time_stamp = get_passed_time_ms(philo->info->start_at);
-	sem_wait(philo->shared->is_end_lock);
+	sem_wait(philo->shared->end_lock);
 	printf(C_PRPL "%ld %u died\n" C_RESET, time_stamp, philo->id);
 	exit(0);
 	return (NULL);

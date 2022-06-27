@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 17:23:01 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/27 15:36:40 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	print_log(t_philo *philo, enum e_log_type type)
 
 	time_stamp = get_passed_time_ms(philo->info->start_at);
 	id = philo->id;
-	sem_wait(philo->shared->is_end_lock);
+	sem_wait(philo->shared->end_lock);
 	if (type == FORK)
 		printf(C_BLUE "%ld %u has taken a fork\n" C_RESET, time_stamp, id);
 	else if (type == EAT)
@@ -63,5 +63,5 @@ void	print_log(t_philo *philo, enum e_log_type type)
 		printf(C_GREN "%ld %u is sleeping\n" C_RESET, time_stamp, id);
 	else if (type == THINK)
 		printf(C_YLLW "%ld %u is thinking\n" C_RESET, time_stamp, id);
-	sem_post(philo->shared->is_end_lock);
+	sem_post(philo->shared->end_lock);
 }
