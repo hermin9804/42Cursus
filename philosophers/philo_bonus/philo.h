@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/27 15:34:53 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/28 18:44:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,15 @@ typedef struct s_shared
 	sem_t			*full_philos;
 }	t_shared;
 
+typedef struct s_monitor_arg
+{
+	t_info			*info;
+	t_shared		*shared;
+	pid_t			*pids;
+} t_monitor_arg;
+
 typedef struct s_philo
 {
-	pid_t			*pids;
 	unsigned int	id;
 	unsigned int	eat_count;
 	time_t			last_eat_time;
@@ -81,8 +87,8 @@ typedef struct s_philo
 
 // simulation
 int		run_simulation(t_philo *philo);
-void	*monitor_dead(void *_philo);
-void	*monitor_full(void *_philo);
+void	*monitor_dead_routine(void *_philo);
+int		monitor_full_philos(pthread_t *full_monitor, t_philo *philo, pid_t *pids);
 
 // routine
 int		do_routine(t_philo *philo);

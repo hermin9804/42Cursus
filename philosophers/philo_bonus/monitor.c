@@ -6,26 +6,42 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/27 16:38:47 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/28 17:43:11 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*monitor_full(void *_philo)
+void	*monitor_full_routine(void *_arg)
 {
 	unsigned int	i;
-	t_philo			*philo;
+	t_monitor_arg	*monitor_arg;
 
-	philo = (t_philo *)_philo;
+	monitor_arg = (t_monitor_arg *)_arg;
 	i = 0;
-	while (i < philo->info->nop)
+	while (i < monitor_arg->info->nop)
 	{
-		sem_wait(philo->shared->full_philos);
+		sem_wait(monitor_arg->shared->full_philos);
 		++i;
 	}
-	kill(philo->pids[--i], SIGTERM);
+	sem_wait(monitor_arg->shared->end_lock);
+	kill(monitor_arg->pids[--i], SIGTERM);
 	return (NULL);
+}
+
+int	monitor_full_philos(pthread_t *full_monitor, t_philo *philo, pid_t *pids)
+{
+	t_monitor_arg	monitor_arg;
+
+	if (philo->info->nome == 0)
+		return (0);
+	monitor_arg.info = philo->info;
+	monitor_arg.shared = philo->shared;
+	monitor_arg.pids = pids;
+	if (pthread_create(full_monitor, NULL, monitor_full_routine, &monitor_arg))
+		return (1);
+	pthread_detach(*full_monitor);
+	return (0);
 }
 
 static void	*broadcast_somone_dead(t_philo *philo)
@@ -39,7 +55,7 @@ static void	*broadcast_somone_dead(t_philo *philo)
 	return (NULL);
 }
 
-void	*monitor_dead(void *_philo)
+void	*monitor_dead_routine(void *_philo)
 {
 	t_philo	*philo;
 
