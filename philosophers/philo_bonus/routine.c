@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/28 17:43:16 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 19:21:31 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	do_routine(t_philo *philo)
 	set_sem_name(sem_name, philo->id);
 	if (open_semaphore(sem_name, 1, &(philo->event_lock)))
 		return (1);
-	if (pthread_create(&dead_monitor, NULL, monitor_dead_routine, philo))
+	if (pthread_create(&dead_monitor, NULL, monitor_dead, philo))
 		return (1);
 	while (1)
 	{
