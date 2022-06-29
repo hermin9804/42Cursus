@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 21:41:33 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 22:35:06 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	broadcast_somone_dead(t_philo *philo)
+static void	broadcast_simulation_stop(t_philo *philo)
 {
 	print_log(philo, DEAD);
 	stop_simulation(philo);
@@ -44,7 +44,7 @@ static int	check_philos_state(t_philo *philos)
 		++i;
 	}
 	if (somone_dead)
-		(broadcast_somone_dead(&philos[i]));
+		(broadcast_simulation_stop(&philos[i]));
 	else if (everyone_full)
 		(broadcast_everyone_full(philos));
 	return (somone_dead || everyone_full);

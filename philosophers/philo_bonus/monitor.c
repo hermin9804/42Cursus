@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:34:15 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 22:36:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	monitor_full(t_philo *philo)
 	return (0);
 }
 
-static void	broadcast_somone_dead(t_philo *philo)
+static void	broadcast_simulation_stop(t_philo *philo)
 {
 	time_t	time_stamp;
 
@@ -54,7 +54,7 @@ void	*monitor_dead(void *_philo)
 		sem_post(philo->event_lock);
 		if (is_dead)
 		{
-			broadcast_somone_dead(philo);
+			broadcast_simulation_stop(philo);
 			exit(0);
 		}
 		usleep(TIME_FOR_CONTEXT_SWITCHING);
