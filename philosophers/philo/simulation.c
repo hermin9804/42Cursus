@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 02:02:38 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:41:14 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	join_all_thread(pthread_t *monitor, t_philo *philos, unsigned int i)
 
 int	is_end_simulation(t_philo *philo)
 {
-	int ret;
+	int	ret;
 
 	pthread_mutex_lock(&philo->end_state->is_end_lock);
 	ret = philo->end_state->is_end;
@@ -46,7 +46,7 @@ int	is_end_simulation(t_philo *philo)
 int	run_simulation(t_philo *philos, t_info *info)
 {
 	unsigned int	i;
-	time_t			current_time;;
+	time_t			current_time;
 	pthread_t		monitor;
 
 	current_time = get_current_time_ms();

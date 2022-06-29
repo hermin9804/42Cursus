@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:19:56 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 15:17:26 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:33:28 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static enum	e_exit_status exit_with(enum e_exit_status exit_status)
+static enum	e_exit_status	exit_with(enum e_exit_status exit_status)
 {
 	const char	*err_msg[] = \
 	{

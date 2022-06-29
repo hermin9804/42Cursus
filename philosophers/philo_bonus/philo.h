@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 19:22:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:34:57 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,6 @@ typedef struct s_shared
 	sem_t			*end_lock;
 	sem_t			*full_philos;
 }	t_shared;
-
-typedef struct s_monitor_arg
-{
-	t_info			*info;
-	t_shared		*shared;
-	pid_t			*pids;
-} t_monitor_arg;
 
 typedef struct s_philo
 {

@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 19:21:31 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:35:42 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static	void eating(t_philo *philo)
+static void	eating(t_philo *philo)
 {
 	take_forks(philo);
 	sem_wait(philo->event_lock);
@@ -21,20 +21,20 @@ static	void eating(t_philo *philo)
 	print_log(philo, EAT);
 	snooze(philo->info->tte);
 	sem_wait(philo->event_lock);
-	++philo->eat_count;
+	philo->eat_count++;
 	if (philo->eat_count == philo->info->nome)
 		sem_post(philo->shared->full_philos);
 	sem_post(philo->event_lock);
 	release_forks(philo);
 }
 
-static void sleeping(t_philo *philo)
+static void	sleeping(t_philo *philo)
 {
 	print_log(philo, SLEEP);
 	snooze(philo->info->tts);
 }
 
-static void thinking(t_philo *philo)
+static void	thinking(t_philo *philo)
 {
 	print_log(philo, THINK);
 	usleep(TIME_FOR_CONTEXT_SWITCHING);
@@ -52,7 +52,7 @@ int	do_routine(t_philo *philo)
 		return (1);
 	while (1)
 	{
-		eating(philo); 
+		eating(philo);
 		sleeping(philo);
 		thinking(philo);
 	}

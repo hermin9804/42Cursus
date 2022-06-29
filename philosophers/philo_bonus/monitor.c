@@ -6,17 +6,19 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 19:30:57 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:34:15 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		monitor_full(t_philo *philo)
+int	monitor_full(t_philo *philo)
 {
 	pid_t			monitor_pid;
 	unsigned int	i;
 
+	if (philo->info->nome == 0)
+		return (0);
 	monitor_pid = fork();
 	if (monitor_pid == -1)
 		return (1);

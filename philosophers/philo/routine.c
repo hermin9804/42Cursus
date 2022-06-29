@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/28 18:29:29 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:40:40 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	void	*one_philo_routine(t_philo *philo)
 	return (NULL);
 }
 
-static	int eating(t_philo *philo)
+static int	eating(t_philo *philo)
 {
 	take_forks(philo);
 	pthread_mutex_lock(&(philo->event_lock));
@@ -37,14 +37,14 @@ static	int eating(t_philo *philo)
 	return (is_end_simulation(philo));
 }
 
-static int sleeping(t_philo *philo)
+static int	sleeping(t_philo *philo)
 {
 	print_log(philo, SLEEP);
 	snooze(philo->info->tts);
 	return (is_end_simulation(philo));
 }
 
-static int thinking(t_philo *philo)
+static int	thinking(t_philo *philo)
 {
 	print_log(philo, THINK);
 	usleep(TIME_FOR_CONTEXT_SWITCHING);
@@ -54,7 +54,7 @@ static int thinking(t_philo *philo)
 void	*do_routine(void *_philo)
 {
 	t_philo	*philo;
-	
+
 	philo = (t_philo *)_philo;
 	if (philo->info->nop == 1)
 		return (one_philo_routine(philo));

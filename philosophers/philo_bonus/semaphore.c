@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/27 15:35:10 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:37:12 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void close_semaphore(t_shared *shared)
+static void	close_semaphore(t_shared *shared)
 {
 	if (shared->forks_lock != 0)
 		sem_close(shared->forks_lock);
@@ -38,13 +38,12 @@ static void	unlink_semaphore(t_shared *shared)
 
 int	open_semaphore(char *name, unsigned int value, sem_t **sem_out)
 {
-	sem_t *sem;
+	sem_t	*sem;
 
-	// todo: options 공부
 	sem_unlink(name);
 	sem = sem_open(name, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, value);
 	if (sem == SEM_FAILED)
-		return (1); 
+		return (1);
 	*sem_out = sem;
 	return (0);
 }

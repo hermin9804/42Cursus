@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:44 by mher              #+#    #+#             */
-/*   Updated: 2022/06/27 15:33:13 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:36:14 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	set_sem_name(char *sem_name, unsigned int id)
 {
 	const char		*suffix = "event_lock";
 	unsigned int	tmp;
-	int	i;
-	int	len;
+	int				i;
+	int				len;
 
 	len = 0;
 	tmp = id;

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 20:49:26 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:34:42 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	ft_atoi(const char *str)
 
 static int	check_args(int argc, char *argv[])
 {
-	int	i;
-	int	j;
+	int				i;
+	int				j;
 	long long		tmp;
 
 	if (argc != 5 && argc != 6)
@@ -63,7 +63,7 @@ static int	check_args(int argc, char *argv[])
 int	parse_args(t_info *info_out, int argc, char *argv[])
 {
 	if (check_args(argc, argv))
-			return (1);
+		return (1);
 	memset(info_out, 0, sizeof(t_info));
 	info_out->nop = ft_atoi(argv[1]);
 	info_out->ttd = ft_atoi(argv[2]);

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:47:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/24 17:28:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:38:54 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	init_mutex(t_philo *philos, t_info *info, t_end_state *end_state)
 
 void	destroy_mutex(t_philo *philos)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	pthread_mutex_destroy(&(philos->end_state->is_end_lock));
 	i = 0;

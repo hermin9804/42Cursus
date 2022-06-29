@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/28 18:01:59 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/29 20:38:13 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	snooze(time_t time_to_wait)
 
 void	print_log(t_philo *philo, enum e_log_type type)
 {
-	time_t 			time_stamp;
+	time_t			time_stamp;
 	unsigned int	id;
 
 	time_stamp = get_passed_time_ms(philo->info->start_at);
