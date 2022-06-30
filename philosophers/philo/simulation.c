@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:41:14 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/30 22:20:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ static int	join_philo_threads(t_philo *philos, unsigned int i)
 	return (1);
 }
 
-static int	join_all_thread(pthread_t *monitor, t_philo *philos, unsigned int i)
+static \
+int	join_all_thread(pthread_t *observer, t_philo *philos, unsigned int i)
 {
 	join_philo_threads(philos, i);
-	pthread_join(*monitor, NULL);
+	pthread_join(*observer, NULL);
 	return (1);
 }
 
@@ -47,7 +48,7 @@ int	run_simulation(t_philo *philos, t_info *info)
 {
 	unsigned int	i;
 	time_t			current_time;
-	pthread_t		monitor;
+	pthread_t		observer;
 
 	current_time = get_current_time_ms();
 	philos->info->start_at = current_time;
@@ -62,11 +63,11 @@ int	run_simulation(t_philo *philos, t_info *info)
 		}
 		++i;
 	}
-	if (pthread_create(&monitor, NULL, monitor_philos, philos))
+	if (pthread_create(&observer, NULL, observe_philos, philos))
 	{
 		stop_simulation(&philos[i]);
-		return (join_all_thread(&monitor, philos, i));
+		return (join_all_thread(&observer, philos, i));
 	}
-	join_all_thread(&monitor, philos, i);
+	join_all_thread(&observer, philos, i);
 	return (0);
 }

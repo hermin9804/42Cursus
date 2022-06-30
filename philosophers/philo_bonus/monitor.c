@@ -6,23 +6,23 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 22:36:16 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/30 22:15:18 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	monitor_full(t_philo *philo)
+int	observe_full(t_philo *philo)
 {
-	pid_t			monitor_pid;
+	pid_t			pid;
 	unsigned int	i;
 
 	if (philo->info->nome == 0)
 		return (0);
-	monitor_pid = fork();
-	if (monitor_pid == -1)
+	pid = fork();
+	if (pid == -1)
 		return (1);
-	else if (monitor_pid == 0)
+	else if (pid == 0)
 	{
 		i = philo->info->nop;
 		while (--i)
@@ -41,7 +41,7 @@ static void	broadcast_simulation_stop(t_philo *philo)
 	printf(C_PRPL "%ld %u died\n" C_RESET, time_stamp, philo->id);
 }
 
-void	*monitor_dead(void *_philo)
+void	*observe_dead(void *_philo)
 {
 	t_philo	*philo;
 	int		is_dead;

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/26 02:02:13 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/30 22:20:09 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_philo
 
 // simulation
 int		run_simulation(t_philo *philos, t_info *info);
-void	*monitor_philos(void *_philos);
+void	*observe_philos(void *_philos);
 void	stop_simulation(t_philo *philo);
 int		is_end_simulation(t_philo *philo);
 

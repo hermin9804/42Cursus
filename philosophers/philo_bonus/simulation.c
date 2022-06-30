@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:37:48 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/30 22:15:26 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	run_simulation(t_philo *philo)
 		else if (pids[i++] == 0)
 			exit(do_routine(philo));
 	}
-	if (monitor_full(philo))
+	if (observe_full(philo))
 		return (return_with_free(pids, 1));
 	wait_end(philo, pids);
 	return (return_with_free(pids, 0));

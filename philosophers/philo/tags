@@ -33,7 +33,7 @@ TASGS	Makefile	/^TASGS   = tags$/;"	m
 THINK	philo.h	/^	THINK,$/;"	e	enum:e_log_type
 TIME_FOR_CONTEXT_SWITCHING	philo.h	/^# define TIME_FOR_CONTEXT_SWITCHING /;"	d
 broadcast_everyone_full	monitor.c	/^static void	broadcast_everyone_full(t_philo *philos)$/;"	f	file:
-broadcast_somone_dead	monitor.c	/^static void	broadcast_somone_dead(t_philo *philo)$/;"	f	file:
+broadcast_simulation_stop	monitor.c	/^static void	broadcast_simulation_stop(t_philo *philo)$/;"	f	file:
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
 check_philos_state	monitor.c	/^static int	check_philos_state(t_philo *philos)$/;"	f	file:
 destroy_mutex	mutex.c	/^void	destroy_mutex(t_philo *philos)$/;"	f
@@ -41,10 +41,10 @@ do_routine	routine.c	/^void	*do_routine(void *_philo)$/;"	f
 e_exit_status	philo.h	/^enum e_exit_status$/;"	g
 e_log_type	philo.h	/^enum e_log_type$/;"	g
 eat_count	philo.h	/^	unsigned int	eat_count;$/;"	m	struct:s_philo
-eating	routine.c	/^static	int eating(t_philo *philo)$/;"	f	file:
+eating	routine.c	/^static int	eating(t_philo *philo)$/;"	f	file:
 end_state	philo.h	/^	t_end_state		*end_state;$/;"	m	struct:s_philo
 event_lock	philo.h	/^	pthread_mutex_t	event_lock;$/;"	m	struct:s_philo
-exit_with	main.c	/^static enum	e_exit_status exit_with(enum e_exit_status exit_status)$/;"	f	file:
+exit_with	main.c	/^static enum	e_exit_status	exit_with(enum e_exit_status exit_status)$/;"	f	file:
 fork	philo.h	/^	pthread_mutex_t	fork;$/;"	m	struct:s_philo
 ft_atoi	parser.c	/^static int	ft_atoi(const char *str)$/;"	f	file:
 ft_strlen	utils.c	/^size_t	ft_strlen(const char *s)$/;"	f
@@ -58,15 +58,15 @@ init_philos	initalizer.c	/^void	init_philos(t_philo *philos, t_info *info, t_end
 is_end	philo.h	/^	int				is_end;$/;"	m	struct:s_end_state
 is_end_lock	philo.h	/^	pthread_mutex_t	is_end_lock;$/;"	m	struct:s_end_state
 is_end_simulation	simulation.c	/^int	is_end_simulation(t_philo *philo)$/;"	f
-join_all_thread	simulation.c	/^static int	join_all_thread(pthread_t *monitor, t_philo *philos, unsigned int i)$/;"	f	file:
+join_all_thread	simulation.c	/^int	join_all_thread(pthread_t *observer, t_philo *philos, unsigned int i)$/;"	f	file:
 join_philo_threads	simulation.c	/^static int	join_philo_threads(t_philo *philos, unsigned int i)$/;"	f	file:
 last_eat_time	philo.h	/^	time_t			last_eat_time;$/;"	m	struct:s_philo
 lfork	philo.h	/^	pthread_mutex_t	*lfork;$/;"	m	struct:s_philo
 main	main.c	/^int	main(int argc, char *argv[])$/;"	f
 malloc_philos	initalizer.c	/^int	malloc_philos(t_philo **philos, t_info *info)$/;"	f
-monitor_philos	monitor.c	/^void	*monitor_philos(void *_philos)$/;"	f
 nome	philo.h	/^	unsigned int	nome;$/;"	m	struct:s_info
 nop	philo.h	/^	unsigned int	nop;$/;"	m	struct:s_info
+observe_philos	monitor.c	/^void	*observe_philos(void *_philos)$/;"	f
 one_philo_routine	routine.c	/^static	void	*one_philo_routine(t_philo *philo)$/;"	f	file:
 parse_args	parser.c	/^int	parse_args(t_info *info, int argc, char *argv[])$/;"	f
 print_log	utils.c	/^void	print_log(t_philo *philo, enum e_log_type type)$/;"	f
@@ -76,7 +76,7 @@ run_simulation	simulation.c	/^int	run_simulation(t_philo *philos, t_info *info)$
 s_end_state	philo.h	/^typedef struct s_end_state$/;"	s
 s_info	philo.h	/^typedef struct s_info$/;"	s
 s_philo	philo.h	/^typedef struct s_philo$/;"	s
-sleeping	routine.c	/^static int sleeping(t_philo *philo)$/;"	f	file:
+sleeping	routine.c	/^static int	sleeping(t_philo *philo)$/;"	f	file:
 snooze	utils.c	/^void	snooze(time_t time_to_wait)$/;"	f
 start_at	philo.h	/^	time_t			start_at;$/;"	m	struct:s_info
 stop_simulation	simulation.c	/^void	stop_simulation(t_philo *philo)$/;"	f
@@ -84,7 +84,7 @@ t_end_state	philo.h	/^}	t_end_state;$/;"	t	typeref:struct:s_end_state
 t_info	philo.h	/^}	t_info;$/;"	t	typeref:struct:s_info
 t_philo	philo.h	/^}	t_philo;$/;"	t	typeref:struct:s_philo
 take_forks	routine_utils.c	/^void	take_forks(t_philo *philo)$/;"	f
-thinking	routine.c	/^static int thinking(t_philo *philo)$/;"	f	file:
+thinking	routine.c	/^static int	thinking(t_philo *philo)$/;"	f	file:
 thread	philo.h	/^	pthread_t		thread;$/;"	m	struct:s_philo
 ttd	philo.h	/^	unsigned int	ttd;$/;"	m	struct:s_info
 tte	philo.h	/^	unsigned int	tte;$/;"	m	struct:s_info

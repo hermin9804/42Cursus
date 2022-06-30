@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 22:35:06 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/30 22:20:03 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	check_philos_state(t_philo *philos)
 	return (somone_dead || everyone_full);
 }
 
-void	*monitor_philos(void *_philos)
+void	*observe_philos(void *_philos)
 {
 	t_philo			*philos;
 

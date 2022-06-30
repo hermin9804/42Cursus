@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:35:42 by mher             ###   ########.fr       */
+/*   Updated: 2022/06/30 22:16:25 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ static void	thinking(t_philo *philo)
 int	do_routine(t_philo *philo)
 {
 	char		sem_name[21];
-	pthread_t	dead_monitor;
+	pthread_t	dead_observer;
 
 	set_sem_name(sem_name, philo->id);
 	if (open_semaphore(sem_name, 1, &(philo->event_lock)))
 		return (1);
-	if (pthread_create(&dead_monitor, NULL, monitor_dead, philo))
+	if (pthread_create(&dead_observer, NULL, observe_dead, philo))
 		return (1);
 	while (1)
 	{
