@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/06/30 22:20:21 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/02 22:03:24 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ static int	join_philo_threads(t_philo *philos, unsigned int i)
 	return (1);
 }
 
-static \
-int	join_all_thread(pthread_t *observer, t_philo *philos, unsigned int i)
+static int	join_al_thread(pthread_t *observer, t_philo *philos, unsigned int i)
 {
 	join_philo_threads(philos, i);
 	pthread_join(*observer, NULL);
@@ -66,8 +65,8 @@ int	run_simulation(t_philo *philos, t_info *info)
 	if (pthread_create(&observer, NULL, observe_philos, philos))
 	{
 		stop_simulation(&philos[i]);
-		return (join_all_thread(&observer, philos, i));
+		return (join_al_thread(&observer, philos, i));
 	}
-	join_all_thread(&observer, philos, i);
+	join_al_thread(&observer, philos, i);
 	return (0);
 }

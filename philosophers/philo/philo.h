@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/30 22:20:09 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/02 22:01:12 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		is_end_simulation(t_philo *philo);
 
 // routine
 void	*do_routine(void *philo);
-void	take_forks(t_philo *philo);
+void	acquire_forks(t_philo *philo);
 void	release_forks(t_philo *philo);
 
 // parser

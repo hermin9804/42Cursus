@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:44 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:36:14 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/02 22:05:41 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	take_forks(t_philo *philo)
+void	acquire_forks(t_philo *philo)
 {
 	sem_wait(philo->shared->forks_lock);
 	sem_wait(philo->shared->forks);

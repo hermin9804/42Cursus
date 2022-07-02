@@ -6,13 +6,13 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:44 by mher              #+#    #+#             */
-/*   Updated: 2022/06/25 01:53:06 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/02 22:01:20 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	take_forks(t_philo *philo)
+void	acquire_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/06/30 22:16:25 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/02 22:05:44 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	eating(t_philo *philo)
 {
-	take_forks(philo);
+	acquire_forks(philo);
 	sem_wait(philo->event_lock);
 	philo->last_eat_time = get_current_time_ms();
 	sem_post(philo->event_lock);

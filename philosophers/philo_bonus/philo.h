@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/06/30 22:15:22 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/02 22:05:38 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		observe_full(t_philo *philo);
 
 // routine
 int		do_routine(t_philo *philo);
-void	take_forks(t_philo *philo);
+void	acquire_forks(t_philo *philo);
 void	release_forks(t_philo *philo);
 void	set_sem_name(char *sem_name, unsigned int id);
 
