@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/07/05 17:10:51 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/05 22:31:46 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ typedef struct s_philo
 	unsigned int	id;
 	unsigned int	eat_count;
 	time_t			last_eat_time;
-	sem_t			*event_lock;
+	//sem_t			*event_lock;
+	pthread_mutex_t	event_lock;
 	t_info			*info;
 	t_shared		*shared;
 }	t_philo;
@@ -94,7 +95,7 @@ int		parse_args(t_info *info, int argc, char *argv[]);
 
 // semaphore
 int		init_semaphore(t_shared *shared, t_info *info);
-int		open_semaphore(char *name, unsigned int value, sem_t **sem_out);
+int		open_semaphore(const char *name, unsigned int value, sem_t **sem_out);
 int		destroy_semaphore(t_shared *shared);
 
 // utils

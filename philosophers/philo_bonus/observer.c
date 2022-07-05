@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor.c                                          :+:      :+:    :+:   */
+/*   observer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/06/30 22:15:18 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/05 22:36:53 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	observe_full(t_philo *philo)
 		i = philo->info->nop;
 		while (--i)
 			sem_wait(philo->shared->full_philos);
-		exit(0);
+		exit(SUCCESS);
 	}
 	return (0);
 }
@@ -39,6 +39,7 @@ static void	broadcast_simulation_stop(t_philo *philo)
 	sem_wait(philo->shared->end_lock);
 	time_stamp = get_passed_time_ms(philo->info->start_at);
 	printf(C_PRPL "%ld %u died\n" C_RESET, time_stamp, philo->id);
+	exit(0);
 }
 
 void	*observe_dead(void *_philo)
@@ -49,14 +50,13 @@ void	*observe_dead(void *_philo)
 	philo = (t_philo *)_philo;
 	while (1)
 	{
-		sem_wait(philo->event_lock);
+		//sem_wait(philo->event_lock);
+		pthread_mutex_lock(&philo->event_lock);
 		is_dead = philo->info->ttd <= get_passed_time_ms(philo->last_eat_time);
-		sem_post(philo->event_lock);
 		if (is_dead)
-		{
 			broadcast_simulation_stop(philo);
-			exit(0);
-		}
-		usleep(TIME_FOR_CONTEXT_SWITCHING);
+		//sem_post(philo->event_lock);
+		pthread_mutex_unlock(&philo->event_lock);
+		//usleep(TIME_FOR_CONTEXT_SWITCHING);
 	}
 }

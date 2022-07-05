@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:37:12 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/05 20:34:32 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	unlink_semaphore(t_shared *shared)
 		sem_unlink("full_philos");
 }
 
-int	open_semaphore(char *name, unsigned int value, sem_t **sem_out)
+int	open_semaphore(const char *name, unsigned int value, sem_t **sem_out)
 {
 	sem_t	*sem;
 
