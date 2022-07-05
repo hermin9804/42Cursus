@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:23:31 by mher              #+#    #+#             */
-/*   Updated: 2022/07/02 22:01:12 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/05 17:05:19 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	destroy_mutex(t_philo *philo);
 size_t	ft_strlen(const char *s);
 time_t	get_current_time_ms(void);
 time_t	get_passed_time_ms(time_t start_time);
-void	snooze(time_t time_to_wait);
+void	atomic_sleep(time_t time_to_wait);
 void	print_log(t_philo *philo, enum e_log_type type);
 
 #endif

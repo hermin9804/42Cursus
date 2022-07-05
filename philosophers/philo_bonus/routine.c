@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/07/02 22:05:44 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/05 17:11:26 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	eating(t_philo *philo)
 	philo->last_eat_time = get_current_time_ms();
 	sem_post(philo->event_lock);
 	print_log(philo, EAT);
-	snooze(philo->info->tte);
+	atomic_sleep(philo->info->tte);
 	sem_wait(philo->event_lock);
 	philo->eat_count++;
 	if (philo->eat_count == philo->info->nome)
@@ -31,7 +31,7 @@ static void	eating(t_philo *philo)
 static void	sleeping(t_philo *philo)
 {
 	print_log(philo, SLEEP);
-	snooze(philo->info->tts);
+	atomic_sleep(philo->info->tts);
 }
 
 static void	thinking(t_philo *philo)

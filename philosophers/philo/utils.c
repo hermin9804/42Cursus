@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:43 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:41:31 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/05 17:05:06 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ time_t	get_passed_time_ms(time_t start_time)
 	return (get_current_time_ms() - start_time);
 }
 
-void	snooze(time_t time_to_wait)
+void	atomic_sleep(time_t time_to_wait)
 {
 	time_t	start_time;
 

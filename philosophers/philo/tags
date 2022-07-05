@@ -33,6 +33,7 @@ TASGS	Makefile	/^TASGS   = tags$/;"	m
 THINK	philo.h	/^	THINK,$/;"	e	enum:e_log_type
 TIME_FOR_CONTEXT_SWITCHING	philo.h	/^# define TIME_FOR_CONTEXT_SWITCHING /;"	d
 acquire_forks	routine_utils.c	/^void	acquire_forks(t_philo *philo)$/;"	f
+atomic_sleep	utils.c	/^void	atomic_sleep(time_t time_to_wait)$/;"	f
 broadcast_everyone_full	observer.c	/^static void	broadcast_everyone_full(t_philo *philos)$/;"	f	file:
 broadcast_simulation_stop	observer.c	/^static void	broadcast_simulation_stop(t_philo *philo)$/;"	f	file:
 check_args	parser.c	/^static int	check_args(int argc, char *argv[])$/;"	f	file:
@@ -59,8 +60,8 @@ init_philos	initalizer.c	/^void	init_philos(t_philo *philos, t_info *info, t_end
 is_end	philo.h	/^	int				is_end;$/;"	m	struct:s_end_state
 is_end_lock	philo.h	/^	pthread_mutex_t	is_end_lock;$/;"	m	struct:s_end_state
 is_end_simulation	simulation.c	/^int	is_end_simulation(t_philo *philo)$/;"	f
-join_al_thread	simulation.c	/^static int	join_al_thread(pthread_t *observer, t_philo *philos, unsigned int i)$/;"	f	file:
-join_philo_threads	simulation.c	/^static int	join_philo_threads(t_philo *philos, unsigned int i)$/;"	f	file:
+join_all	simulation.c	/^static int	join_all(pthread_t *observer, t_philo *philos, unsigned int i)$/;"	f	file:
+join_philos	simulation.c	/^static int	join_philos(t_philo *philos, unsigned int i)$/;"	f	file:
 last_eat_time	philo.h	/^	time_t			last_eat_time;$/;"	m	struct:s_philo
 lfork	philo.h	/^	pthread_mutex_t	*lfork;$/;"	m	struct:s_philo
 main	main.c	/^int	main(int argc, char *argv[])$/;"	f
@@ -78,7 +79,6 @@ s_end_state	philo.h	/^typedef struct s_end_state$/;"	s
 s_info	philo.h	/^typedef struct s_info$/;"	s
 s_philo	philo.h	/^typedef struct s_philo$/;"	s
 sleeping	routine.c	/^static int	sleeping(t_philo *philo)$/;"	f	file:
-snooze	utils.c	/^void	snooze(time_t time_to_wait)$/;"	f
 start_at	philo.h	/^	time_t			start_at;$/;"	m	struct:s_info
 stop_simulation	simulation.c	/^void	stop_simulation(t_philo *philo)$/;"	f
 t_end_state	philo.h	/^}	t_end_state;$/;"	t	typeref:struct:s_end_state

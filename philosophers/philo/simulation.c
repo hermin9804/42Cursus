@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 16:00:29 by mher              #+#    #+#             */
-/*   Updated: 2022/07/02 22:03:24 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/05 15:58:16 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	stop_simulation(t_philo *philo)
 	pthread_mutex_unlock(&philo->end_state->is_end_lock);
 }
 
-static int	join_philo_threads(t_philo *philos, unsigned int i)
+static int	join_philos(t_philo *philos, unsigned int i)
 {
 	while (i--)
 		pthread_join(philos[i].thread, NULL);
 	return (1);
 }
 
-static int	join_al_thread(pthread_t *observer, t_philo *philos, unsigned int i)
+static int	join_all(pthread_t *observer, t_philo *philos, unsigned int i)
 {
-	join_philo_threads(philos, i);
+	join_philos(philos, i);
 	pthread_join(*observer, NULL);
 	return (1);
 }
@@ -58,15 +58,15 @@ int	run_simulation(t_philo *philos, t_info *info)
 		if (pthread_create(&(philos[i].thread), NULL, do_routine, &philos[i]))
 		{
 			stop_simulation(&philos[i]);
-			return (join_philo_threads(philos, i));
+			return (join_philos(philos, i));
 		}
 		++i;
 	}
 	if (pthread_create(&observer, NULL, observe_philos, philos))
 	{
 		stop_simulation(&philos[i]);
-		return (join_al_thread(&observer, philos, i));
+		return (join_all(&observer, philos, i));
 	}
-	join_al_thread(&observer, philos, i);
+	join_all(&observer, philos, i);
 	return (0);
 }
