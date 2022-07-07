@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 21:13:23 by mher              #+#    #+#             */
-/*   Updated: 2022/07/05 17:11:26 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/07 14:09:55 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@ static void	eating(t_philo *philo)
 	sem_post(philo->event_lock);
 	print_log(philo, EAT);
 	atomic_sleep(philo->info->tte);
-	sem_wait(philo->event_lock);
-	philo->eat_count++;
-	if (philo->eat_count == philo->info->nome)
+	if (philo->eat_count++ == philo->info->nome)
 		sem_post(philo->shared->full_philos);
-	sem_post(philo->event_lock);
 	release_forks(philo);
 }
 
