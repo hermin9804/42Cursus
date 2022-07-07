@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 15:36:35 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:37:12 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/07 16:42:20 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	open_semaphore(char *name, unsigned int value, sem_t **sem_out)
 	sem_t	*sem;
 
 	sem_unlink(name);
-	sem = sem_open(name, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, value);
+	sem = sem_open(name, O_CREAT | O_EXCL, 0644, value);
 	if (sem == SEM_FAILED)
 		return (1);
 	*sem_out = sem;
