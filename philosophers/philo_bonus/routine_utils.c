@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:44 by mher              #+#    #+#             */
-/*   Updated: 2022/07/02 22:05:41 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/10 23:40:12 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	acquire_forks(t_philo *philo)
 {
-	sem_wait(philo->shared->forks_lock);
+	if (philo->info->nop != 1)
+		sem_wait(philo->shared->forks_lock);
 	sem_wait(philo->shared->forks);
 	print_log(philo, FORK);
 	sem_wait(philo->shared->forks);
