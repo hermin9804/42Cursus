@@ -6,7 +6,7 @@
 #    By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/11 23:17:57 by mher              #+#    #+#              #
-#    Updated: 2022/07/07 21:14:39 by mher             ###   ########.fr        #
+#    Updated: 2022/07/10 23:45:00 by mher             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS	= \
 		  main.c \
 		  parser.c \
 		  semaphore.c \
+		  sem_utils.c \
 		  routine.c \
 		  routine_utils.c \
 		  simulation.c \
