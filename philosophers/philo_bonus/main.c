@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:19:56 by mher              #+#    #+#             */
-/*   Updated: 2022/06/29 20:33:28 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/10 23:30:21 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static enum	e_exit_status	exit_with(enum e_exit_status exit_status)
 	};
 
 	if (exit_status == SUCCESS)
-		return (SUCCESS);
+		exit(exit_status);
 	write(STDERR_FILENO, err_msg[exit_status], ft_strlen(err_msg[exit_status]));
-	return (exit_status);
+	exit(exit_status);
 }
 
 int	main(int argc, char *argv[])
@@ -36,16 +36,16 @@ int	main(int argc, char *argv[])
 
 	if (parse_args(&info, argc, argv))
 		return (exit_with(PARSE_FAIL));
-	if (init_semaphore(&shared, &info))
-		return (exit_with(SEMAPHORE_FAIL));
 	memset(&philo, 0, sizeof(t_philo));
 	philo.info = &info;
+	if (init_semaphore(&shared, &info))
+		return (exit_with(SEMAPHORE_FAIL));
 	philo.shared = &shared;
 	if (run_simulation(&philo))
 	{
-		destroy_semaphore(&shared);
+		destroy_semaphore(&shared, &info);
 		return (exit_with(RUNTIME_FAIL));
 	}
-	destroy_semaphore(&shared);
+	destroy_semaphore(&shared, &info);
 	return (exit_with(SUCCESS));
 }

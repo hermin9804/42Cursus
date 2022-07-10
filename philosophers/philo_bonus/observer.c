@@ -6,7 +6,7 @@
 /*   By: mher <mher@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 01:03:55 by mher              #+#    #+#             */
-/*   Updated: 2022/07/07 21:14:25 by mher             ###   ########.fr       */
+/*   Updated: 2022/07/10 22:45:09 by mher             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	*observe_dead(void *_philo)
 	philo = (t_philo *)_philo;
 	while (1)
 	{
-		sem_wait(philo->event_lock);
+		sem_wait(philo->shared->event_lock[philo->id]);
 		is_dead = philo->info->ttd <= get_passed_time_ms(philo->last_eat_time);
-		sem_post(philo->event_lock);
+		sem_post(philo->shared->event_lock[philo->id]);
 		if (is_dead)
 		{
 			broadcast_simulation_stop(philo);
